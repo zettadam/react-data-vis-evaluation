@@ -1,5 +1,12 @@
-.d3charts {
-  margin: 0;
+.area-clipped {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
 }
 
 .d3-tip {

@@ -3,25 +3,88 @@ body {
   background: url(bg.jpg);
   background-attachment: fixed;
   background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 .app {
   background-color: rgba(255,255,255,0.5);
   margin: 0;
   padding: 2rem;
-  height: 100%;
   min-height: 100vh;
+  width: auto;
+}
+
+.demo {
+  margin: 0;
   width: 100%;
-  min-width: 100vh;
 }
 
 .chart-panel {
-  border: 1px solid rgb(201,201,201);
-  background: rgb(255,255,255);
-  box-shadow: 1px 1px 10px rgba(127,127,127,0.25);
-  margin: 0 1rem 1rem 0;
-  padding: 0 1rem 1rem 1rem;
-  width: 600px;
+  background-color: rgb(255,255,255);
+  border: 1px solid rgb(204,204,204);
+  border-radius: .25rem;
+}
+
+.charts--d3 {
+  display: block;
+
+  .chart-panel {
+    width: 630px;
+    margin: 0 2rem 2rem 0;
+    padding: 0;
+  }
+
+  .chart-panel--large {
+    width: 960px;
+  }
+}
+
+.charts--recharts,
+.charts--victory {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  .chart-panel {
+    display: flex;
+    flex-flow: column;
+    flex-shrink: auto;
+    flex-grow: auto;
+    flex-basis: 32.1%;
+    margin: 0 0.3% 2rem 0;
+  }
+
+  .chart-panel__content {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.charts--recharts {
+  .chart-panel__content { height: 36rem; }
+}
+
+.charts--victory {
+  .chart-panel__content { height: 28rem; }
+}
+
+.chart-panel__header {
+  padding: .5rem;
+}
+
+.chart-panel__content {
+  margin: 1rem;
+}
+
+.chart-panel--wide {
+  height: 500px;
+  min-height: 500px;
+  width: 1024px;
 }
 
 nav {

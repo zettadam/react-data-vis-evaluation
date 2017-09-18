@@ -87,11 +87,7 @@ export default class SingleArea extends Component {
        [yField]: +i[yField]
     }))
 
-    console.log( 'parsedData', parsedData)
-
     const maxValue = d3.max(parsedData, d => d[yField])
-
-    console.log( 'maxValue', maxValue)
 
     xScale.domain( d3.extent(parsedData, d => d[xField]) )
     yScale.domain( [0, maxValue ])

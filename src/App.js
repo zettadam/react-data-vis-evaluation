@@ -12,8 +12,6 @@ import Summary from './summary'
 import Recommendations from './recommendations'
 import References from './references'
 
-import './app.css'
-
 class App extends Component {
 
   render () {
