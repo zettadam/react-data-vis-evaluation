@@ -35,6 +35,10 @@
     "webpack-dev-server": "^2.7.0"
   },
   "dependencies": {
+    "@vx/axis": "0.0.138",
+    "@vx/group": "0.0.136",
+    "@vx/scale": "0.0.136",
+    "@vx/shape": "0.0.136",
     "d3": "^4.10.2",
     "d3-tip": "^0.7.1",
     "lodash": "^4.17.4",
