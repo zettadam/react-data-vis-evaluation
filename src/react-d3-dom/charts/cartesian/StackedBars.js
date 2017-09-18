@@ -13,6 +13,7 @@ const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
 export default class StackedBars extends Component {
 
   static defaultProps = {
+    colors: [],
     height: 300,
     margin: {
       top: 20,
@@ -58,6 +59,7 @@ export default class StackedBars extends Component {
   renderChart () {
 
     const {
+      colors,
       data,
       height,
       margin,
@@ -73,7 +75,7 @@ export default class StackedBars extends Component {
 
     const xScale = d3.scaleBand().range([0, aWidth]).padding(0.1) // value -> display
     const yScale = d3.scaleLinear().range([aHeight, 0]) // value -> display
-    const zScale = d3.scaleOrdinal().range(COLOR_SCHEME)
+    const zScale = d3.scaleOrdinal().range(colors)
 
     yScale.domain([0, d3.max(data, d => {
       let total = 0

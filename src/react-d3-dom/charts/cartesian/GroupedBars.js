@@ -3,17 +3,11 @@ import * as d3 from 'd3'
 import d3tip from 'd3-tip'
 import { isEqual } from 'lodash'
 
-import {
-  MONOCHROMATIC_COLORS,
-  CUSTOM_COLORS
-} from '../colors'
-
-const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
-
 
 export default class GroupedBars extends Component {
 
   static defaultProps = {
+    colors: [],
     height: 300,
     margin: {
       top: 20,
@@ -59,6 +53,7 @@ export default class GroupedBars extends Component {
   renderChart () {
 
     const {
+      colors,
       data,
       height,
       margin,
@@ -75,7 +70,7 @@ export default class GroupedBars extends Component {
     const x0Scale = d3.scaleBand().rangeRound([0, aWidth]).paddingInner(0.1)
     const x1Scale = d3.scaleBand().padding(0.1);
     const yScale = d3.scaleLinear().rangeRound([aHeight, 0]);
-    const zScale = d3.scaleOrdinal().range(COLOR_SCHEME.slice(0, yFields.length))
+    const zScale = d3.scaleOrdinal().range(colors.slice(0, yFields.length))
 
     x0Scale.domain(data.map(d => d[xField]))
     x1Scale.domain(yFields).rangeRound([0, x0Scale.bandwidth()])

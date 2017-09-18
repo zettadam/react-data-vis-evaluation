@@ -2,16 +2,10 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import { isEqual } from 'lodash'
 
-import {
-  MONOCHROMATIC_COLORS,
-  CUSTOM_COLORS
-} from '../colors'
-
-const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
-
 export default class SingleBars extends Component {
 
   static defaultProps = {
+    colors: [],
     height: 300,
     margin: {
       top: 20,
@@ -57,6 +51,7 @@ export default class SingleBars extends Component {
   renderChart () {
 
     const {
+      colors,
       data,
       height,
       margin,
@@ -101,7 +96,7 @@ export default class SingleBars extends Component {
       .attr('y', d => yScale(d[yField]) )
       .attr('width', xScale.bandwidth())
       .attr('height', d => aHeight - yScale(d[yField]) )
-      .attr('fill', COLOR_SCHEME[2])
+      .attr('fill', colors[2])
 
   }
 

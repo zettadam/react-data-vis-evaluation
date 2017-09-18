@@ -7,6 +7,11 @@ import {
   StackedBars
  } from 'react-d3-dom/charts/cartesian'
 
+ import {
+  MONOCHROMATIC_COLORS,
+  COLORS
+} from './colors'
+
 import { ORDINAL_DATA } from 'fakeData'
 
 const BarChartsDemo = props =>
@@ -23,6 +28,7 @@ const BarChartsDemo = props =>
         </div>
         <div className="chart-panel__content">
           <SingleBars
+            colors={ COLORS['sequential'] }
             data={ ORDINAL_DATA[0] }
             xField="x"
             yField="y1" />
@@ -35,6 +41,7 @@ const BarChartsDemo = props =>
         </div>
         <div className="chart-panel__content">
           <StackedBars
+          colors={ COLORS['qualitative2'] }
             data={ ORDINAL_DATA[2] }
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
@@ -47,6 +54,7 @@ const BarChartsDemo = props =>
         </div>
         <div className="chart-panel__content">
           <GroupedBars
+            colors={ COLORS['qualitative1'] }
             data={ ORDINAL_DATA[2] }
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
