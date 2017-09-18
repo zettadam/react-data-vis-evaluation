@@ -17,7 +17,8 @@ export default class Chart extends Component {
   static defaultProps = {
     colors: [],
     data: [],
-    stacked: false
+    stacked: false,
+    stackOffset: 'none'
   }
 
   render () {
@@ -26,6 +27,7 @@ export default class Chart extends Component {
       colors,
       data,
       stacked,
+      stackOffset,
       xField,
       yFields
     } = this.props
@@ -33,7 +35,7 @@ export default class Chart extends Component {
     return (
       <ResponsiveContainer>
         <AreaChart data={ data }
-          stackOffset="silhouette">
+          stackOffset={ stackOffset }>
           <XAxis dataKey={ xField } tickLine={ false }/>
           <YAxis tickLine={ false } />
           <Tooltip />

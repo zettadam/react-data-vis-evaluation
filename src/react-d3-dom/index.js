@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink, Route, Switch } from 'react-router-dom'
 
-import AreaCharts from './AreaCharts'
-import BarCharts from './BarCharts'
-import LineCharts from './LineCharts'
-import PieCharts from './PieCharts'
+import AreaChartsDemo from './AreaChartsDemo'
+import BarChartsDemo from './BarChartsDemo'
+import LineChartsDemo from './LineChartsDemo'
+import PieChartsDemo from './PieChartsDemo'
 
 import './styles/d3charts.css'
 
@@ -25,10 +25,10 @@ const Article = props => (
     </nav>
 
     <Switch>
-      <Route path="/react-d3-dom/area-charts" component={ AreaCharts } />
-      <Route path="/react-d3-dom/bar-charts" component={ BarCharts } />
-      <Route path="/react-d3-dom/line-charts" component={ LineCharts } />
-      <Route path="/react-d3-dom/pie-charts" component={ PieCharts } />
+      <Route path="/react-d3-dom/area-charts" component={ AreaChartsDemo } />
+      <Route path="/react-d3-dom/bar-charts" component={ BarChartsDemo } />
+      <Route path="/react-d3-dom/line-charts" component={ LineChartsDemo } />
+      <Route path="/react-d3-dom/pie-charts" component={ PieChartsDemo } />
     </Switch>
 
   </article>

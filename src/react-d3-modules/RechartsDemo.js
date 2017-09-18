@@ -47,7 +47,8 @@ const RechartsDemo = props =>
             data={ ORDINAL_DATA[2] }
             xField="x"
             yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-            stacked />
+            stacked
+            stackOffset="expand" />
         </div>
       </div>
 
@@ -104,7 +105,7 @@ const RechartsDemo = props =>
         </div>
       </div>
 
-      <div className="chart-panel">
+      <div className="chart-panel chart-panel--fullwidth">
         <div className="chart-panel__header">
           <h4>Grouped Bars</h4>
         </div>

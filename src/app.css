@@ -19,6 +19,12 @@ body {
 .demo {
   margin: 0;
   width: 100%;
+
+  header {
+    text-align: center;
+
+    h3 { font-size: 3rem; }
+  }
 }
 
 .chart-panel {
@@ -55,7 +61,7 @@ body {
     flex-flow: column;
     flex-shrink: auto;
     flex-grow: auto;
-    flex-basis: 32.1%;
+    flex-basis: 48%;
     margin: 0 0.3% 2rem 0;
   }
 
@@ -66,6 +72,9 @@ body {
 }
 
 .charts--recharts {
+  .chart-panel--fullwidth {
+    flex-basis: 100%;
+  }
   .chart-panel__content { height: 36rem; }
 }
 
@@ -74,7 +83,8 @@ body {
 }
 
 .chart-panel__header {
-  padding: .5rem;
+  padding: 0;
+  h4 { padding: 0 1rem; }
 }
 
 .chart-panel__content {
