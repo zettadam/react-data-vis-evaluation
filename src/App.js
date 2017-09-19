@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom'
 
 import Introduction from './intro'
-import Dthree from './dthree'
-import ChartJavascript from './chartJavascript'
+import Dthree from './dThree'
+import ChartJavascript from './chartJS'
 import ReactD3Dom from './react-d3-dom'
 import ReactDomD3 from './react-dom-d3'
 import ReactD3Wrappers from './react-d3-wrappers'
@@ -26,16 +26,16 @@ class App extends Component {
               <li>Data Visualization
                 <ul>
                   <li><NavLink to="/introduction">Introduction</NavLink></li>
-                  <li><NavLink to="/d3">D3</NavLink></li>
-                  <li><NavLink to="/chartJS/intro">ChartJS</NavLink></li>
+                  <li><NavLink to="/d3/introduction">D3</NavLink></li>
+                  <li><NavLink to="/chartJS/introduction">ChartJS</NavLink></li>
                 </ul>
               </li>
               <li>React and D3
                 <ul>
-                  <li><NavLink to="/react-d3-dom/bar-charts">React + D3 (owns the DOM)</NavLink></li>
+                  <li><NavLink to="/react-d3-dom">React + D3 (owns the DOM)</NavLink></li>
                   <li><NavLink to="/react-dom-d3">React (owns the DOM) + D3</NavLink></li>
                   <li><NavLink to="/react-d3-wrappers">React + D3 wrappers</NavLink></li>
-                  <li><NavLink to="/react-d3-modules/recharts">React charts + D3 modules</NavLink></li>
+                  <li><NavLink to="/react-d3-modules">React charts + D3 modules</NavLink></li>
                 </ul>
               </li>
               <li>Conclusions

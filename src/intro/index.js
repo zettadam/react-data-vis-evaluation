@@ -1,9 +1,9 @@
 import React from 'react'
 
+import introduction_rendered from 'md/introduction.md'
+
 const Article = props => (
-  <article>
-    <h1>Introduction</h1>
-    <p>This will display article content.</p>
+  <article dangerouslySetInnerHTML={{ __html: introduction_rendered }}>
   </article>
 )
 

@@ -1,9 +1,11 @@
 import React from 'react'
 
+import Introduction from './Introduction'
+
 const Article = props => (
-  <article>
+  <article className="content">
     <h1>D3 (Data-Driven Documents)</h1>
-    <p>This will display article content.</p>
+    <Introduction />
   </article>
 )
 

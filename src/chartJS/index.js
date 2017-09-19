@@ -8,8 +8,6 @@ import RadialChartsDemo from './RadialChartsDemo'
 const Article = props => (
   <article>
     <h1>ChartJS</h1>
-    <p>This will display article content.</p>
-
     <nav>
       <ul>
         <li><NavLink to="/chartJS/introduction">Introduction</NavLink></li>
