@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  VictoryAxis,
   VictoryBar,
   VictoryChart,
   VictoryGroup,
@@ -10,6 +9,8 @@ import {
   VictoryStack,
   VictoryTooltip
 } from 'victory'
+
+import VictoryTheme from './themes'
 
 import {
   adaptData,
@@ -24,6 +25,7 @@ export default class BarChart extends Component {
     colors: PropTypes.array,
     data: PropTypes.array,
     stacked: PropTypes.bool,
+    theme: PropTypes.string,
     xField: PropTypes.string,
     yFields: PropTypes.array
   }
@@ -32,6 +34,7 @@ export default class BarChart extends Component {
     colors: [],
     data: [],
     stacked: false,
+    theme: 'qualitativeA',
     xField: '',
     yFields: []
   }
@@ -47,62 +50,50 @@ export default class BarChart extends Component {
 
     return yFields.map((f, i) =>
       <VictoryBar key={ `bar${i}` } data={ data[i] }
-        labelComponent={
-          <VictoryTooltip
-            cornerRadius={ 3 }
-            pointerLength={ 10 }
-            flyoutStyle={{
-              stroke: '#000',
-              strokeWidth: 1,
-              fill: '#202020',
-              fillOpacity: 0.9
-            }} />
-        }
-        style={{
-          labels: {
-            fill: 'rgb(255,255,255)',
-            fontSize: '12px'
-          }
-        }} /> )
+        labelComponent={ <VictoryTooltip /> } /> )
   }
 
   render () {
-    const { colors, data, stacked, xField, yFields } = this.props
+    const {
+      data,
+      domainPadding,
+      stacked,
+      theme,
+      xField,
+      yFields
+    } = this.props
 
-    const colorScale = createColorScale({ colors, fields: yFields })
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      domainPadding: { x: 20, y: 20 }
+      theme: VictoryTheme.spark[theme]
     }
+
+    if (domainPadding) chartProps.domainPadding = domainPadding
 
     const props = {
       categories: { x: data.map(d => d[xField]) },
-      colorScale: colorScale,
-      offset: 7
+      offset: yFields.length - 1
     }
 
     const legendProps = {
-      colorScale,
       data: getLegendData({ fields: yFields }),
       orientation: 'horizontal',
       width: 400
     }
 
     return (
-      <div>
-        <VictoryChart { ...chartProps }>
-        { !stacked &&
-          <VictoryGroup { ...props }>
-            { this.renderBars(adaptedData) }
-          </VictoryGroup> }
-        { stacked &&
-          <VictoryStack { ...props }>
-            { this.renderBars(adaptedData) }
-          </VictoryStack> }
-        </VictoryChart>
+      <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
-      </div>
+        { !stacked &&
+        <VictoryGroup { ...props }>
+          { this.renderBars(adaptedData) }
+        </VictoryGroup> }
+        { stacked &&
+        <VictoryStack { ...props }>
+          { this.renderBars(adaptedData) }
+        </VictoryStack> }
+      </VictoryChart>
     )
   }
 }

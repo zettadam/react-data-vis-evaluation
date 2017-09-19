@@ -1,6 +1,7 @@
 import React from 'react'
 
-import DATA from 'fakeData'
+import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
+import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const LineChartsDemo = props =>
   <section className="demo">
@@ -8,7 +9,7 @@ const LineChartsDemo = props =>
       <h3>Line Charts</h3>
     </header>
 
-    <div className="charts--d3">
+    <div className="charts charts--d3">
       <div className="chart-panel">
         <h4>Simple Line Series</h4>
       </div>

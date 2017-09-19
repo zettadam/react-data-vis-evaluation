@@ -33,13 +33,12 @@ export default class Chart extends Component {
     } = this.props
 
     return (
-      <ResponsiveContainer>
+      <ResponsiveContainer width="96%" >
         <AreaChart data={ data }
           stackOffset={ stackOffset }>
           <XAxis dataKey={ xField } tickLine={ false }/>
           <YAxis tickLine={ false } />
           <Tooltip />
-          <Legend />
           <CartesianGrid strokeDasharray="0.5 0.5" />
           { yFields && yFields.map((f, i) => {
             let rgb = colors[i % colors.length]
@@ -57,6 +56,7 @@ export default class Chart extends Component {
                 fill={ rgb } />
             )
           } )}
+          <Legend verticalAlign="top" height={ 32 } />
         </AreaChart>
       </ResponsiveContainer>
     )

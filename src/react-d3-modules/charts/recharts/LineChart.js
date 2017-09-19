@@ -30,12 +30,11 @@ export default class Chart extends Component {
     } = this.props
 
     return (
-      <ResponsiveContainer>
+      <ResponsiveContainer width="96%">
         <LineChart data={ data }>
           <XAxis dataKey={ xField } tickLine={ false } />
           <YAxis tickLine={ false } />
           <Tooltip />
-          <Legend />
           <CartesianGrid strokeDasharray="0.5 0.5" vertical={ false } />
           { yFields && yFields.map((f, i) => {
             let rgb = colors[i % colors.length]
@@ -44,6 +43,7 @@ export default class Chart extends Component {
                 stroke={ rgb } />
             )
           } )}
+          <Legend verticalAlign="top" height="32" />
         </LineChart>
       </ResponsiveContainer>
     )

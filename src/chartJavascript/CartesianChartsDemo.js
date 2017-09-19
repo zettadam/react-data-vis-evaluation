@@ -4,19 +4,19 @@ import {
   AreaChart,
   BarChart,
   LineChart
-} from './charts/recharts'
+} from './charts'
 
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
-const RechartsDemo = props =>
+const CartesianChartsDemo = props =>
   <section className="demo">
     <header>
-      <h3>Recharts Demo</h3>
+      <h3>Cartesian ChartJS Charts</h3>
     </header>
-    <p>Here are some charts created using <b><a href="http://recharts.org/">recharts</a></b> library.</p>
+    <p>Here are some Cartesian charts created using <b><a href="http://www.chartjs.org/">chartjs</a></b> library and <b><a href="http://jerairrest.github.io/react-chartjs-2/">react-chartjs-2</a></b> wrapper.</p>
 
-    <section className="charts charts--recharts">
+    <section className="charts charts--chartjs">
       <div className="chart-panel">
         <div className="chart-panel__header">
           <h4>Single Area</h4>
@@ -64,7 +64,7 @@ const RechartsDemo = props =>
         </div>
         <div className="chart-panel__content">
           <LineChart
-            colors={ COLORS['divergent'] }
+            colors={ COLORS['sequential'] }
             data={ ORDINAL_DATA[2] }
             xField="x"
             yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] } />
@@ -77,7 +77,7 @@ const RechartsDemo = props =>
         </div>
         <div className="chart-panel__content">
           <BarChart
-            colors={ COLORS['sequential'] }
+            colors={ COLORS['qualitative1'] }
             data={ ORDINAL_DATA[0] }
             xField="x"
             yFields={ ['y1'] } />
@@ -113,6 +113,7 @@ const RechartsDemo = props =>
       </div>
 
     </section>
+
   </section>
 
-export default RechartsDemo
+export default CartesianChartsDemo

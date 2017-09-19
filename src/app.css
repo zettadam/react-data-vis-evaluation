@@ -33,6 +33,10 @@ body {
   border-radius: .25rem;
 }
 
+.charts {
+  margin: 2rem 0;
+}
+
 .charts--d3 {
   display: block;
 
@@ -47,39 +51,50 @@ body {
   }
 }
 
+.charts--chartjs,
 .charts--recharts,
 .charts--victory {
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  display: grid;
+  grid-gap: 2rem;
 
   .chart-panel {
     display: flex;
     flex-flow: column;
-    flex-shrink: auto;
-    flex-grow: auto;
-    flex-basis: 48%;
-    margin: 0 0.3% 2rem 0;
+    min-height: 0;
+    height: 36rem;
+  }
+
+  .chart-panel__header {
+    height: 3rem;
   }
 
   .chart-panel__content {
     margin: 0;
     padding: 0;
+    height: calc(100% - 3rem);
   }
 }
 
-.charts--recharts {
-  .chart-panel--fullwidth {
-    flex-basis: 100%;
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-width: 1600px) {
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory {
+    grid-template-columns: repeat(3, 32.333%);
   }
-  .chart-panel__content { height: 36rem; }
+}
+@media screen and (max-width: 1599px) {
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory {
+    grid-template-columns: repeat(2, 49%);
+  }
 }
 
-.charts--victory {
-  .chart-panel__content { height: 28rem; }
+.charts--chartjs {
+  .chart-panel {
+    height: 30rem;
+  }
 }
 
 .chart-panel__header {

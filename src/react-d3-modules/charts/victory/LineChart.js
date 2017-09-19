@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  VictoryAxis,
   VictoryLine,
   VictoryChart,
   VictoryGroup,
   VictoryLegend,
-  VictoryTooltip
+  VictoryTooltip,
+  VictoryZoomContainer
 } from 'victory'
+
+import VictoryTheme from './themes'
 
 import {
   adaptData,
@@ -20,19 +22,22 @@ import {
 export default class LineChart extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
     data: PropTypes.array,
     interpolation: PropTypes.string,
+    theme: PropTypes.string,
     xField: PropTypes.string,
-    yFields: PropTypes.array
+    yFields: PropTypes.array,
+    zoom: PropTypes.boolean
   }
 
   static defaultProps = {
     colors: [],
     data: [],
     interpolation: 'natural',
+    theme: 'sequential',
     xField: '',
-    yFields: []
+    yFields: [],
+    zoom: false
   }
 
   constructor (props) {
@@ -49,56 +54,47 @@ export default class LineChart extends Component {
         data={ data[i] }
         interpolation={ interpolation }
         labelComponent={
-          <VictoryTooltip
-            cornerRadius={ 3 }
-            pointerLength={ 10 }
-            flyoutStyle={{
-              stroke: '#000',
-              strokeWidth: 1,
-              fill: '#202020',
-              fillOpacity: 0.9
-            }} />
-        }
-        style={{
-          labels: {
-            fill: 'rgb(255,255,255)',
-            fontSize: '12px'
-          }
-        }} /> )
+          <VictoryTooltip />
+        } /> )
   }
 
   render () {
 
-    const { colors, data, xField, yFields } = this.props
+    const {
+      data,
+      domainPadding,
+      theme,
+      xField,
+      yFields,
+      zoom
+    } = this.props
 
-    const colorScale = createColorScale({ colors, fields: yFields })
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      domainPadding: { y: 30 }
+      theme: VictoryTheme.spark[theme]
     }
 
+    if (domainPadding) chartProps.domainPadding = domainPadding
+    if (zoom) chartProps.containerComponent = <VictoryZoomContainer />
+
     const groupProps = {
-      categories: { x: data.map(d => d[xField]) },
-      colorScale
+      categories: { x: data.map(d => d[xField]) }
     }
 
     const legendProps = {
-      colorScale,
       data: getLegendData({ fields: yFields }),
       orientation: 'horizontal',
       width: 400
     }
 
     return (
-      <div>
-        <VictoryChart { ...chartProps }>
-          <VictoryGroup { ...groupProps }>
-          { this.renderLines(adaptedData) }
-          </VictoryGroup>
-        </VictoryChart>
+      <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
-      </div>
+        <VictoryGroup { ...groupProps }>
+        { this.renderLines(adaptedData) }
+        </VictoryGroup>
+      </VictoryChart>
     )
   }
 }

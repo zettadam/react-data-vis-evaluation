@@ -5,14 +5,10 @@ import {
   GroupedStackedBars,
   SingleBars,
   StackedBars
- } from 'react-d3-dom/charts/cartesian'
+ } from './charts/cartesian'
 
- import {
-  MONOCHROMATIC_COLORS,
-  COLORS
-} from './colors'
-
-import { ORDINAL_DATA } from 'fakeData'
+ import { ORDINAL_DATA } from 'fakeData'
+ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const BarChartsDemo = props =>
   <section className="demo">
@@ -20,7 +16,7 @@ const BarChartsDemo = props =>
       <h3>Bar Charts</h3>
     </header>
 
-    <div className="charts--d3">
+    <div className="charts charts--d3">
 
       <div className="chart-panel">
         <div className="chart-panel__header">

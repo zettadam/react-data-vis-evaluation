@@ -34,7 +34,7 @@ export default class Chart extends Component {
     console.log( 'BarChart props', this.props)
 
     return (
-      <ResponsiveContainer>
+      <ResponsiveContainer width="96%">
         <BarChart data={ data }>
           <XAxis dataKey={ xField }
             padding={{ left: 10, right: 10 }}
@@ -42,7 +42,6 @@ export default class Chart extends Component {
           <YAxis
             tickLine={ false } />
           <Tooltip />
-          <Legend />
           <CartesianGrid strokeDasharray="0.5 0.5" />
           { yFields && yFields.map((f, i) => {
             let rgb = colors[i % colors.length]
@@ -60,6 +59,7 @@ export default class Chart extends Component {
                 fill={ rgb } />
             )
           } )}
+          <Legend verticalAlign="top" height={ 32 } />
         </BarChart>
       </ResponsiveContainer>
     )

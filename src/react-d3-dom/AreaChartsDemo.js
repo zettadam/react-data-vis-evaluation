@@ -3,9 +3,10 @@ import React from 'react'
 import {
   SingleArea,
   SingleAreaBrushZoom
-} from 'react-d3-dom/charts/cartesian'
+} from './charts/cartesian'
 
 import { TIME_SERIES } from 'fakeData'
+import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const AreaChartsDemo = props =>
   <section className="demo">
@@ -13,7 +14,7 @@ const AreaChartsDemo = props =>
       <h3>Area Charts</h3>
     </header>
 
-    <div className="charts--d3">
+    <div className="charts charts--d3">
 
       <div className="chart-panel">
         <div className="chart-panel__header">

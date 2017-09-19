@@ -7,15 +7,7 @@ import {
   ScatterChart
 } from './charts/victory'
 
-import {
-  ORDINAL_DATA,
-  TIME_SERIES
-} from 'fakeData'
-
-import {
-  MONOCHROMATIC_COLORS,
-  COLORS
-} from './colors'
+import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 
 const VictoryDemo = props =>
   <section className="demo">
@@ -24,7 +16,7 @@ const VictoryDemo = props =>
     </header>
     <p>Here are some charts created using <b><a href="http://formidable.com/open-source/victory/">victory</a></b> library.</p>
 
-    <section className="charts--victory">
+    <section className="charts charts--victory">
 
       <div className="chart-panel">
         <div className="chart-panel__header">
@@ -32,7 +24,6 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <AreaChart
-            colors={ COLORS['sequential'] }
             data={ ORDINAL_DATA[0] }
             xField="x"
             yFields={ ['y1'] } />
@@ -45,7 +36,6 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <AreaChart
-            colors={ COLORS['qualitative2'] }
             data={ ORDINAL_DATA[2] }
             xField="x"
             yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
@@ -59,7 +49,6 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <LineChart
-            colors={ COLORS['sequential'] }
             data={ ORDINAL_DATA[0] }
             xField="x"
             yFields={ ['y1'] } />
@@ -68,14 +57,14 @@ const VictoryDemo = props =>
 
       <div className="chart-panel">
         <div className="chart-panel__header">
-          <h4>Multiple Lines</h4>
+          <h4>Multiple Lines (with zoom)</h4>
         </div>
         <div className="chart-panel__content">
           <LineChart
-            colors={ COLORS['qualitative1'] }
             data={ ORDINAL_DATA[2] }
             xField="x"
-            yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] } />
+            yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+            zoom />
         </div>
       </div>
 
@@ -85,8 +74,8 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <BarChart
-            colors={ COLORS['sequential'] }
             data={ ORDINAL_DATA[0] }
+            domainPadding={{ x: 20, y: 0 }}
             xField="x"
             yFields={ ['y1'] } />
         </div>
@@ -98,8 +87,8 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <BarChart
-            colors={ COLORS['divergent'] }
             data={ ORDINAL_DATA[2] }
+            domainPadding={{ x: 10, y: 0 }}
             stacked
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
@@ -112,8 +101,8 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <BarChart
-            colors={ COLORS['qualitative2'] }
             data={ ORDINAL_DATA[2] }
+            domainPadding={{ x: 12, y: 0 }}
             grouped
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
@@ -126,8 +115,8 @@ const VictoryDemo = props =>
         </div>
         <div className="chart-panel__content">
           <ScatterChart
-            colors={ COLORS['qualitative1'] }
             data={ ORDINAL_DATA[2] }
+            domainPadding={{ x: 10, y: 10 }}
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
         </div>

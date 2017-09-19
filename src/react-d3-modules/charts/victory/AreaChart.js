@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  VictoryAxis,
   VictoryArea,
   VictoryChart,
   VictoryGroup,
@@ -10,6 +9,8 @@ import {
   VictoryStack,
   VictoryTooltip
 } from 'victory'
+
+import VictoryTheme from './themes'
 
 import {
   adaptData,
@@ -49,61 +50,42 @@ export default class AreaChart extends Component {
       <VictoryArea key={ `area${i}` }
         data={ data[i] }
         labelComponent={
-          <VictoryTooltip
-            cornerRadius={ 3 }
-            pointerLength={ 10 }
-            flyoutStyle={{
-              stroke: '#000',
-              strokeWidth: 1,
-              fill: '#202020',
-              fillOpacity: 0.9
-            }} />
-        }
-        style={{
-          data: { fillOpacity: 0.75 },
-          labels: {
-            fill: 'rgb(255,255,255)',
-            fontSize: '12px'
-          }
-        }}/> )
+          <VictoryTooltip />
+        } /> )
   }
 
   render () {
-    const { colors, data, stacked, xField, yFields } = this.props
+    const { data, stacked, xField, yFields } = this.props
 
-    const colorScale = createColorScale({ colors, fields: yFields })
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      domainPadding: { y: 20 }
+      domainPadding: { y: 20 },
+      theme: VictoryTheme.spark.divergent
     }
 
     const props = {
-      categories: { x: data.map(d => d[xField]) },
-      colorScale
+      categories: { x: data.map(d => d[xField]) }
     }
 
     const legendProps = {
-      colorScale,
       data: getLegendData({ fields: yFields }),
       orientation: 'horizontal',
       width: 400
     }
 
     return (
-      <div>
-        <VictoryChart { ...chartProps }>
-        { !stacked &&
-          <VictoryGroup { ...props }>
-            { this.renderAreas(adaptedData) }
-          </VictoryGroup> }
-        { stacked &&
-          <VictoryStack { ...props }>
-            { this.renderAreas(adaptedData) }
-          </VictoryStack> }
-        </VictoryChart>
+      <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
-      </div>
+        { !stacked &&
+        <VictoryGroup { ...props }>
+          { this.renderAreas(adaptedData) }
+        </VictoryGroup> }
+        { stacked &&
+        <VictoryStack { ...props }>
+          { this.renderAreas(adaptedData) }
+        </VictoryStack> }
+      </VictoryChart>
     )
   }
 }

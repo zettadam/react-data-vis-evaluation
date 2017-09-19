@@ -4,15 +4,17 @@ import PropTypes from 'prop-types'
 import {
   Label,
   Point,
-  VictoryAxis,
   VictoryScatter,
   VictoryChart,
   VictoryCursorContainer,
   VictoryGroup,
   VictoryLegend,
   VictoryStack,
-  VictoryTooltip
+  VictoryTooltip,
+  VictoryZoomContainer
 } from 'victory'
+
+import VictoryTheme from './themes'
 
 import {
   adaptData,
@@ -26,17 +28,22 @@ export default class ScatterChart extends Component {
   static propTypes = {
     colors: PropTypes.array,
     data: PropTypes.array,
+    domainPadding: PropTypes.object,
     stacked: PropTypes.bool,
+    theme: PropTypes.string,
     xField: PropTypes.string,
-    yFields: PropTypes.array
+    yFields: PropTypes.array,
+    zoom: PropTypes.boolean
   }
 
   static defaultProps = {
     colors: [],
     data: [],
     stacked: true,
+    theme: 'qualitativeB',
     xField: '',
-    yFields: []
+    yFields: [],
+    zoom: false
   }
 
   constructor (props) {
@@ -57,37 +64,33 @@ export default class ScatterChart extends Component {
       <VictoryScatter key={ `point${i}` }
         data={ data[i] }
         labelComponent={
-          <VictoryTooltip
-            cornerRadius={ 3 }
-            pointerLength={ 10 }
-            flyoutStyle={{
-              stroke: '#000',
-              strokeWidth: 1,
-              fill: '#202020',
-              fillOpacity: 0.9
-            }} />
-        }
-        style={{
-          labels: {
-            fill: 'rgb(255,255,255)',
-            fontSize: '12px'
-          }
-        }} /> )
+          <VictoryTooltip />
+        } /> )
   }
 
   render () {
-    const { colors, data, stacked, xField, yFields } = this.props
 
-    const colorScale = createColorScale({ colors, fields: yFields })
+    const {
+      data,
+      domainPadding,
+      stacked,
+      theme,
+      xField,
+      yFields,
+      zoom
+    } = this.props
+
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      domainPadding: { x: 20, y: 20 }
+      theme: VictoryTheme.spark[theme],
     }
 
+    if (domainPadding) chartProps.domainPadding = domainPadding
+    if (zoom) chartProps.containerComponent = <VictoryZoomContainer />
+
     const groupProps = {
-      categories: { x: data.map(d => d[xField]) },
-      colorScale
+      categories: { x: data.map(d => d[xField]) }
     }
 
     const legendEvents = {
@@ -95,7 +98,6 @@ export default class ScatterChart extends Component {
     }
 
     const legendProps = {
-      colorScale,
       data: getLegendData({ fields: yFields }),
       dataComponent: <Point events={ legendEvents } />,
       orientation: 'horizontal',
@@ -104,14 +106,12 @@ export default class ScatterChart extends Component {
     }
 
     return (
-      <div>
-        <VictoryChart { ...chartProps }>
-          <VictoryGroup { ...groupProps }>
-          { this.renderScatter(adaptedData) }
-          </VictoryGroup>
-        </VictoryChart>
+      <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
-      </div>
+        <VictoryGroup { ...groupProps }>
+        { this.renderScatter(adaptedData) }
+        </VictoryGroup>
+      </VictoryChart>
     )
   }
 }

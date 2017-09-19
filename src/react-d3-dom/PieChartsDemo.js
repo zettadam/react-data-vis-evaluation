@@ -1,6 +1,7 @@
 import React from 'react'
 
-import DATA from 'fakeData'
+import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
+import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const PieChartsDemo = props =>
   <section className="demo">
@@ -8,7 +9,7 @@ const PieChartsDemo = props =>
       <h3>Pie Charts</h3>
     </header>
 
-    <div className="charts--d3">
+    <div className="charts charts--d3">
       <div className="chart-panel">
         <h4>Simple Pie</h4>
       </div>
