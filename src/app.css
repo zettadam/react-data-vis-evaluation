@@ -69,41 +69,49 @@ body {
 
 /* ----------- Non-Retina Screens ----------- */
 @media screen and (min-width: 1600px) {
-  .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {
     grid-template-columns: repeat(3, 32.333%);
+  }
 
-    .chart-panel {
-      height: 30rem;
-    }
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory {
+    .chart-panel { height: 30rem; }
+  }
+  .charts--d3 {
+    grid-template-columns: repeat(2, 49%);
+    .chart-panel { height: 32rem; }
   }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1599px) {
-  .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {
     grid-template-columns: repeat(3, 32.333%);
+    .chart-panel { height: 24rem; }
+  }
 
-    .chart-panel {
-      height: 24rem;
-    }
+  .charts--d3 {
+    grid-template-columns: repeat(2, 49%);
+    .chart-panel { height: 32rem; }
   }
 }
 
 @media screen and (max-width: 1199px) {
-  .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {
     grid-template-columns: repeat(2, 49%);
+    .chart-panel { height: 24rem; }
+  }
 
-    .chart-panel {
-      height: 24rem;
-    }
+  .charts--d3 {
+    grid-template-columns: repeat(2, 49%);
+    .chart-panel { height: 32rem; }
+
   }
 }
 
@@ -159,4 +167,13 @@ article nav {
   ul {
     li { font-weight: 400; }
   }
+}
+
+footer {
+  border-top: 5px dotted rgb(204,204,204);
+  color: rgb(127,127,127);
+  font: normal 1rem/1.4 monospace;
+  margin: 4rem 0 2rem 0;
+  padding: 1rem 0 0 0;
+  text-align: right;
 }
