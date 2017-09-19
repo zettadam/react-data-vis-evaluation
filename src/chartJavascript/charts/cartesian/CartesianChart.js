@@ -17,6 +17,8 @@ const CartesianChart = ({
       mode: 'x',
       intersect: false
     },
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       yAxes: [
         { ticks: { beginAtZero: true, userCallback: value => value.toLocaleString() }, stacked: yStacked }

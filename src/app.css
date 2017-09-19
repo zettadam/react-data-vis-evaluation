@@ -54,7 +54,6 @@ body {
     display: flex;
     flex-flow: column;
     min-height: 0;
-    height: 36rem;
   }
 
   .chart-panel__header {
@@ -75,14 +74,36 @@ body {
   .charts--recharts,
   .charts--victory {
     grid-template-columns: repeat(3, 32.333%);
+
+    .chart-panel {
+      height: 30rem;
+    }
   }
 }
-@media screen and (max-width: 1599px) {
+
+@media screen and (min-width: 1200px) and (max-width: 1599px) {
+  .charts--d3,
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory {
+    grid-template-columns: repeat(3, 32.333%);
+
+    .chart-panel {
+      height: 24rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1199px) {
   .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {
     grid-template-columns: repeat(2, 49%);
+
+    .chart-panel {
+      height: 24rem;
+    }
   }
 }
 
