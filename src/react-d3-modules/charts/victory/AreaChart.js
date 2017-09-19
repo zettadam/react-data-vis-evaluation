@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {
   VictoryArea,
   VictoryChart,
+  VictoryCursorContainer,
   VictoryGroup,
   VictoryLegend,
   VictoryStack,
@@ -12,27 +13,27 @@ import {
 
 import VictoryTheme from './themes'
 
-import {
-  adaptData,
-  createColorScale,
-  getLegendData
-} from './utils'
+import { adaptData, getLegendData } from './utils'
 
 
 export default class AreaChart extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
+    canZoom: PropTypes.bool,
     data: PropTypes.array,
+    interpolation: PropTypes.string,
     stacked: PropTypes.bool,
+    theme: PropTypes.string,
     xField: PropTypes.string,
     yFields: PropTypes.array
   }
 
   static defaultProps = {
-    colors: [],
+    canZoom: false,
     data: [],
+    interpolation: 'monotoneX',
     stacked: false,
+    theme: 'divergent',
     xField: '',
     yFields: []
   }
@@ -44,25 +45,34 @@ export default class AreaChart extends Component {
   }
 
   renderAreas (data) {
-    const { yFields } = this.props
+    const { interpolation, yFields } = this.props
 
     return yFields.map((f, i) =>
-      <VictoryArea key={ `area${i}` }
-        data={ data[i] }
-        labelComponent={
-          <VictoryTooltip />
-        } /> )
+      <VictoryArea key={ `area${i}` } data={ data[i] } interpolation={ interpolation }
+        labelComponent={ <VictoryTooltip /> } />
+    )
   }
 
   render () {
-    const { data, stacked, xField, yFields } = this.props
+    const {
+      canZoom,
+      data,
+      domainPadding,
+      stacked,
+      theme,
+      xField,
+      yFields,
+      withCursorContainer
+    } = this.props
 
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      domainPadding: { y: 20 },
-      theme: VictoryTheme.spark.divergent
+      theme: VictoryTheme.spark[theme]
     }
+
+    if (domainPadding) chartProps.domainPadding = domainPadding
+    if (canZoom) chartProps.containerComponent = <VictoryZoomContainer />
 
     const props = {
       categories: { x: data.map(d => d[xField]) }

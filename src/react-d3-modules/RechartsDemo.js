@@ -12,7 +12,7 @@ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 const RechartsDemo = props =>
   <section className="demo">
     <header>
-      <h3>Recharts Demo</h3>
+      <h3>Recharts Charts Demo</h3>
     </header>
     <p>Here are some charts created using <b><a href="http://recharts.org/">recharts</a></b> library.</p>
 

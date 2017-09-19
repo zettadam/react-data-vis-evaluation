@@ -16,7 +16,7 @@ export default class SingleAreaBrushZoom extends Component {
     height: 500,
     margin1: { top: 20, right: 20, bottom: 110, left: 40 },
     margin2: { top: 430, right: 20, bottom: 30, left: 40 },
-    width: 960
+    width: 600
   }
 
   constructor (props) {

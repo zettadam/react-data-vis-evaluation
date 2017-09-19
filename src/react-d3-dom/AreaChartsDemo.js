@@ -28,7 +28,7 @@ const AreaChartsDemo = props =>
         </div>
       </div>
 
-      <div className="chart-panel chart-panel--large">
+      <div className="chart-panel">
         <div className="chart-panel__header">
           <h4>Single Area (brush & Zoom)</h4>
         </div>

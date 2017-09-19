@@ -27,15 +27,15 @@ class App extends Component {
                 <ul>
                   <li><NavLink to="/introduction">Introduction</NavLink></li>
                   <li><NavLink to="/d3">D3</NavLink></li>
-                  <li><NavLink to="/chartJS">ChartJS</NavLink></li>
+                  <li><NavLink to="/chartJS/intro">ChartJS</NavLink></li>
                 </ul>
               </li>
               <li>React and D3
                 <ul>
-                  <li><NavLink to="/react-d3-dom">React + D3 (owns the DOM)</NavLink></li>
+                  <li><NavLink to="/react-d3-dom/bar-charts">React + D3 (owns the DOM)</NavLink></li>
                   <li><NavLink to="/react-dom-d3">React (owns the DOM) + D3</NavLink></li>
                   <li><NavLink to="/react-d3-wrappers">React + D3 wrappers</NavLink></li>
-                  <li><NavLink to="/react-d3-modules">React charts + D3 modules</NavLink></li>
+                  <li><NavLink to="/react-d3-modules/recharts">React charts + D3 modules</NavLink></li>
                 </ul>
               </li>
               <li>Conclusions

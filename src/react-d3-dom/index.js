@@ -17,18 +17,19 @@ const Article = props => (
 
     <nav>
       <ul>
-        <li><NavLink to="/react-d3-dom/area-charts">Area Charts</NavLink></li>
         <li><NavLink to="/react-d3-dom/bar-charts">Bar Charts</NavLink></li>
         <li><NavLink to="/react-d3-dom/line-charts">Line Charts</NavLink></li>
+        <li><NavLink to="/react-d3-dom/area-charts">Area Charts</NavLink></li>
         <li><NavLink to="/react-d3-dom/pie-charts">Pie Charts</NavLink></li>
       </ul>
     </nav>
 
     <Switch>
-      <Route path="/react-d3-dom/area-charts" component={ AreaChartsDemo } />
       <Route path="/react-d3-dom/bar-charts" component={ BarChartsDemo } />
       <Route path="/react-d3-dom/line-charts" component={ LineChartsDemo } />
+      <Route path="/react-d3-dom/area-charts" component={ AreaChartsDemo } />
       <Route path="/react-d3-dom/pie-charts" component={ PieChartsDemo } />
+      <Route component={ BarChartsDemo } />
     </Switch>
 
   </article>

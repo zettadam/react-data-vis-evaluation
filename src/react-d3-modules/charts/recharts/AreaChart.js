@@ -17,6 +17,7 @@ export default class Chart extends Component {
   static defaultProps = {
     colors: [],
     data: [],
+    interpolation: 'monotone',
     stacked: false,
     stackOffset: 'none'
   }
@@ -26,6 +27,7 @@ export default class Chart extends Component {
     const {
       colors,
       data,
+      interpolation,
       stacked,
       stackOffset,
       xField,
@@ -44,7 +46,9 @@ export default class Chart extends Component {
             let rgb = colors[i % colors.length]
             if (stacked) {
               return (
-                <Area key={ f } stackId="0"
+                <Area key={ f }
+                  type={ interpolation }
+                  stackId="0"
                   dataKey={ f }
                   stroke={ rgb }
                   fill={ rgb } />
@@ -52,6 +56,7 @@ export default class Chart extends Component {
             }
             return (
               <Area key={ f } dataKey={ f }
+                type={ interpolation }
                 stroke={ rgb }
                 fill={ rgb } />
             )

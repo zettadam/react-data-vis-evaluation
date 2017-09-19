@@ -38,19 +38,12 @@ body {
 }
 
 .charts--d3 {
-  display: block;
-
-  .chart-panel {
-    width: 630px;
-    margin: 0 2rem 2rem 0;
-    padding: 0;
-  }
-
   .chart-panel--large {
     width: 960px;
   }
 }
 
+.charts--d3,
 .charts--chartjs,
 .charts--recharts,
 .charts--victory {
@@ -77,6 +70,7 @@ body {
 
 /* ----------- Non-Retina Screens ----------- */
 @media screen and (min-width: 1600px) {
+  .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {
@@ -84,6 +78,7 @@ body {
   }
 }
 @media screen and (max-width: 1599px) {
+  .charts--d3,
   .charts--chartjs,
   .charts--recharts,
   .charts--victory {

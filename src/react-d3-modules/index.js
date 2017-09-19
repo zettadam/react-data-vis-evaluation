@@ -7,7 +7,7 @@ import VXDemo from './VXDemo'
 
 const Article = props => (
   <article>
-    <h1>React charts plus selected D3 modules</h1>
+    <h1>React charts (using 3rd-party libraries which use limited D3 modules)</h1>
     <p>This will display article content.</p>
 
     <nav>
@@ -22,6 +22,7 @@ const Article = props => (
       <Route path="/react-d3-modules/recharts" component={ RechartsDemo } />
       <Route path="/react-d3-modules/victory" component={ VictoryDemo } />
       <Route path="/react-d3-modules/vx" component={ VXDemo } />
+      <Route component={ RechartsDemo } />
     </Switch>
   </article>
 )

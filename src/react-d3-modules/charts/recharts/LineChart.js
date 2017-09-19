@@ -39,7 +39,7 @@ export default class Chart extends Component {
           { yFields && yFields.map((f, i) => {
             let rgb = colors[i % colors.length]
             return (
-              <Line key={ f } dataKey={ f }
+              <Line type="monotone" key={ f } dataKey={ f }
                 stroke={ rgb } />
             )
           } )}

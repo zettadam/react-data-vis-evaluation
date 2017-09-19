@@ -12,7 +12,7 @@ import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 const VictoryDemo = props =>
   <section className="demo">
     <header>
-      <h3>Victory Demo</h3>
+      <h3>Victory Charts Demo</h3>
     </header>
     <p>Here are some charts created using <b><a href="http://formidable.com/open-source/victory/">victory</a></b> library.</p>
 
@@ -50,6 +50,7 @@ const VictoryDemo = props =>
         <div className="chart-panel__content">
           <LineChart
             data={ ORDINAL_DATA[0] }
+            domainPadding={{ x: 0, y: 20 }}
             xField="x"
             yFields={ ['y1'] } />
         </div>
@@ -62,9 +63,10 @@ const VictoryDemo = props =>
         <div className="chart-panel__content">
           <LineChart
             data={ ORDINAL_DATA[2] }
+            domainPadding={{ x: 0, y: 20 }}
             xField="x"
             yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-            zoom />
+            canZoom />
         </div>
       </div>
 
@@ -90,6 +92,7 @@ const VictoryDemo = props =>
             data={ ORDINAL_DATA[2] }
             domainPadding={{ x: 10, y: 0 }}
             stacked
+            theme="qualitativeB"
             xField="x"
             yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
         </div>
@@ -118,7 +121,8 @@ const VictoryDemo = props =>
             data={ ORDINAL_DATA[2] }
             domainPadding={{ x: 10, y: 10 }}
             xField="x"
-            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] }
+            withCursorContainer />
         </div>
       </div>
     </section>

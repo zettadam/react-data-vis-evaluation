@@ -12,17 +12,12 @@ import {
 
 import VictoryTheme from './themes'
 
-import {
-  adaptData,
-  createColorScale,
-  getLegendData
-} from './utils'
+import { adaptData, getLegendData } from './utils'
 
 
 export default class BarChart extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
     data: PropTypes.array,
     stacked: PropTypes.bool,
     theme: PropTypes.string,
@@ -31,7 +26,6 @@ export default class BarChart extends Component {
   }
 
   static defaultProps = {
-    colors: [],
     data: [],
     stacked: false,
     theme: 'qualitativeA',

@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import {
   Label,
   Point,
+  VictoryAxis,
   VictoryScatter,
   VictoryChart,
-  VictoryCursorContainer,
   VictoryGroup,
+  VictoryLabel,
   VictoryLegend,
   VictoryStack,
   VictoryTooltip,
@@ -26,68 +27,54 @@ import {
 export default class ScatterChart extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
+    canZoom: PropTypes.bool,
     data: PropTypes.array,
     domainPadding: PropTypes.object,
     stacked: PropTypes.bool,
     theme: PropTypes.string,
     xField: PropTypes.string,
-    yFields: PropTypes.array,
-    zoom: PropTypes.boolean
+    yFields: PropTypes.array
   }
 
   static defaultProps = {
-    colors: [],
+    canZoom: false,
     data: [],
     stacked: true,
     theme: 'qualitativeB',
     xField: '',
-    yFields: [],
-    zoom: false
+    yFields: []
   }
 
   constructor (props) {
     super(props)
 
     this.handleLegendPointClick = this.handleLegendPointClick.bind(this)
-    this.renderScatter = this.renderScatter.bind(this)
   }
 
   handleLegendPointClick () {
     console.log( 'Clicked on legend data point', arguments)
   }
 
-  renderScatter (data) {
-    const { yFields } = this.props
-
-    return yFields.map((f, i) =>
-      <VictoryScatter key={ `point${i}` }
-        data={ data[i] }
-        labelComponent={
-          <VictoryTooltip />
-        } /> )
-  }
-
   render () {
 
     const {
+      canZoom,
       data,
       domainPadding,
       stacked,
       theme,
       xField,
-      yFields,
-      zoom
+      yFields
     } = this.props
 
     const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
-      theme: VictoryTheme.spark[theme],
+      theme: VictoryTheme.spark[theme]
     }
 
     if (domainPadding) chartProps.domainPadding = domainPadding
-    if (zoom) chartProps.containerComponent = <VictoryZoomContainer />
+    if (canZoom) chartProps.containerComponent = <VictoryZoomContainer />
 
     const groupProps = {
       categories: { x: data.map(d => d[xField]) }
@@ -109,7 +96,10 @@ export default class ScatterChart extends Component {
       <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
         <VictoryGroup { ...groupProps }>
-        { this.renderScatter(adaptedData) }
+        { yFields.map((f, i) =>
+          <VictoryScatter key={ `point${i}` } data={ adaptedData[i] }
+            labelComponent={ <VictoryTooltip /> } />
+        )}
         </VictoryGroup>
       </VictoryChart>
     )

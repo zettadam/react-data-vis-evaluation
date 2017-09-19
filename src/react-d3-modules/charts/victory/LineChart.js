@@ -12,32 +12,27 @@ import {
 
 import VictoryTheme from './themes'
 
-import {
-  adaptData,
-  createColorScale,
-  getLegendData
-} from './utils'
+import { adaptData, getLegendData } from './utils'
 
 
 export default class LineChart extends Component {
 
   static propTypes = {
+    canZoom: PropTypes.bool,
     data: PropTypes.array,
     interpolation: PropTypes.string,
     theme: PropTypes.string,
     xField: PropTypes.string,
-    yFields: PropTypes.array,
-    zoom: PropTypes.boolean
+    yFields: PropTypes.array
   }
 
   static defaultProps = {
-    colors: [],
+    canZoom: false,
     data: [],
     interpolation: 'natural',
     theme: 'sequential',
     xField: '',
-    yFields: [],
-    zoom: false
+    yFields: []
   }
 
   constructor (props) {
@@ -53,20 +48,19 @@ export default class LineChart extends Component {
       <VictoryLine key={ `area${i}` }
         data={ data[i] }
         interpolation={ interpolation }
-        labelComponent={
-          <VictoryTooltip />
-        } /> )
+        labelComponent={ <VictoryTooltip /> } />
+    )
   }
 
   render () {
 
     const {
+      canZoom,
       data,
       domainPadding,
       theme,
       xField,
-      yFields,
-      zoom
+      yFields
     } = this.props
 
     const adaptedData = adaptData({ data, xField, yFields })
@@ -76,7 +70,7 @@ export default class LineChart extends Component {
     }
 
     if (domainPadding) chartProps.domainPadding = domainPadding
-    if (zoom) chartProps.containerComponent = <VictoryZoomContainer />
+    if (canZoom) chartProps.containerComponent = <VictoryZoomContainer />
 
     const groupProps = {
       categories: { x: data.map(d => d[xField]) }
