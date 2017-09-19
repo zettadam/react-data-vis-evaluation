@@ -5,6 +5,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const NameAllModulesPlugin = require('name-all-modules-plugin')
+const marked = require('marked')
+
+
+const renderer = new marked.Renderer()
 
 const API_PORT = 3000
 const DIST_PATH = path.join(__dirname, '/dist')
@@ -70,6 +74,21 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.md$/,
+        use: [
+            {
+                loader: "html-loader"
+            },
+            {
+                loader: "markdown-loader",
+                options: {
+                    pedantic: true,
+                    renderer
+                }
+            }
+        ]
+      }
     ]
   },
   plugins: [
