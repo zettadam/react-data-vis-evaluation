@@ -9,16 +9,24 @@ const PieChartsDemo = props =>
       <h3>Using React and Recharts library</h3>
     </header>
 
-    <div className="charts charts--d3">
+    <div className="charts charts--recharts">
+
       <div className="chart-panel">
-        <h4>Simple Pie</h4>
+        <div className="chart-panel__header">
+          <h4>Simple Pie</h4>
+        </div>
+        <div className="chart-panel__content" />
       </div>
 
       <div className="chart-panel">
-        <h4>Simple Pie Donut</h4>
+        <div className="chart-panel__header">
+          <h4>Simple Pie</h4>
+        </div>
+        <div className="chart-panel__content" />
       </div>
 
     </div>
+
   </section>
 
 export default PieChartsDemo

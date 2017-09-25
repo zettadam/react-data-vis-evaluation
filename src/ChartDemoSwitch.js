@@ -11,18 +11,24 @@ const ChartDemoSwitch = ({
   match
 }) => {
 
-  const { params: { type, approach }} = match
+  const { params: { approach, type }} = match
 
-  return (
-    <div className={ `charts--${approach}` }>
-      { 'react-d3-dom' === approach && <ReactD3DomDemo type={ type } /> }
-      { 'react-dom-d3' === approach && <ReactDomD3Demo type={ type } /> }
-      { 'react-recharts' === approach && <RechartsDemo type={ type } /> }
-      { 'react-victory' === approach && <VictoryDemo type={ type } /> }
-      { 'react-vx' === approach && <VxDemo type={ type } /> }
-      { 'react-chartJS' === approach && <ChartJSDemo type={ type } /> }
-    </div>
-  )
+  switch (approach) {
+    case 'react-d3-dom':
+      return <ReactD3DomDemo type={ type } />
+    case 'react-dom-d3':
+      return <ReactDomD3Demo type={ type } />
+    case 'react-recharts':
+      return <RechartsDemo type={ type } />
+    case 'react-victory':
+      return <VictoryDemo type={ type } />
+    case 'react-vx':
+      return <VxDemo type={ type } />
+    case 'react-chartJS':
+      return <ChartJSDemo type={ type } />
+    default:
+      return <RechartsDemo type={ type } />
+  }
 }
 
 export default ChartDemoSwitch

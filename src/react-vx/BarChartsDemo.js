@@ -6,6 +6,9 @@ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const BarChartsDemo = props =>
   <section className="demo">
+    <header>
+      <h3>Using React and VX library</h3>
+    </header>
 
     <div className="charts charts--vx">
 

@@ -8,11 +8,17 @@ const LineChartsDemo = props =>
 
     <div className="charts charts--d3">
       <div className="chart-panel">
-        <h4>Simple Line Series</h4>
+        <div className="chart-panel__header">
+          <h4>Simple Line Series</h4>
+        </div>
+        <div className="chart-panel__content" />
       </div>
 
       <div className="chart-panel">
-        <h4>Multiple Line Series</h4>
+        <div className="chart-panel__header">
+          <h4>Multiple Line Series</h4>
+        </div>
+        <div className="chart-panel__content" />
       </div>
 
     </div>

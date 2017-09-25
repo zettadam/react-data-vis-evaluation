@@ -11,7 +11,6 @@ const AreaChartsDemo = props =>
       <h3>Using React and Recharts library</h3>
     </header>
 
-
     <div className="charts charts--recharts">
 
       <div className="chart-panel">

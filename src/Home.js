@@ -39,6 +39,12 @@ const Home = () =>
         </ul> }
       </nav>
 
+      <nav>
+        <ul>
+          <li><a href="">References</a></li>
+        </ul>
+      </nav>
+
     </aside>
 
     <footer className="grid footer">

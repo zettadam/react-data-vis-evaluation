@@ -35,9 +35,18 @@ const numXTicks = width => {
 export default class BarChart extends Component {
 
   static propTypes = {
+    axisStrokeColor: PropTypes.string,
     colors: PropTypes.array,
     data: PropTypes.array,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    hideZero: PropTypes.bool,
+    labelColor: PropTypes.string,
+    labelFontFamily: PropTypes.string,
+    labelFontSize: PropTypes.number,
+    tickColor: PropTypes.string,
+    tickFontFamily: PropTypes.string,
+    tickFontSize: PropTypes.number,
+    tickStrokeColor: PropTypes.string,
     margin: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     xField: PropTypes.string,
@@ -46,10 +55,32 @@ export default class BarChart extends Component {
   }
 
   static defaultProps = {
+    axisStrokeColor: 'rgb(51,51,51)',
     colors: [],
-    width: 700,
     height: 350,
-    margin: { top: 20, right: 20, bottom: 50, left: 70 }
+    hideZerp: true,
+    labelAnchor: 'middle',
+    labelColor: 'rgb(51,51,51)',
+    labelFontFamily: 'sans-serif',
+    labelFontSize: 14,
+    tickAnchor: 'end',
+    tickColor: 'rgb(51,51,51)',
+    tickFontFamily: 'sans-serif',
+    tickFontSize: 12,
+    tickStrokeColor: 'rgb(51,51,51)',
+    margin: { top: 20, right: 20, bottom: 50, left: 70 },
+    width: 700
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.makeXScale = this.makeXScale.bind(this)
+    this.makeYScale = this.makeYScale.bind(this)
+    this.renderXAxis = this.renderXAxis.bind(this)
+    this.renderYAxis = this.renderYAxis.bind(this)
+    this.renderGrid = this.renderGrid.bind(this)
+    this.renderBars = this.renderBars.bind(this)
   }
 
   makeXScale (options) {
@@ -89,7 +120,9 @@ export default class BarChart extends Component {
     )
   }
 
+
   renderYAxis (options) {
+
     const {
       height,
       margin: { top, left },
@@ -97,15 +130,43 @@ export default class BarChart extends Component {
       yScale,
     } = options
 
+    const {
+      axisStrokeColor,
+      labelAnchor,
+      labelColor,
+      labelFontFamily,
+      labelFontSize,
+      labelFontWeight,
+      tickAnchor,
+      tickColor,
+      tickFontFamily,
+      tickFontSize,
+      tickFontWeight,
+      tickStrokeColor
+    } = this.props
+
     return (
       <AxisLeft top={ top } left={ left }
         scale={ yScale } hideZero
         numTicks={ numYTicks(height) }
         label={ yLabel }
-        labelProps={{ fill: 'rgb(51,51,51)', textAnchor: 'middle', fontSize: 14, fontFamily: 'Arial', fontWeight: 600 }}
-        stroke="rgb(51,51,51)"
-        tickStroke="rgb(51,51,51)"
-        tickLabelProps={ (value, index) => ({ fill: 'rgb(51,51,51)', textAnchor: 'end', fontSize: 11, fontFamily: 'Arial', dx: '-0.25em', dy: '0.25em' })} />
+        labelProps={{
+          fill: labelColor,
+          textAnchor: labelAnchor,
+          fontSize: labelFontSize,
+          fontFamily: labelFontFamily,
+          fontWeight: labelFontWeight
+        }}
+        stroke={ axisStrokeColor }
+        tickStroke={ tickStrokeColor }
+        tickLabelProps={ (value, index) => ({
+          fill: tickColor,
+          textAnchor: tickAnchor || 'end',
+          fontSize: tickFontSize,
+          fontFamily: tickFontFamily,
+          dx: '-0.25em',
+          dy: '0.25em'
+        })} />
     )
   }
 

@@ -29,7 +29,7 @@ import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
 import PieChartsDemo from './PieChartsDemo'
 import RadarChartsDemo from './RadarChartsDemo'
-import ScatterPlotsDemos from './ScatterPlotsDemo'
+import ScatterPlotsDemo from './ScatterPlotsDemo'
 import SegmentedChartsDemo from './SegmentedChartsDemo'
 import SpanChartsDemo from './SpanChartsDemo'
 import StreamChartsDemo from './StreamChartsDemo'
@@ -45,7 +45,7 @@ const RechartsDemo = ({
     { 'bar' === type && <BarChartsDemo /> }
     { 'box' === type && <BoxPlotsDemo /> }
     { 'bubble' === type && <BubbleChartsDemo /> }
-    { 'bubble-map' === type && <BubbleMapChartsDemo /> }
+    { 'bubble-map' === type && <BubbleMapsDemo /> }
     { 'bullet' === type && <BulletChartsDemo /> }
     { 'candlestick' === type && <CandlestickChartsDemo /> }
     { 'chord' === type && <ChordDiagramsDemo /> }

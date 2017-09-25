@@ -138,27 +138,24 @@ aside.sidebar {
     ul {
       background: rgb(25,52,65);
       column-count: 2;
-      column-gap: 2rem;
+      column-gap: 0;
       column-rule: solid 1px;
       column-rule-color: rgb(62,96,111);
       padding: 2rem 0;
-      li { padding: 0 0 0 2rem; }
     }
-    li {
-      color: rgb(62,96,111)
-    }
+    li { display: inline-block; width: 100%; }
     a {
       display: block;
-      line-height: 2;
+      line-height: 1.2;
       margin: 0;
-      padding: 0;
+      padding: .35rem 1rem;
       text-decoration: none;
 
       &:link { color: rgb(209,219,189); }
       &:visited { color: rgb(209,219,189); }
       &:active,
       &.active,
-      &:hover { color: rgb(252,255,245); }
+      &:hover { background: rgb(62,96,111); color: rgb(252,255,245); }
       &.active { font-weight: 600; }
     }
   }
