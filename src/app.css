@@ -25,35 +25,58 @@
 .charts--vx {
   display: grid;
   grid-gap: 2rem;
-
   .chart-panel__header {
     height: 3rem;
   }
 
+  /* These styles maintain aspect ratio */
   .chart-panel__content {
-    margin: 0;
-    padding: 0;
-    min-height: 0;
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      padding-top: 56.25%;
+    }
+
+    .chart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
-.charts--chartjs,
-.charts--recharts,
-.charts--victory,
-.charts--vx {
-  grid-template-columns: repeat(2, 49%);
+.chart-panel__content.a16_9 {
+  &:before { padding-top: 56.25%; }
+}
+.chart-panel__content.a4_3 {
+  &:before { padding-top: 75%; }
 }
 
-.charts--chartjs,
-.charts--recharts {
-  .chart-panel__content {
-    height: 30rem;
+@media only screen  and (min-width : 1441px) {
+  .charts--d3,
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory,
+  .charts--vx {
+    grid-template-columns: repeat(2, 48%);
   }
 }
 
-.charts--d3 {
-  grid-template-columns: repeat(1, 100%);
-  .chart-panel { height: 32rem; }
+@media only screen  and (max-width : 1441px) {
+  .charts--d3,
+  .charts--chartjs,
+  .charts--recharts,
+  .charts--victory,
+  .charts--vx {
+    grid-template-columns: repeat(1, 99%);
+  }
 }
 
 .chart-panel__header {

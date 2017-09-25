@@ -17,11 +17,13 @@ const LineChartsDemo = props =>
           <h4>Single Lines</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['sequential'] }
-            data={ ORDINAL_DATA[0] }
-            xField="x"
-            yFields={ ['y1'] } />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['sequential'] }
+              data={ ORDINAL_DATA[0] }
+              xField="x"
+              yFields={ ['y1'] } />
+          </div>
         </div>
       </div>
 
@@ -30,11 +32,13 @@ const LineChartsDemo = props =>
           <h4>Multiple Lines</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['sequential'] }
-            data={ ORDINAL_DATA[2] }
-            xField="x"
-            yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] } />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['sequential'] }
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] } />
+          </div>
         </div>
       </div>
 

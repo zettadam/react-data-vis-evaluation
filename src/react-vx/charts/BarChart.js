@@ -61,7 +61,7 @@ export default class BarChart extends Component {
     hideZerp: true,
     labelAnchor: 'middle',
     labelColor: 'rgb(51,51,51)',
-    labelFontFamily: 'sans-serif',
+    labelFontFamily: 'Helvetica, Arial, Verdana, sans-serif',
     labelFontSize: 14,
     tickAnchor: 'end',
     tickColor: 'rgb(51,51,51)',

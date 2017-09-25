@@ -20,11 +20,13 @@ const BarChartsDemo = props =>
           <h4>Single Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <SingleBars
-            colors={ COLORS['sequential'] }
-            data={ ORDINAL_DATA[0] }
-            xField="x"
-            yField="y1" />
+          <div className="chart">
+            <SingleBars
+              colors={ COLORS['sequential'] }
+              data={ ORDINAL_DATA[0] }
+              xField="x"
+              yField="y1" />
+          </div>
         </div>
       </div>
 
@@ -33,11 +35,13 @@ const BarChartsDemo = props =>
           <h4>Stacked Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <StackedBars
-          colors={ COLORS['qualitative2'] }
-            data={ ORDINAL_DATA[2] }
-            xField="x"
-            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          <div className="chart">
+            <StackedBars
+              colors={ COLORS['qualitative2'] }
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          </div>
         </div>
       </div>
 
@@ -46,11 +50,13 @@ const BarChartsDemo = props =>
           <h4>Grouped Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <GroupedBars
-            colors={ COLORS['qualitative1'] }
-            data={ ORDINAL_DATA[2] }
-            xField="x"
-            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          <div className="chart">
+            <GroupedBars
+              colors={ COLORS['qualitative1'] }
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          </div>
         </div>
       </div>
 
@@ -59,7 +65,9 @@ const BarChartsDemo = props =>
           <h4>Grouped & Stacked Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <GroupedStackedBars />
+          <div className="chart">
+            <GroupedStackedBars />
+          </div>
         </div>
       </div>
 
@@ -68,6 +76,7 @@ const BarChartsDemo = props =>
           <h4>Grouped Bars (Zoom)</h4>
         </div>
         <div className="chart-panel__content">
+          <div className="chart" />
         </div>
       </div>
 

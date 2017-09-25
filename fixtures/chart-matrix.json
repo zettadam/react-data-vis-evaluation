@@ -5,7 +5,8 @@
       "Area Graphs are Line Graphs but with the area below the line filled in with a certain colour or texture. Area Graphs are drawn by first plotting data points on a Cartesian coordinate grid, joining a line between the points and finally filling in the space below the completed line.",
       "Like Line Graphs, Area Graphs are used to display the development of quantitative values over an interval or time period. They are most commonly used to show trends, rather then convey specific values.",
       "Two popular variations of Area Graphs are: grouped and Stacked Area Graphs. Grouped Area Graphs start from the same zero axis, while Stacked Area Graphs have each data series start from the point left by the previous data series."
-    ]
+    ],
+    "focus": true
   },
   "bar": {
     "title": "Bar Chart",
@@ -14,7 +15,8 @@
       "The classic Bar Chart uses either horizontal or vertical bars (column chart) to show discrete, numerical comparisons across categories. One axis of the chart shows the specific categories being compared and the other axis represents a discrete value scale.",
       "Bars Charts are distinguished from Histograms, as they do not display continuous developments over an interval. Their discrete data is categorical data and therefore answers the question of 'how many?' In each category.",
       "One major flaw with bar charts is labeling becomes problematic when there is a large number of bars."
-    ]
+    ],
+    "focus": true
   },
   "box": {
     "title": "Box Plot",
@@ -31,7 +33,8 @@
         "If the data is skewed and if so, in what direction."
       ],
       "Two of the most commonly used variation of Box Plot are: variable-width Box Plots and notched Box Plots."
-    ]
+    ],
+    "focus": false
   },
   "bubble": {
     "title": "Bubble Chart",
@@ -41,14 +44,16 @@
       "Bubble Charts are typically used to compare and show the relationships between labeled/categorised circles, by the use of positioning and proportions. The overall picture of Bubble Charts can be use to analyse for patterns/correlations.",
       "Too many bubbles can make the chart hard to read, so Bubble Charts have a limited data size capacity. This can be somewhat remedied by interactivity: clicking or hovering over bubbles to display hidden information, having an option to reorganise or filter out grouped categories.",
       "Like with Proportional Area Charts, the sizes of the circles need to be drawn based off the circle's area, not its radius or diameter. Not only will the size of the circles change exponentially, but this will lead to misinterpretations by the human visual system."
-    ]
+    ],
+    "focus": true
   },
   "bubble-map": {
     "title": "Bubble Map",
     "description": [
       "With this data map, circles are displayed over a designated geographical region with the area of the circle being proportional to its value in the dataset.",
       "Bubble Maps are good for comparing proportions over geographic regions without the issues caused by regional area size, as seen with Choropleth Maps. However, the major flaw with Bubble Maps is that overly large bubbles can overlap other bubbles and regions on the map, so this needs to be accounted for."
-    ]
+    ],
+    "focus": false
   },
   "bullet": {
     "title": "Bullet Chart",
@@ -56,7 +61,8 @@
       "Used typically to display performance data, Bullet Graphs functions like a Bar Chart, but are accompanied by extra visual elements to pack in more context. Originally, Bullet Graphs were developed by Stephen Few as an alternative to dashboard gauges and meters, because they often displayed not enough information, were less space-efficient and were cluttered with 'chartjunk'.",
       "The main data value is encoded by length in main bar in the middle of the chart, which is known as the 'Feature Measure'. The line marker that runs perpendicular to the orientation of the graph is known as the 'Comparative Measure' and is used as a target marker to compare against the Feature Measure value. So if the main bar has passed the position of Comparative Measure, you know you've hit your goal.",
       "The segmented coloured bars behind the Feature Measure are used to display qualitative range scores. Each colour shade (the three shades of grey in the example above) are used to assign a performance range rating. So for example, poor, average and great. When using Bullet Graphs, it's ideal to keep the maximum number of ranges to five."
-    ]
+    ],
+    "focus": false
   },
   "candlestick": {
     "title": "Candlestick Chart",
@@ -68,7 +74,8 @@
       "Candlestick Charts are great for detecting and predicting market trends over time and are useful for interpreting the day-to-day sentiment of the market, through each candlestick symbol's colouring and shape. For example, the longer the body is, the more intense the selling or buying pressure is. While, a very short body, would indicate that there is very little price movement in that time period and represents consolidation.",
       "Candlestick Charts help reveal the market psychology (the fear and greed experienced by sellers and buyers) through the various indicators, such as shape and colour, but also by the many identifiable patterns that can be found in Candlestick Charts. In total, there are 42 recognised patterns that are divided into simple and complex patterns. These patterns found in Candlestick Charts are useful for displaying price relationships and can be used for predicting the possible future movement of the market.",
       "Please bare in mind, that Candlestick Charts don't express the events taking place between the open and close price - only the relationship between the two prices. So you can't tell how volatile trading was within that single time period."
-    ]
+    ],
+    "focus": false
   },
   "circular-packing": {
     "title": "Circular Packing",
@@ -76,7 +83,8 @@
       "Also known as: Circular Treemap",
       "Circle Packing is a variation of a Treemap that uses circles instead of rectangles. Containment within each circle represents a level in the hierarchy: each branch of the tree is represented as a circle and its sub-branches are represented as circles inside of it. The area of each circle can also be used to represent an additional arbitrary value, such as quantity or file size. Colour may also be used to assign categories or to represent another variable via different shades.",
       "As beautiful as Circle Packing appears, it's not as space-efficient as a Treemap, as there's a lot of empty space within the circles. Despite this, Circle Packing actually reveals hierarchal structure better then a Treemap."
-    ]
+    ],
+    "focus": false
   },
   "chord": {
     "title": "Chord Diagram",
@@ -84,7 +92,8 @@
       "This type of diagram visualises the inter-relationships between entities. The connections between entities is used to display that they share something in common. This makes Chord Diagrams ideal for comparing the similarities within a dataset or between different groups of data.",
       "Nodes are arranged around a circle, with the relationships between points connected to each other either through the use of arcs or Bézier curves. Values are assigned to each connection, which is represented proportionally by the size of each arc. Colour can be used to group the data into different categories, which aids in making comparisons and distinguishing groups.",
       "Over-cluttering becomes an issue with Chord Diagrams, which happens when there are too many connections displayed."
-    ]
+    ],
+    "focus": false
   },
   "choropleth-map": {
     "title": "Choropleth Map",
@@ -93,13 +102,16 @@
       "The data variable uses colour progression to represent itself in each region of the map. Typically, this can be a blending from one colour to another, a single hue progression, transparent to opaque, light to dark or an entire colour spectrum.",
       "One downside to the use of colour is that you can't accurately read or compare values from the map. Another issue is that larger regions appear more emphasised then smaller ones, so the viewer's perception of a shaded values are affected.",
       "A common error when producing Choropleth Maps is to encode raw data values (such as population) rather than using normalized values (calculating population per square kilometer for example) to produce a density map."
-    ]
+    ],
+    "focus": false
   },
   "connection-map": {
-    "title": "Connection Map"
+    "title": "Connection Map",
+    "focus": false
   },
   "density": {
-    "title": "Density Plot"
+    "title": "Density Plot",
+    "focus": false
   },
   "donut": {
     "title": "Doughnut Chart",
@@ -108,28 +120,36 @@
       "However, Donut Charts have a slight advantage over Pie Charts, which are sometimes criticized for focusing on relative sizes of the pieces to one another and to the chart as a whole, giving no indication of changes as a whole when compared to other Pie Charts.",
       "A Donut Chart partly addresses this problem by de-emphasising the use of area, to make the viewer focus more on the changes in overall values. You are focused on reading the length of the arcs, rather then comparing the proportions between slices.",
       "Also Donut Charts can take up less space then Pie Charts by having their centers used to display information within their blank centers."
-    ]
+    ],
+    "focus": true
   },
   "dot-map": {
-    "title": "Dot Map"
+    "title": "Dot Map",
+    "focus": false
   },
   "dot-matrix": {
-    "title": "Dot Matrix"
+    "title": "Dot Matrix",
+    "focus": false
   },
   "error-bar": {
-    "title": "Error Bar"
+    "title": "Error Bar",
+    "focus": false
   },
   "flow-map": {
-    "title": "Flow Map"
+    "title": "Flow Map",
+    "focus": false
   },
   "heatmap": {
-    "title": "Heatmap"
+    "title": "Heatmap",
+    "focus": false
   },
   "histogram": {
-    "title": "Histogram"
+    "title": "Histogram",
+    "focus": false
   },
   "kagi": {
-    "title": "Kagi Chart"
+    "title": "Kagi Chart",
+    "focus": false
   },
   "line": {
     "title": "Line Chart",
@@ -137,7 +157,8 @@
       "Also known as Line Graphs.",
       "Line Graphs are used to display quantitative value over a continuous interval or time span. It is most frequently used to show trends and relationships (when grouped with other lines). Line Graphs also help to give a 'big picture' over an interval, to see how it has developed over that period.",
       "Line Graphs are drawn by first plotting data points on a Cartesian coordinate grid, then connecting a line between these points. Typically, the y-axis has a quantitative value, while the x-axis has either a category or sequenced scale. Negative values can be displayed below the x-axis."
-    ]
+    ],
+    "focus": true
   },
   "marimekko": {
     "title": "Marimekko Chart",
@@ -145,51 +166,67 @@
       "Also known as: Mosaic Plot.",
       "Marimekko Charts are used to visualise categorical data over a pair of variables. They work as kind of two-way 100% Stacked Bar Graph, where all the bars are of equal length across a value/scaled axis and are divided into segments. Only in a Marimekko Chart, both axes are a variable with a scale, that determine both the width and height of each segment. This makes it possible to detect relationships between categories and their subcategories via the two variables.",
       "The main flaws of Marimekko Charts are that they can be hard to read, especially with a large number of segments. Also, it's hard to accurately make comparisons between each segment, as they are not arranged next to each other along a common baseline. Therefore, Marimekko Charts are more ideal for giving a general overview of the data."
-    ]
+    ],
+    "focus": false
   },
   "multi-set-bar": {
-    "title": "Multi-set Bar Chart"
+    "title": "Multi-set Bar Chart",
+    "focus": true
   },
   "network": {
-    "title": "Network Diagram"
+    "title": "Network Diagram",
+    "focus": false
   },
   "nightingale-rose": {
-    "title": "Nightingale Rose Chart"
+    "title": "Nightingale Rose Chart",
+    "focus": false
   },
   "nested-bubble": {
-    "title": "Nested Bubble"
+    "title": "Nested Bubble",
+    "focus": false
   },
   "parallel-coordinates": {
-    "title": "Parallel Coordinates"
+    "title": "Parallel Coordinates",
+    "focus": false
   },
   "parallel-sets": {
-    "title": "Parallel Sets"
+    "title": "Parallel Sets",
+    "focus": false
   },
   "pie": {
-    "title": "Pie Chart"
+    "title": "Pie Chart",
+    "focus": true
   },
   "radar": {
-    "title": "Radar Chart"
+    "title": "Radar Chart",
+    "focus": true
   },
   "scatter": {
-    "title": "Scatter Chart"
+    "title": "Scatter Chart",
+    "focus": true
   },
   "segmented": {
-    "title": "Segmented Chart"
+    "title": "Segmented Chart",
+    "focus": false
   },
   "span": {
-    "title": "Span Chart"
+    "title": "Span Chart",
+    "focus": false
   },
   "stream": {
-    "title": "Stream Chart"
+    "title": "Stream Chart",
+    "focus": false
   },
   "sunburst": {
-    "title": "Sunburst Chart"
+    "title": "Sunburst Chart",
+    "focus": false
   },
   "treemap": {
-    "title": "Treemap"
+    "title": "Treemap",
+    "focus": true
   },
   "voronoi": {
-    "title": "Voronoi Chart"
+    "title": "Voronoi Chart",
+    "focus": false
   }
 }

@@ -12,6 +12,7 @@ const AreaChartsDemo = props =>
           <h4>Single Area</h4>
         </div>
         <div className="chart-panel__content">
+          <div className="chart" />
         </div>
       </div>
 
@@ -20,6 +21,7 @@ const AreaChartsDemo = props =>
           <h4>Single Area (brush & Zoom)</h4>
         </div>
         <div className="chart-panel__content">
+          <div className="chart" />
         </div>
       </div>
 
@@ -28,6 +30,7 @@ const AreaChartsDemo = props =>
           <h4>Stacked Area Chart</h4>
         </div>
         <div className="chart-panel__content">
+          <div className="chart" />
         </div>
       </div>
 

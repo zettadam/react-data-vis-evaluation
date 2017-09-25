@@ -7,6 +7,7 @@ import ChartDemo from './ChartDemo'
 
 const sortedChartTypes = Object.keys(CHART_TYPE_MATRIX)
   .map(k => ({ type: k, ...CHART_TYPE_MATRIX[k]}))
+  .filter(c => c.focus)
   .sort((a, b) => {
     const titleA = a.type.toLowerCase()
     const titleB = b.type.toLowerCase()
@@ -39,8 +40,18 @@ const Home = () =>
         </ul> }
       </nav>
 
-      <nav>
+      <nav className="main_nav">
         <ul>
+          <li><a href="">Introduction</a></li>
+          <li><a href="">D3</a></li>
+          <li><a href="">Using D3 in React applications</a>
+            <ol>
+              <li><a href="">D3 owns DOM and draws charts</a></li>
+              <li><a href="">React owns DOM and D3 draws charts</a></li>
+              <li><a href="">React owns DOM and draws the charts</a></li>
+            </ol>
+          </li>
+          <li><a href="">Recommendations</a></li>
           <li><a href="">References</a></li>
         </ul>
       </nav>

@@ -53,14 +53,14 @@ export default class SingleBars extends Component {
     const {
       colors,
       data,
-      height,
       margin,
       xField,
       yField,
-      width
     } = this.props
 
     const svg = d3.select(this.rootEl)
+    const height = svg.attr('height')
+    const width = svg.attr('width')
 
     const aHeight = +height - margin.top - margin.bottom
     const aWidth = +width - margin.left - margin.right
@@ -111,7 +111,8 @@ export default class SingleBars extends Component {
     return (
       <svg ref={ node => this.rootEl = node }
         height={ height }
-        width={ width }>
+        width={ width }
+        viewBox={ `0 0 ${width} ${height}` }>
         { children }
       </svg>
     )

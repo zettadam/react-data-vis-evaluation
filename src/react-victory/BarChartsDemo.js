@@ -18,11 +18,13 @@ const BarChartsDemo = props =>
           <h4>Single Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <BarChart
-            data={ ORDINAL_DATA[0] }
-            domainPadding={{ x: 20, y: 0 }}
-            xField="x"
-            yFields={ ['y1'] } />
+          <div className="chart">
+            <BarChart
+              data={ ORDINAL_DATA[0] }
+              domainPadding={{ x: 20, y: 0 }}
+              xField="x"
+              yFields={ ['y1'] } />
+          </div>
         </div>
       </div>
 
@@ -31,13 +33,15 @@ const BarChartsDemo = props =>
           <h4>Stacked Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <BarChart
-            data={ ORDINAL_DATA[2] }
-            domainPadding={{ x: 10, y: 0 }}
-            stacked
-            theme="qualitativeB"
-            xField="x"
-            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          <div className="chart">
+            <BarChart
+              data={ ORDINAL_DATA[2] }
+              domainPadding={{ x: 10, y: 0 }}
+              stacked
+              theme="qualitativeB"
+              xField="x"
+              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          </div>
         </div>
       </div>
 
@@ -46,12 +50,14 @@ const BarChartsDemo = props =>
           <h4>Grouped Bars</h4>
         </div>
         <div className="chart-panel__content">
-          <BarChart
-            data={ ORDINAL_DATA[2] }
-            domainPadding={{ x: 12, y: 0 }}
-            grouped
-            xField="x"
-            yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          <div className="chart">
+            <BarChart
+              data={ ORDINAL_DATA[2] }
+              domainPadding={{ x: 12, y: 0 }}
+              grouped
+              xField="x"
+              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+          </div>
         </div>
       </div>
 

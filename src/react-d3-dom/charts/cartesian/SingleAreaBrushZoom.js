@@ -205,7 +205,8 @@ export default class SingleAreaBrushZoom extends Component {
     return (
       <svg ref={ node => this.rootEl = node }
         height={ height }
-        width={ width }>
+        width={ width }
+        viewBox={ `0 0 ${width} ${height}` }>
         { children }
       </svg>
     )

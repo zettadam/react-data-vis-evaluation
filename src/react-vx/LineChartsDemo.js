@@ -16,12 +16,14 @@ const LineChartsDemo = props =>
           <h4>Single Line Series</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['sequential'] }
-            data={ TIME_SERIES['price'] }
-            xField="month" xLabel="Months"
-            timeFormat="%b %Y"
-            yFields={ ['usd'] } yLabel="Price ($)" />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['sequential'] }
+              data={ TIME_SERIES['price'] }
+              xField="month" xLabel="Months"
+              timeFormat="%b %Y"
+              yFields={ ['usd'] } yLabel="Price ($)" />
+          </div>
         </div>
       </div>
 
@@ -30,12 +32,14 @@ const LineChartsDemo = props =>
           <h4>Single Line Series</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['qualitative1'] }
-            data={ TIME_SERIES['price'] }
-            xField="month" xLabel="Months"
-            timeFormat="%b %Y"
-            yFields={ ['usd'] } yLabel="Price ($)" />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['qualitative1'] }
+              data={ TIME_SERIES['price'] }
+              xField="month" xLabel="Months"
+              timeFormat="%b %Y"
+              yFields={ ['usd'] } yLabel="Price ($)" />
+          </div>
         </div>
       </div>
 
@@ -44,12 +48,14 @@ const LineChartsDemo = props =>
           <h4>Multiple Line Series</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['divergent'] }
-            data={ TIME_SERIES['traffic'] }
-            xField="date" xLabel="Dates"
-            timeFormat="%Y-%M-%d"
-            yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['divergent'] }
+              data={ TIME_SERIES['traffic'] }
+              xField="date" xLabel="Dates"
+              timeFormat="%Y-%M-%d"
+              yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
+          </div>
         </div>
       </div>
 
@@ -58,12 +64,14 @@ const LineChartsDemo = props =>
           <h4>Multiple Line Series</h4>
         </div>
         <div className="chart-panel__content">
-          <LineChart
-            colors={ COLORS['qualitative2'] }
-            data={ TIME_SERIES['traffic'] }
-            xField="date" xLabel="Dates"
-            timeFormat="%Y-%M-%d"
-            yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
+          <div className="chart">
+            <LineChart
+              colors={ COLORS['qualitative2'] }
+              data={ TIME_SERIES['traffic'] }
+              xField="date" xLabel="Dates"
+              timeFormat="%Y-%M-%d"
+              yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
+          </div>
         </div>
       </div>
 

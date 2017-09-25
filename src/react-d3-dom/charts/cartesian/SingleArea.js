@@ -58,14 +58,14 @@ export default class SingleArea extends Component {
 
     const {
       data,
-      height,
       margin,
       xField,
-      yField,
-      width
+      yField
     } = this.props
 
     const svg = d3.select(this.rootEl)
+    const height = svg.attr('height')
+    const width = svg.attr('width')
 
     const aWidth = width - margin.left - margin.right
     const aHeight = height - margin.top - margin.bottom
@@ -128,7 +128,8 @@ export default class SingleArea extends Component {
     return (
       <svg ref={ node => this.rootEl = node }
         height={ height }
-        width={ width }>
+        width={ width }
+        viewBox={ `0 0 ${width} ${height}` }>
         { children }
       </svg>
     )

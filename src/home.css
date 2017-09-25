@@ -103,6 +103,11 @@ main.content {
       color: rgb(62,96,111);
       margin: 0;
     }
+
+    a:link,
+    a:visited { color: rgb(62,96,111); }
+    a:active,
+    a:hover { color: rgb(172,0,0); }
   }
 
 }
@@ -141,9 +146,9 @@ aside.sidebar {
       column-gap: 0;
       column-rule: solid 1px;
       column-rule-color: rgb(62,96,111);
-      padding: 2rem 0;
+      padding: 1rem 0 2rem 0;
+      li { display: inline-block; width: 100%; }
     }
-    li { display: inline-block; width: 100%; }
     a {
       display: block;
       line-height: 1.2;
@@ -157,6 +162,21 @@ aside.sidebar {
       &.active,
       &:hover { background: rgb(62,96,111); color: rgb(252,255,245); }
       &.active { font-weight: 600; }
+    }
+  }
+
+  .main_nav {
+    margin: 0;
+    padding: 2rem 1rem;
+    ul {
+      margin: 0;
+      padding: 0;
+      li { display: list-item; list-style-type: none; }
+    }
+    ol {
+      margin: 0 0 0 2rem;
+      padding: 0;
+      li { display: list-item; list-style-type: upper-roman; }
     }
   }
 }

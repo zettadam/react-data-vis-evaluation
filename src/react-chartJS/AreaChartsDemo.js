@@ -14,11 +14,13 @@ const AreaChartsDemo = props =>
           <h4>Single Area</h4>
         </div>
         <div className="chart-panel__content">
-          <AreaChart
-            colors={ COLORS['sequential'] }
-            data={ ORDINAL_DATA[0] }
-            xField="x"
-            yFields={ ['y1'] } />
+          <div className="chart">
+            <AreaChart
+              colors={ COLORS['sequential'] }
+              data={ ORDINAL_DATA[0] }
+              xField="x"
+              yFields={ ['y1'] } />
+          </div>
         </div>
       </div>
 
@@ -27,13 +29,15 @@ const AreaChartsDemo = props =>
           <h4>Grouped Area</h4>
         </div>
         <div className="chart-panel__content">
-          <AreaChart
-            colors={ COLORS['qualitative2'] }
-            data={ ORDINAL_DATA[2] }
-            xField="x"
-            yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-            stacked
-            stackOffset="expand" />
+          <div className="chart">
+            <AreaChart
+              colors={ COLORS['qualitative2'] }
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+              stacked
+              stackOffset="expand" />
+          </div>
         </div>
       </div>
 
@@ -42,13 +46,15 @@ const AreaChartsDemo = props =>
           <h4>Stacked Area</h4>
         </div>
         <div className="chart-panel__content">
-          <AreaChart
-            colors={ COLORS['qualitative2'] }
-            data={ ORDINAL_DATA[2] }
-            xField="x"
-            yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-            stacked
-            stackOffset="expand" />
+          <div className="chart">
+            <AreaChart
+              colors={ COLORS['qualitative2'] }
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+              stacked
+              stackOffset="expand" />
+          </div>
         </div>
       </div>
 
