@@ -10,10 +10,6 @@ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const AreaChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Area Charts</h3>
-    </header>
-
     <div className="charts charts--d3">
 
       <div className="chart-panel">

@@ -12,9 +12,6 @@ import {
 
 const BarChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Bar Charts</h3>
-    </header>
 
     <div className="charts charts--d3">
 

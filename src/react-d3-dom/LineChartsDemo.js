@@ -5,9 +5,6 @@ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const LineChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Line Charts</h3>
-    </header>
 
     <div className="charts charts--d3">
       <div className="chart-panel">
