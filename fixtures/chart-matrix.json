@@ -75,7 +75,7 @@
       "Candlestick Charts help reveal the market psychology (the fear and greed experienced by sellers and buyers) through the various indicators, such as shape and colour, but also by the many identifiable patterns that can be found in Candlestick Charts. In total, there are 42 recognised patterns that are divided into simple and complex patterns. These patterns found in Candlestick Charts are useful for displaying price relationships and can be used for predicting the possible future movement of the market.",
       "Please bare in mind, that Candlestick Charts don't express the events taking place between the open and close price - only the relationship between the two prices. So you can't tell how volatile trading was within that single time period."
     ],
-    "focus": false
+    "focus": true
   },
   "circular-packing": {
     "title": "Circular Packing",
@@ -121,7 +121,7 @@
       "A Donut Chart partly addresses this problem by de-emphasising the use of area, to make the viewer focus more on the changes in overall values. You are focused on reading the length of the arcs, rather then comparing the proportions between slices.",
       "Also Donut Charts can take up less space then Pie Charts by having their centers used to display information within their blank centers."
     ],
-    "focus": true
+    "focus": false
   },
   "dot-map": {
     "title": "Dot Map",
@@ -133,7 +133,7 @@
   },
   "error-bar": {
     "title": "Error Bar",
-    "focus": false
+    "focus": true
   },
   "flow-map": {
     "title": "Flow Map",
@@ -171,7 +171,7 @@
   },
   "multi-set-bar": {
     "title": "Multi-set Bar Chart",
-    "focus": true
+    "focus": false
   },
   "network": {
     "title": "Network Diagram",
@@ -179,7 +179,7 @@
   },
   "nightingale-rose": {
     "title": "Nightingale Rose Chart",
-    "focus": false
+    "focus": true
   },
   "nested-bubble": {
     "title": "Nested Bubble",
