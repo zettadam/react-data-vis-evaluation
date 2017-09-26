@@ -1,30 +1,17 @@
 import React from 'react'
 
+import DemoHeader from './DemoHeader'
+import ChartPanel from 'common/ChartPanel'
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const PieChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Using React and Recharts library</h3>
-    </header>
+    <DemoHeader />
 
     <div className="charts charts--recharts">
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Simple Pie</h4>
-        </div>
-        <div className="chart-panel__content" />
-      </div>
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Simple Pie</h4>
-        </div>
-        <div className="chart-panel__content" />
-      </div>
-
+      <ChartPanel />
+      <ChartPanel />
     </div>
 
   </section>

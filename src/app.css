@@ -14,6 +14,30 @@
   box-shadow: 0 0 3px rgba(127,127,127,0.5);
 }
 
+.chart-panel__header {
+  display: flex;
+  justify-content: space-between;
+  .chart-panel__title {
+    flex: 1;
+    margin: 0;
+    padding: 1rem;
+  }
+  .chart-panel__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0.5;
+    padding: 1rem;
+
+    label {
+      .label {
+        display: inline-block;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
 .charts {
   margin: 0 0 4rem 0;
 }
@@ -32,6 +56,7 @@
   /* These styles maintain aspect ratio */
   .chart-panel__content {
     position: relative;
+    padding: 0;
 
     &:before {
       display: block;
@@ -77,19 +102,4 @@
   .charts--vx {
     grid-template-columns: repeat(1, 99%);
   }
-}
-
-.chart-panel__header {
-  padding: 0;
-  h4 { padding: 0 1rem; }
-}
-
-.chart-panel__content {
-  margin: 1rem;
-}
-
-.chart-panel--wide {
-  height: 500px;
-  min-height: 500px;
-  width: 1024px;
 }

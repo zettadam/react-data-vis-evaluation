@@ -19,6 +19,8 @@ export default class BarChart extends Component {
 
   static propTypes = {
     data: PropTypes.array,
+    grouped: PropTypes.bool,
+    horizontal: PropTypes.bool,
     stacked: PropTypes.bool,
     theme: PropTypes.string,
     xField: PropTypes.string,
@@ -27,6 +29,8 @@ export default class BarChart extends Component {
 
   static defaultProps = {
     data: [],
+    grouped: false,
+    horizontal: false,
     stacked: false,
     theme: 'qualitativeA',
     xField: '',
@@ -51,6 +55,8 @@ export default class BarChart extends Component {
     const {
       data,
       domainPadding,
+      horizontal,
+      grouped,
       stacked,
       theme,
       xField,
@@ -67,6 +73,7 @@ export default class BarChart extends Component {
 
     const props = {
       categories: { x: data.map(d => d[xField]) },
+      horizontal,
       offset: yFields.length - 1
     }
 
@@ -83,7 +90,7 @@ export default class BarChart extends Component {
         <VictoryGroup { ...props }>
           { this.renderBars(adaptedData) }
         </VictoryGroup> }
-        { stacked &&
+        { stacked && !grouped &&
         <VictoryStack { ...props }>
           { this.renderBars(adaptedData) }
         </VictoryStack> }

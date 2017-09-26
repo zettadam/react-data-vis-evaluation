@@ -1,5 +1,8 @@
 import React from 'react'
 
+import DemoHeader from './DemoHeader'
+import ChartPanel from 'common/ChartPanel'
+
 import {
   AreaChart,
   BarChart,

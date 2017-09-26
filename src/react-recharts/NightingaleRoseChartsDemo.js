@@ -1,10 +1,16 @@
 import React from 'react'
 
+import DemoHeader from './DemoHeader'
+import ChartPanel from 'common/ChartPanel'
+
 const NightingaleRoseChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Using React and Recharts library</h3>
-    </header>
+    <DemoHeader />
+
+    <div className="charts charts--recharts">
+      <ChartPanel />
+      <ChartPanel />
+    </div>
 
   </section>
 

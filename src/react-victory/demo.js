@@ -21,7 +21,7 @@ import HeatmapsChartsDemo from './HeatmapsChartsDemo'
 import HistogramsChartsDemo from './HistogramsChartsDemo'
 import KagiChartsDemo from './KagiChartsDemo'
 import LineChartsDemo from './LineChartsDemo'
-import MerimekkoChartsDemo from './MerimekkoChartsDemo'
+import MarimekkoChartsDemo from './MarimekkoChartsDemo'
 import NestedBubbleChartsDemo from './NestedBubbleChartsDemo'
 import NetworkDiagramsCharts from './NetworkDiagramsDemo'
 import NightingaleRoseChartsDemo from './NightingaleRoseChartsDemo'
@@ -62,7 +62,7 @@ const VictoryDemo = ({
     { 'histogram' === type && <HistorgramsChartsDemo /> }
     { 'kagi' === type && <KagiChartsDemo /> }
     { 'line' === type && <LineChartsDemo /> }
-    { 'merimekko' === type && <MerimekkoChartsDemo /> }
+    { 'marimekko' === type && <MarimekkoChartsDemo /> }
     { 'nested-bubble' === type && <NestedBubbleChartsDemo /> }
     { 'network' === type && <NetworkDiagramsDemo /> }
     { 'nightingale-rose' === type && <NightingaleRoseChartsDemo /> }

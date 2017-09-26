@@ -21,7 +21,7 @@ import HeatmapsChartsDemo from './HeatmapsChartsDemo'
 import HistogramsChartsDemo from './HistogramsChartsDemo'
 import KagiChartsDemo from './KagiChartsDemo'
 import LineChartsDemo from './LineChartsDemo'
-import MerimekkoChartsDemo from './MerimekkoChartsDemo'
+import MarimekkoChartsDemo from './MarimekkoChartsDemo'
 import NestedBubbleChartsDemo from './NestedBubbleChartsDemo'
 import NetworkDiagramsCharts from './NetworkDiagramsDemo'
 import NightingaleRoseChartsDemo from './NightingaleRoseChartsDemo'
@@ -29,7 +29,7 @@ import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
 import PieChartsDemo from './PieChartsDemo'
 import RadarChartsDemo from './RadarChartsDemo'
-import ScatterPlotsDemos from './ScatterPlotsDemo'
+import ScatterPlotsDemo from './ScatterPlotsDemo'
 import SegmentedChartsDemo from './SegmentedChartsDemo'
 import SpanChartsDemo from './SpanChartsDemo'
 import StreamChartsDemo from './StreamChartsDemo'
@@ -62,7 +62,7 @@ const VxDemo = ({
     { 'histogram' === type && <HistorgramsChartsDemo /> }
     { 'kagi' === type && <KagiChartsDemo /> }
     { 'line' === type && <LineChartsDemo /> }
-    { 'merimekko' === type && <MerimekkoChartsDemo /> }
+    { 'marimekko' === type && <MarimekkoChartsDemo /> }
     { 'nested-bubble' === type && <NestedBubbleChartsDemo /> }
     { 'network' === type && <NetworkDiagramsDemo /> }
     { 'nightingale-rose' === type && <NightingaleRoseChartsDemo /> }

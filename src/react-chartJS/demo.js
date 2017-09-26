@@ -21,15 +21,15 @@ import HeatmapsChartsDemo from './HeatmapsChartsDemo'
 import HistogramsChartsDemo from './HistogramsChartsDemo'
 import KagiChartsDemo from './KagiChartsDemo'
 import LineChartsDemo from './LineChartsDemo'
-import MerimekkoChartsDemo from './MerimekkoChartsDemo'
+import MarimekkoChartsDemo from './MarimekkoChartsDemo'
 import NestedBubbleChartsDemo from './NestedBubbleChartsDemo'
-import NetworkDiagramsCharts from './NetworkDiagramsDemo'
+import NetworkDiagramsDemo from './NetworkDiagramsDemo'
 import NightingaleRoseChartsDemo from './NightingaleRoseChartsDemo'
 import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
 import PieChartsDemo from './PieChartsDemo'
 import RadarChartsDemo from './RadarChartsDemo'
-import ScatterPlotsDemos from './ScatterPlotsDemo'
+import ScatterPlotsDemo from './ScatterPlotsDemo'
 import SegmentedChartsDemo from './SegmentedChartsDemo'
 import SpanChartsDemo from './SpanChartsDemo'
 import StreamChartsDemo from './StreamChartsDemo'
@@ -43,8 +43,8 @@ const ChartJSDemo = ({
   <div className={ `demo-${type}` }>
     { 'area' === type && <AreaChartsDemo /> }
     { 'bar' === type && <BarChartsDemo /> }
-    { 'box-plot' === type && <BoxPlotsDemo /> }
-    { 'bubble-chart' === type && <BubbleChartsDemo /> }
+    { 'box' === type && <BoxPlotsDemo /> }
+    { 'bubble' === type && <BubbleChartsDemo /> }
     { 'bubble-map' === type && <BubbleMapChartsDemo /> }
     { 'bullet' === type && <BulletChartsDemo /> }
     { 'candlestick' === type && <CandlestickChartsDemo /> }
@@ -52,7 +52,7 @@ const ChartJSDemo = ({
     { 'choropleth-map' === type && <ChoroplethMapsDemo /> }
     { 'circular-packing' === type && <CircularPackingChartsDemo /> }
     { 'connection-map' === type && <ConnectionMapsDemo /> }
-    { 'density-plot' === type && <DensityPlotsDemo /> }
+    { 'density' === type && <DensityPlotsDemo /> }
     { 'donut' === type && <DonutChartsDemo /> }
     { 'dot-map' === type && <DotMapsDemo /> }
     { 'dot-matrix' === type && <DotMatrixChartsDemo /> }
@@ -62,7 +62,7 @@ const ChartJSDemo = ({
     { 'histogram' === type && <HistorgramsChartsDemo /> }
     { 'kagi' === type && <KagiChartsDemo /> }
     { 'line' === type && <LineChartsDemo /> }
-    { 'merimekko' === type && <MerimekkoChartsDemo /> }
+    { 'marimekko' === type && <MarimekkoChartsDemo /> }
     { 'nested-bubble' === type && <NestedBubbleChartsDemo /> }
     { 'network-diagram' === type && <NetworkDiagramsDemo /> }
     { 'nightingale-rose' === type && <NightingaleRoseChartsDemo /> }
@@ -70,7 +70,7 @@ const ChartJSDemo = ({
     { 'parallel-set' === type && <parallelSetsChartsDemo /> }
     { 'pie' === type && <PieChartsDemo /> }
     { 'radar' === type && <RadarChartsDemo /> }
-    { 'scatter-plot' === type && <ScatterPlotsDemo /> }
+    { 'scatter' === type && <ScatterPlotsDemo /> }
     { 'segmented' === type && <SegmentedChartsDemo /> }
     { 'span' === type && <SpanChartsDemo /> }
     { 'stream' === type && <StreamChartsDemo /> }
