@@ -17,7 +17,7 @@ export default class Chart extends Component {
   static defaultProps = {
     colors: [],
     data: [],
-    interpolation: 'monotone',
+    interpolation: 'natural',
     stacked: false,
     stackOffset: 'none'
   }

@@ -1,3 +1,26 @@
+import { random, range } from 'lodash'
+
+export const getCandlestickData = days => {
+  const refDate = new Date()
+  const r = range(1, days + 1)
+  return r.map(n => {
+    const a = random(0,1)
+    const date = new Date(refDate).setDate(n)
+    const high = random(500,600)
+    const open = a > 0 ? random(high, high - random(25,50)) : random(high, high - random(0,25))
+    const close = a > 0 ? random(high, high - random(0,25)) : random(high, high - random(25,50))
+    const low = a > 0 ? random(open, open - random(0,25)) : random(close, close - random(0,25))
+    return {
+      a,
+      date,
+      open,
+      close,
+      high,
+      low
+    }
+  })
+}
+
 export const ORDINAL_DATA = [
   [
     { "x": "AA", "y1": 12300 },

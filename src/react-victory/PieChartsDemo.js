@@ -1,11 +1,8 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
+import { DemoHeader, ChartPanel } from './common'
 import { PieChart } from './charts'
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
-import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
-
-import ChartPanel from 'common/ChartPanel'
 
 const PieChartsDemo = props =>
   <section className="demo">

@@ -17,7 +17,8 @@ export default class Chart extends Component {
 
   static defaultProps = {
     colors: [],
-    data: []
+    data: [],
+    interpolation: 'natural'
   }
 
   render () {
@@ -25,6 +26,7 @@ export default class Chart extends Component {
     const {
       colors,
       data,
+      interpolation,
       xField,
       yFields
     } = this.props
@@ -38,10 +40,7 @@ export default class Chart extends Component {
           <CartesianGrid strokeDasharray="0.5 0.5" vertical={ false } />
           { yFields && yFields.map((f, i) => {
             let rgb = colors[i % colors.length]
-            return (
-              <Line type="monotone" key={ f } dataKey={ f }
-                stroke={ rgb } />
-            )
+            return <Line type={ interpolation } key={ f } dataKey={ f } stroke={ rgb } />
           } )}
           <Legend verticalAlign="top" height={32} />
         </LineChart>

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
-import ChartPanel from 'common/ChartPanel'
+import { DemoHeader, ChartPanel } from './common'
 
 const StreamChartsDemo = props =>
   <section className="demo">

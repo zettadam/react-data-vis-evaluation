@@ -1,11 +1,9 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
-import ChartPanel from 'common/ChartPanel'
+import { DemoHeader, ChartPanel } from './common'
 import { LineChart } from './charts'
 
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
-import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const LineChartsDemo = props =>
   <section className="demo">
@@ -13,7 +11,7 @@ const LineChartsDemo = props =>
 
     <div className="charts charts--victory">
 
-      <ChartPanel title="Single Line">
+      <ChartPanel title="Single Line" theme="sequential">
         <LineChart
           data={ ORDINAL_DATA[0] }
           domainPadding={{ x: 0, y: 20 }}
@@ -21,7 +19,7 @@ const LineChartsDemo = props =>
           yFields={ ['y1'] } />
       </ChartPanel>
 
-      <ChartPanel title="Multiple Lines">
+      <ChartPanel title="Multiple Lines" theme="divergent" interpolation="step">
         <LineChart
           data={ ORDINAL_DATA[2] }
           domainPadding={{ x: 0, y: 20 }}

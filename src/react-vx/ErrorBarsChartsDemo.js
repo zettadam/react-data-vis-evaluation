@@ -1,14 +1,14 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
-import ChartPanel from 'common/ChartPanel'
+import { ChartPanel, DemoHeader } from './common'
 
 const ErrorBarsChartsDemo = props =>
   <section className="demo">
     <DemoHeader />
 
     <div className="charts charts--vx">
-      <ChartPanel />
+      <ChartPanel>
+      </ChartPanel>
       <ChartPanel />
     </div>
 

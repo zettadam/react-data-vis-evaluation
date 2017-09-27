@@ -1,7 +1,6 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
-import ChartPanel from 'common/ChartPanel'
+import { ChartPanel, DemoHeader } from './common'
 
 const MarimekkoChartsDemo = props =>
   <section className="demo">

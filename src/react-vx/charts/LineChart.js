@@ -8,7 +8,6 @@ import { Grid } from '@vx/grid'
 import { Group } from '@vx/group'
 import { LinePath } from '@vx/shape'
 import { GlyphDot } from '@vx/glyph'
-import { curveMonotoneX, curveNatural, curveLinear } from '@vx/curve'
 import { scaleTime, scaleLinear } from '@vx/scale'
 import { ScaleSVG } from '@vx/responsive'
 
@@ -16,6 +15,7 @@ import { ScaleSVG } from '@vx/responsive'
 import { extent, max } from 'd3-array'
 import { timeFormat, timeParse } from 'd3-time-format'
 
+import { CURVE_MAP } from '../common'
 
 const makeTimeSeries = ({
   data,
@@ -53,6 +53,7 @@ export default class LineChart extends Component {
     colors: PropTypes.array,
     data: PropTypes.array,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    interpolation: PropTypes.string,
     margin: PropTypes.object,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     xField: PropTypes.string,
@@ -61,6 +62,7 @@ export default class LineChart extends Component {
 
   static defaultProps = {
     colors: [],
+    interpolation: 'natural',
     width: 700,
     height: 350,
     margin: { top: 20, right: 20, bottom: 50, left: 70 },
@@ -90,7 +92,6 @@ export default class LineChart extends Component {
       nice: true
     })
     return scale
-
   }
 
   renderGrid (options) {
@@ -154,10 +155,13 @@ export default class LineChart extends Component {
     const {
       colors,
       data,
+      interpolation,
       timeFormat,
       xField, xFormat, xScale,
       yFields, yScale
     } = options
+
+    const curveFn = CURVE_MAP[interpolation]
 
     let series
 
@@ -174,7 +178,7 @@ export default class LineChart extends Component {
             xScale={ xScale } yScale={ yScale }
             x={ d => d['x'] } y={ d => d['y'] }
             stroke={ colors[i % colors.length] } strokeWidth={ 1 }
-            curve={ curveMonotoneX } />
+            curve={ curveFn } />
         </Group>
       )
     })
@@ -184,6 +188,7 @@ export default class LineChart extends Component {
     const {
       colors,
       data,
+      interpolation,
       height, margin, width,
       timeFormat,
       xField, xLabel,
@@ -212,6 +217,7 @@ export default class LineChart extends Component {
           { this.renderSeries({
               colors,
               data,
+              interpolation,
               timeFormat,
               xField, xScale,
               yFields, yScale

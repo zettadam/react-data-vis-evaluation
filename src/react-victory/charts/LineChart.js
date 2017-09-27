@@ -8,6 +8,7 @@ import {
   VictoryLegend,
   VictoryTooltip,
   VictoryBrushContainer,
+  VictoryScatter,
   VictorySelectionContainer,
   VictoryZoomContainer
 } from 'victory'
@@ -50,15 +51,31 @@ export default class LineChart extends Component {
     super(props)
 
     this.renderLines = this.renderLines.bind(this)
+    this.renderPoints = this.renderPoints.bind(this)
   }
 
-  renderLines (data) {
-    const { interpolation, yFields } = this.props
+  renderLines () {
+    const { data, interpolation, xField, yFields } = this.props
 
     return yFields.map((f, i) =>
-      <VictoryLine key={ `area${i}` }
-        data={ data[i] }
+      <VictoryLine key={ `line-${i}` }
+        data={ data }
+        x={ xField }
+        y={ f }
         interpolation={ interpolation }
+        labelComponent={ <VictoryTooltip /> } />
+    )
+  }
+
+  renderPoints () {
+    const { data, xField, yFields } = this.props
+
+    return yFields.map((f, i) =>
+      <VictoryScatter key={ `point-${i}` }
+        data={ data }
+        x={ xField }
+        y={ f }
+        labels={ d => `y: ${d[f]}` }
         labelComponent={ <VictoryTooltip /> } />
     )
   }
@@ -104,7 +121,10 @@ export default class LineChart extends Component {
     return (
       <VictoryChart { ...chartProps }>
         <VictoryGroup { ...groupProps }>
-        { this.renderLines(adaptedData) }
+          { this.renderLines() }
+        </VictoryGroup>
+        <VictoryGroup { ...groupProps }>
+          { this.renderPoints() }
         </VictoryGroup>
         <VictoryLegend { ...legendProps } />
       </VictoryChart>

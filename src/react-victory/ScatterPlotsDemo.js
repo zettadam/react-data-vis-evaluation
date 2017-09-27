@@ -1,8 +1,6 @@
 import React from 'react'
 
-import DemoHeader from './DemoHeader'
-import ChartPanel from 'common/ChartPanel'
-
+import { DemoHeader, ChartPanel } from './common'
 import { ScatterChart } from './charts'
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 
