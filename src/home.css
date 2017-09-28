@@ -63,7 +63,12 @@ main.content {
     }
   }
   .content__body {
-    min-height: 90vh;
+    .content-article {
+      article {
+        margin: 2rem;
+      }
+    }
+
     .demo-catalog {
       display: grid;
       grid-template-columns: 0.75fr 0.25fr;
@@ -103,6 +108,14 @@ main.content {
     h2 {
       color: rgb(62,96,111);
       margin: 0;
+      font-size: 2rem;
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h3 {
+      font-size: 1.75rem;
     }
 
     a:link,
@@ -168,17 +181,32 @@ aside.sidebar {
 
   .main_nav {
     margin: 0;
-    padding: 2rem 1rem;
+    padding: 2rem 2rem 0 0;
     ul {
       margin: 0;
       padding: 0;
       li { display: list-item; list-style-type: none; }
+      a { padding: 0 1rem; }
+      ul {
+        margin: 0;
+        padding: 0;
+        li {  list-style-type: square; }
+      }
+
+      ol {
+        margin: 0;
+        padding: 0;
+        li { list-style-type: upper-roman; }
+      }
+
+      ul li,
+      ol li {
+        display: list-item; list-style-position: outside; margin: 0 0 0 3rem;
+      }
     }
-    ol {
-      margin: 0 0 0 2rem;
-      padding: 0;
-      li { display: list-item; list-style-type: upper-roman; }
-    }
+
+
+    a.active { background: rgb(25,52,65); color: rgb(252, 255, 245); }
   }
 }
 

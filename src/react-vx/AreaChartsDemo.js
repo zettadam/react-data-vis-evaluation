@@ -69,7 +69,15 @@ export default class AreaChartsDemo extends Component {
 
         { 'bookmarks' === visibleSection &&
         <section className="bookmarks">
-          <p>Bookmarks will be shown here</p>
+          <h3>Reference</h3>
+          <h4>React / VX</h4>
+          <ul>
+            <li><a href="https://vx-demo.now.sh/static/docs/vx-shape.html">VX Docs on <b>@vx/shape</b> package</a></li>
+          </ul>
+          <h4>Genereal</h4>
+          <ul>
+            <li><a href="https://visage.co/data-visualization-101-area-charts/">How to design area charts</a></li>
+          </ul>
         </section> }
 
         { 'notes' === visibleSection &&
