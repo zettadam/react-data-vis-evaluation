@@ -1,29 +1,24 @@
 import React from 'react'
 
+import { ChartPanel, DemoHeader } from './common'
 import data from 'market_marimekko.json'
 import { MarimekkoChart } from './charts/cartesian'
 
 const MerimekkoChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Using React and D3 (owns DOM)</h3>
-    </header>
+    <DemoHeader />
 
-    <section className="charts charts--d3">
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Single Demo</h4>
-        </div>
-        <div className="chart-panel__content">
-          <MarimekkoChart
-            data={ data }
-            xField="airport"
-            yField="airline" />
-        </div>
-      </div>
-
-    </section>
+    <div className="charts charts--d3">
+      <ChartPanel>
+        <MarimekkoChart
+          data={ data }
+          xField="airport"
+          yField="airline" />
+      </ChartPanel>
+      <ChartPanel />
+      <ChartPanel />
+      <ChartPanel />
+    </div>
 
   </section>
 

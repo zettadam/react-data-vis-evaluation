@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { ChartPanel, DemoHeader } from './common'
 import data from 'car-models.json'
 import {
   ParallelCoordinatesInteractive
@@ -7,23 +8,14 @@ import {
 
 const ParallelCoordinatesPlotsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Using React and D3 (owns DOM)</h3>
-    </header>
+    <DemoHeader />
 
-    <section className="charts charts--d3">
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Single Demo</h4>
-        </div>
-        <div className="chart-panel__content">
-          <ParallelCoordinatesInteractive
-            data={ data } />
-        </div>
-      </div>
-
-    </section>
+    <div className="charts charts--d3">
+      <ChartPanel />
+      <ChartPanel />
+      <ChartPanel />
+      <ChartPanel />
+    </div>
 
   </section>
 

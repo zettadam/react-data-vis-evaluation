@@ -3,7 +3,34 @@
   width: 100%;
 
   header {
-    h3 { color: rgb(25,52,65); font-size: 2rem; }
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 1rem 0;
+    h3 {
+      color: rgb(25,52,65);
+      flex: 1;
+      font-size: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .demo--toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 0.5;
+      margin: 0;
+      padding: 0;
+
+      span.dev--notes,
+      span.dev--charts {
+        cursor: pointer;
+        display: block;
+        height: 32px;
+        width: 32px;
+      }
+      .dev--notes svg { fill: rgb(172,0,0); }
+      .dev--charts svg { fill: rgb(25,52,65); }
+    }
   }
 }
 
@@ -12,6 +39,7 @@
   border: 1px solid rgb(204,204,204);
   border-radius: .25rem;
   box-shadow: 0 0 3px rgba(127,127,127,0.5);
+  margin: 0 0 2rem 0;
 }
 
 .chart-panel__header {
@@ -39,19 +67,7 @@
 }
 
 .charts {
-  margin: 0 0 4rem 0;
-}
-
-.charts--d3,
-.charts--chartjs,
-.charts--recharts,
-.charts--victory,
-.charts--vx {
-  display: grid;
-  grid-gap: 2rem;
-  .chart-panel__header {
-    height: 3rem;
-  }
+  margin: 2rem 0 4rem 0;
 
   /* These styles maintain aspect ratio */
   .chart-panel__content {
@@ -77,14 +93,34 @@
   }
 }
 
+.charts--d3,
+.charts--chartjs,
+.charts--recharts,
+.charts--victory,
+.charts--vx {
+  display: grid;
+  grid-gap: 2rem;
+
+  .chart-panel {
+    margin: 0;
+  }
+
+  .chart-panel__header {
+    height: 3rem;
+  }
+}
+
 .chart-panel__content.a16_9 {
   &:before { padding-top: 56.25%; }
 }
 .chart-panel__content.a4_3 {
   &:before { padding-top: 75%; }
 }
+.chart-panel__content.a21_9 {
+  &:before { padding-top: 42.85%; }
+}
 
-@media only screen  and (min-width : 1441px) {
+@media only screen and (min-width : 1441px) {
   .charts--d3,
   .charts--chartjs,
   .charts--recharts,
@@ -102,4 +138,8 @@
   .charts--vx {
     grid-template-columns: repeat(1, 99%);
   }
+}
+
+section.notes {
+  margin: 2rem 0 4rem 0;
 }

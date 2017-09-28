@@ -6,6 +6,7 @@ import {
   MONOCHROMATIC_COLORS,
   CUSTOM_COLORS
 } from '../colors'
+import { CURVE_MAP } from '../../common'
 
 const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
 
@@ -14,6 +15,7 @@ export default class SingleArea extends Component {
 
   static defaultProps = {
     height: 300,
+    interpolation: 'natural',
     margin: {
       top: 20,
       right: 20,
@@ -39,7 +41,6 @@ export default class SingleArea extends Component {
   shouldComponentUpdate (nextProps) {
 
     if (!isEqual(this.props.data, nextProps.data)) {
-      this.renderChart()
       return false
     }
 
@@ -58,14 +59,15 @@ export default class SingleArea extends Component {
 
     const {
       data,
+      height,
+      interpolation,
       margin,
+      width,
       xField,
       yField
     } = this.props
 
     const svg = d3.select(this.rootEl)
-    const height = svg.attr('height')
-    const width = svg.attr('width')
 
     const aWidth = width - margin.left - margin.right
     const aHeight = height - margin.top - margin.bottom
@@ -81,6 +83,7 @@ export default class SingleArea extends Component {
     const area = d3.area()
       .x(d => xScale(d[xField]))
       .y1(d => yScale(d[yField]))
+      .curve(CURVE_MAP[interpolation])
 
     const parsedData = data.map(i => ({
        [xField]: parseTime(i[xField]),
@@ -127,9 +130,8 @@ export default class SingleArea extends Component {
 
     return (
       <svg ref={ node => this.rootEl = node }
-        height={ height }
-        width={ width }
-        viewBox={ `0 0 ${width} ${height}` }>
+        viewBox={ `0 0 ${width} ${height}` }
+        preserveAspectRatio="xMidYMid meet">
         { children }
       </svg>
     )

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { ChartPanel, DemoHeader } from './common'
 import {
   GroupedBars,
   GroupedStackedBars,
@@ -12,75 +13,42 @@ import {
 
 const BarChartsDemo = props =>
   <section className="demo">
+    <DemoHeader />
 
-    <div className="charts charts--d3">
+    <div className="charts">
 
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Single Bars</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <SingleBars
-              colors={ COLORS['sequential'] }
-              data={ ORDINAL_DATA[0] }
-              xField="x"
-              yField="y1" />
-          </div>
-        </div>
-      </div>
+      <ChartPanel title="Single Bars" aspectRatioClass="a21_9">
+        <SingleBars
+          colors={ COLORS['sequential'] }
+          data={ ORDINAL_DATA[0] }
+          height="450"
+          width="1050"
+          xField="x"
+          yField="y1" />
+      </ChartPanel>
 
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Stacked Bars</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <StackedBars
-              colors={ COLORS['qualitative2'] }
-              data={ ORDINAL_DATA[2] }
-              xField="x"
-              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
-          </div>
-        </div>
-      </div>
+      <ChartPanel title="Stacked Bars" aspectRatioClass="a21_9">
+        <StackedBars
+          colors={ COLORS['qualitative2'] }
+          data={ ORDINAL_DATA[2] }
+          height="450"
+          width="1050"
+          xField="x"
+          yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+      </ChartPanel>
 
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Grouped Bars</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <GroupedBars
-              colors={ COLORS['qualitative1'] }
-              data={ ORDINAL_DATA[2] }
-              xField="x"
-              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
-          </div>
-        </div>
-      </div>
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Grouped & Stacked Bars</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <GroupedStackedBars />
-          </div>
-        </div>
-      </div>
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Grouped Bars (Zoom)</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart" />
-        </div>
-      </div>
+      <ChartPanel title="Grouped Bars" aspectRatioClass="a21_9">
+        <GroupedBars
+          colors={ COLORS['qualitative1'] }
+          data={ ORDINAL_DATA[2] }
+          height="450"
+          width="1050"
+          xField="x"
+          yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+      </ChartPanel>
 
     </div>
+
   </section>
 
 export default BarChartsDemo

@@ -19,7 +19,7 @@ export default class Chart extends Component {
     data: [],
     interpolation: 'natural',
     stacked: false,
-    stackOffset: 'none'
+    stackOffset: ''
   }
 
   render () {
@@ -34,10 +34,15 @@ export default class Chart extends Component {
       yFields
     } = this.props
 
+    const chartProps = {
+      data
+    }
+
+    if (stackOffset) chartProps.stackOffset = stackOffset
+
     return (
       <ResponsiveContainer width="96%" >
-        <AreaChart data={ data }
-          stackOffset={ stackOffset }>
+        <AreaChart { ...chartProps }>
           <XAxis dataKey={ xField } tickLine={ false }/>
           <YAxis tickLine={ false } />
           <Tooltip />

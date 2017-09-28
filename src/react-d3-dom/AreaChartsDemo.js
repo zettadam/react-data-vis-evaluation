@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { ChartPanel, DemoHeader } from './common'
 import {
   SingleArea,
   SingleAreaBrushZoom
@@ -10,56 +11,33 @@ import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
 const AreaChartsDemo = props =>
   <section className="demo">
-    <header>
-      <h3>Using React and D3 (which own the DOM)</h3>
-    </header>
+    <DemoHeader />
 
-    <div className="charts charts--d3">
+    <div className="charts">
 
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Single Area</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <SingleArea
-              data={ TIME_SERIES['traffic'] }
-              xField="date"
-              yField="AA" />
-          </div>
-        </div>
-      </div>
+      <ChartPanel title="Single Area"
+        aspectRatioClass="a21_9">
+        <SingleArea
+          data={ TIME_SERIES['traffic'] }
+          xField="date"
+          yField="AA"
+          height="450"
+          width="1050" />
+      </ChartPanel>
 
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Stacked Area Chart</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart" />
-        </div>
-      </div>
+      <ChartPanel title="Single Area (Brush & Zoom)"
+        aspectRatioClass="a21_9">
+        <SingleAreaBrushZoom
+          data={ TIME_SERIES['price'] }
+          dateFormat="%b %Y"
+          xField="month"
+          yField="usd"
+          height="450"
+          width="1050" />
+      </ChartPanel>
 
     </div>
 
-    <div className="charts charts--d3">
-      <h4>Interactive Charts</h4>
-
-      <div className="chart-panel">
-        <div className="chart-panel__header">
-          <h4>Single Area (brush & Zoom)</h4>
-        </div>
-        <div className="chart-panel__content">
-          <div className="chart">
-            <SingleAreaBrushZoom
-              data={ TIME_SERIES['price'] }
-              dateFormat="%b %Y"
-              xField="month"
-              yField="usd" />
-          </div>
-        </div>
-      </div>
-
-    </div>
   </section>
 
 export default AreaChartsDemo

@@ -201,6 +201,10 @@
     "title": "Radar Chart",
     "focus": true
   },
+  "sankey": {
+    "title": "Sankey Chart",
+    "focus": true
+  },
   "scatter": {
     "title": "Scatter Chart",
     "focus": true

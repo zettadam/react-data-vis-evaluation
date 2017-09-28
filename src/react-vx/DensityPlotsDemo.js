@@ -1,16 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { ChartPanel, DemoHeader } from './common'
 
-const DensityPlotsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class DensityPlotsDemo extends Component {
 
-    <div className="charts charts--vx">
-      <ChartPanel />
-      <ChartPanel />
-    </div>
+  constructor (props) {
+    super(props)
 
-  </section>
+    this.state = {
+      visibleSection: 'charts'
+    }
 
-export default DensityPlotsDemo
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
+
+  onToolbarNotesClick (event) {
+    this.setState({ visibleSection: 'notes' })
+  }
+
+  onToolbarChartsClick (event) {
+    this.setState({ visibleSection: 'charts' })
+  }
+
+  render () {
+    const { visibleSection } = this.state
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }} />
+
+        { 'charts' === visibleSection &&
+        <section className="charts charts--vx">
+          <ChartPanel />
+          <ChartPanel />
+        </section> }
+
+        { 'notes' === visibleSection &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
+      </section>
+    )
+  }
+}

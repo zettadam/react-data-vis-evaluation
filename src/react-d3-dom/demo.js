@@ -5,11 +5,13 @@ import './styles/d3charts.css'
 import AreaChartsDemo from './AreaChartsDemo'
 import BarChartsDemo from './BarChartsDemo'
 import LineChartsDemo from './LineChartsDemo'
+import SankeyChartsDemo from './SankeyChartsDemo'
 
 const availableDemos = [
   'area',
   'bar',
-  'line'
+  'line',
+  'sankey'
 ]
 
 const ReactD3DomDemo = ({
@@ -22,6 +24,7 @@ const ReactD3DomDemo = ({
         { 'area' === type && <AreaChartsDemo /> }
         { 'bar' === type && <BarChartsDemo /> }
         { 'line' === type && <LineChartsDemo /> }
+        { 'sankey' === type && <SankeyChartsDemo /> }
       </div>
     )
   } else {

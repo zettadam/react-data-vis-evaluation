@@ -26,8 +26,27 @@ const AreaChartsDemo = props =>
           data={ ORDINAL_DATA[2] }
           xField="x"
           yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+          stacked />
+      </ChartPanel>
+
+      <ChartPanel title="Stacked Area">
+        <AreaChart
+          colors={ COLORS['qualitative2'] }
+          data={ ORDINAL_DATA[2] }
+          xField="x"
+          yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
           stacked
           stackOffset="expand" />
+      </ChartPanel>
+
+      <ChartPanel title="Stacked Area">
+        <AreaChart
+          colors={ COLORS['qualitative2'] }
+          data={ ORDINAL_DATA[2] }
+          xField="x"
+          yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+          stacked
+          stackOffset="silhouette" />
       </ChartPanel>
 
     </div>

@@ -6,6 +6,7 @@ import {
   MONOCHROMATIC_COLORS,
   CUSTOM_COLORS
 } from '../colors'
+import { CURVE_MAP } from '../../common'
 
 const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
 
@@ -13,10 +14,11 @@ const COLOR_SCHEME = MONOCHROMATIC_COLORS['theme3']
 export default class SingleAreaBrushZoom extends Component {
 
   static defaultProps = {
-    height: 500,
+    height: 600,
+    interpolation: 'natural',
     margin1: { top: 20, right: 20, bottom: 110, left: 40 },
-    margin2: { top: 430, right: 20, bottom: 30, left: 40 },
-    width: 600
+    margin2: { top: 380, right: 20, bottom: 30, left: 40 },
+    width: 960
   }
 
   constructor (props) {
@@ -89,16 +91,19 @@ export default class SingleAreaBrushZoom extends Component {
 
     const {
       data,
+      height,
+      interpolation,
       margin1,
       margin2,
+      width,
       xField,
       yField
     } = this.props
 
     this.svg = d3.select(this.rootEl)
-    this.width = +this.svg.attr('width') - margin1.left - margin1.right
-    this.height = +this.svg.attr('height') - margin1.top - margin1.bottom
-    this.height2 = +this.svg.attr('height') - margin2.top - margin2.bottom
+    this.width = width - margin1.left - margin1.right
+    this.height = height - margin1.top - margin1.bottom
+    this.height2 = height - margin2.top - margin2.bottom
 
     const g = this.svg.append('g')
       .attr('transform', 'translate(' + margin1.left + ',' + margin2.top + ')')
@@ -129,10 +134,10 @@ export default class SingleAreaBrushZoom extends Component {
       .y1(d => this.yScale(d[yField]))
 
     this.area2 = d3.area()
-      .curve(d3.curveMonotoneX)
       .x(d => this.x2Scale(d[xField]))
       .y0(this.height2)
       .y1(d => this.y2Scale(d[yField]))
+      .curve(CURVE_MAP[interpolation])
 
     this.svg.append('defs').append('clipPath')
         .attr('id', 'clip')
@@ -140,17 +145,15 @@ export default class SingleAreaBrushZoom extends Component {
         .attr('width', this.width)
         .attr('height', this.height)
 
-    this.focus = this.svg.append('g')
-      .attr('class', 'focus')
-      .attr('transform', 'translate(' + margin1.left + ',' + margin1.top + ')')
-
     this.context = this.svg.append('g')
       .attr('class', 'context')
       .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')')
 
-    const parsedData = data.map(d => this.parseData(d))
+    this.focus = this.svg.append('g')
+      .attr('class', 'focus')
+      .attr('transform', 'translate(' + margin1.left + ',' + margin1.top + ')')
 
-    console.log( 'parsedData', parsedData)
+    const parsedData = data.map(d => this.parseData(d))
 
     this.xScale.domain(d3.extent(parsedData, d => d[xField]))
     this.yScale.domain([0, d3.max(parsedData, d => d[yField])])
@@ -204,9 +207,8 @@ export default class SingleAreaBrushZoom extends Component {
 
     return (
       <svg ref={ node => this.rootEl = node }
-        height={ height }
-        width={ width }
-        viewBox={ `0 0 ${width} ${height}` }>
+        viewBox={ `0 0 ${width} ${height}` }
+        preserveAspectRatio="xMidYMid meet">
         { children }
       </svg>
     )

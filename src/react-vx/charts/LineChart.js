@@ -63,6 +63,9 @@ export default class LineChart extends Component {
   static defaultProps = {
     colors: [],
     interpolation: 'natural',
+    lineAttrs: {
+      strokeWidth: 2,
+    },
     width: 700,
     height: 350,
     margin: { top: 20, right: 20, bottom: 50, left: 70 },
@@ -151,11 +154,12 @@ export default class LineChart extends Component {
     )
   }
 
-  renderSeries (options) {
+  renderLines (options) {
     const {
       colors,
       data,
       interpolation,
+      lineAttrs,
       timeFormat,
       xField, xFormat, xScale,
       yFields, yScale
@@ -177,7 +181,8 @@ export default class LineChart extends Component {
           <LinePath data={ d }
             xScale={ xScale } yScale={ yScale }
             x={ d => d['x'] } y={ d => d['y'] }
-            stroke={ colors[i % colors.length] } strokeWidth={ 1 }
+            { ...lineAttrs }
+            stroke={ colors[i % colors.length]}
             curve={ curveFn } />
         </Group>
       )
@@ -189,6 +194,7 @@ export default class LineChart extends Component {
       colors,
       data,
       interpolation,
+      lineAttrs,
       height, margin, width,
       timeFormat,
       xField, xLabel,
@@ -214,10 +220,11 @@ export default class LineChart extends Component {
             }) }
 
           <Group top={ margin.top } left={ margin.left }>
-          { this.renderSeries({
+          { this.renderLines({
               colors,
               data,
               interpolation,
+              lineAttrs,
               timeFormat,
               xField, xScale,
               yFields, yScale
