@@ -10,7 +10,7 @@ const AreaChartsDemo = props =>
   <section className="demo">
     <DemoHeader />
 
-    <div className="charts charts--recharts">
+    <section className="charts charts--recharts">
 
       <ChartPanel title="Single Area">
         <AreaChart
@@ -49,7 +49,8 @@ const AreaChartsDemo = props =>
           stackOffset="silhouette" />
       </ChartPanel>
 
-    </div>
+    </section>
+
   </section>
 
 export default AreaChartsDemo

@@ -29,7 +29,7 @@ nav {
       &:visited { color: rgb(62,96,111); }
       &:active,
       &.active,
-      &:hover { color: rgb(25,52,65); }
+      &:hover { background: rgb(209,219,189); color: rgb(25,52,65); }
       &.active { font-weight: 600; }
     }
   }
@@ -94,7 +94,8 @@ main.content {
         }
 
         ul {
-          margin: 1rem 0;
+          margin: 1rem 0 2rem -2rem;
+          a { padding: 0 1rem 0 2rem; }
         }
       }
     }

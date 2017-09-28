@@ -31,10 +31,12 @@ export default class BarChartsDemo extends Component {
 
     return (
       <section className="demo">
-        <DemoHeader handlers={{
+        <DemoHeader
+        handlers={{
           onToolbarNotesClick: this.onToolbarNotesClick,
           onToolbarChartsClick: this.onToolbarChartsClick
-        }} />
+        }}
+        visibleSection={ visibleSection } />
 
         { 'charts' === visibleSection &&
         <section className="charts charts--vx">

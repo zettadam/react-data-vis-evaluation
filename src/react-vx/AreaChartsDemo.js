@@ -14,8 +14,13 @@ export default class AreaChartsDemo extends Component {
       visibleSection: 'charts'
     }
 
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
     this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
     this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
+
+  onToolbarBookmarkClick (event) {
+    this.setState({ visibleSection: 'bookmarks' })
   }
 
   onToolbarNotesClick (event) {
@@ -31,10 +36,13 @@ export default class AreaChartsDemo extends Component {
 
     return (
       <section className="demo">
-        <DemoHeader handlers={{
-          onToolbarNotesClick: this.onToolbarNotesClick,
-          onToolbarChartsClick: this.onToolbarChartsClick
-        }} />
+        <DemoHeader
+          handlers={{
+            onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+            onToolbarNotesClick: this.onToolbarNotesClick,
+            onToolbarChartsClick: this.onToolbarChartsClick
+          }}
+          visibleSection={ visibleSection } />
 
         { 'charts' === visibleSection &&
         <section className="charts charts--vx">
@@ -57,6 +65,11 @@ export default class AreaChartsDemo extends Component {
           </ChartPanel>
           <ChartPanel title="Stacked Area" />
 
+        </section> }
+
+        { 'bookmarks' === visibleSection &&
+        <section className="bookmarks">
+          <p>Bookmarks will be shown here</p>
         </section> }
 
         { 'notes' === visibleSection &&

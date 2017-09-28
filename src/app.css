@@ -18,18 +18,26 @@
       align-items: center;
       justify-content: flex-end;
       flex: 0.5;
-      margin: 0;
+      margin: 0 0.5rem 0 0;
       padding: 0;
 
-      span.dev--notes,
-      span.dev--charts {
+      span.tb--bookmarks,
+      span.tb--notes,
+      span.tb--charts {
         cursor: pointer;
         display: block;
         height: 32px;
         width: 32px;
       }
-      .dev--notes svg { fill: rgb(172,0,0); }
-      .dev--charts svg { fill: rgb(25,52,65); }
+      .tb--bookmarks svg { fill:#5688a0; }
+      .tb--notes svg { fill: rgb(172,0,0); }
+      .tb--charts svg { fill: rgb(25,52,65); }
+      .tb--bookmarks.disabled,
+      .tb--notes.disabled,
+      .tb--charts.disabled {
+        cursor: unset;
+        svg { fill: rgba(62,96,111,0.5); }
+      }
     }
   }
 }
@@ -67,8 +75,6 @@
 }
 
 .charts {
-  margin: 2rem 0 4rem 0;
-
   /* These styles maintain aspect ratio */
   .chart-panel__content {
     position: relative;
@@ -140,6 +146,8 @@
   }
 }
 
-section.notes {
+section.bookmarks,
+section.notes,
+section.charts {
   margin: 2rem 0 4rem 0;
 }
