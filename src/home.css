@@ -48,21 +48,24 @@ main.content {
 
   .content__header {
     background: rgb(25,52,65);
-    border-bottom: 3px solid rgb(252,255,245);
+    border-bottom: 10px solid rgb(209, 219, 189);
     grid-column-start: 1;
     grid-column-end: end;
     grid-row-start: 1;
     grid-row-end: 2;
     h1 {
-      color: rgb(252,255,245);
+      color: rgb(209, 219, 189);
       display: block;
       font-size: 3rem;
       line-height: 1;
-      margin: 1.45rem 2rem 0 2rem;
+      margin: 1.15rem 2rem 0 2rem;
       padding: 0;
     }
   }
   .content__body {
+    border-top: 5px solid rgb(209, 219, 189);
+    min-height: 1050px;
+
     .content-article {
       article {
         margin: 2rem;
@@ -72,7 +75,8 @@ main.content {
     .demo-catalog {
       display: grid;
       grid-template-columns: 0.75fr 0.25fr;
-      border-bottom: 1px dashed rgb(62,96,111);
+      border-bottom: 3px solid rgb(209, 219, 189);
+      margin-bottom: 3rem;
 
       article {
         grid-column-start: 1;
@@ -83,7 +87,7 @@ main.content {
       aside {
         grid-column-start: 2;
         grid-column-end: end;
-        border-left: 1px dashed rgb(62,96,111);
+        border-left: 1px solid rgb(209, 219, 189);
         padding: 1rem 2rem;
 
         h4 {
@@ -180,13 +184,12 @@ aside.sidebar {
   }
 
   .main_nav {
-    margin: 0;
-    padding: 2rem 2rem 0 0;
+    margin: 2rem;
+    padding: 0;
     ul {
       margin: 0;
       padding: 0;
       li { display: list-item; list-style-type: none; }
-      a { padding: 0 1rem; }
       ul {
         margin: 0;
         padding: 0;
@@ -201,12 +204,12 @@ aside.sidebar {
 
       ul li,
       ol li {
-        display: list-item; list-style-position: outside; margin: 0 0 0 3rem;
+        display: list-item; list-style-position: outside; margin: 0 0 0 2rem;
       }
     }
 
 
-    a.active { background: rgb(25,52,65); color: rgb(252, 255, 245); }
+    a.active { color: rgb(25,52,65); }
   }
 }
 

@@ -3,7 +3,7 @@ import { NavLink, Route, Switch } from 'react-router-dom'
 
 import CHART_TYPE_MATRIX from 'chart-matrix.json'
 import ChartDemo from './ChartDemo'
-import ContentSection from './ContentSection'
+import ContentSection from './content/ContentSection'
 
 
 const sortedChartTypes = Object.keys(CHART_TYPE_MATRIX)
@@ -46,7 +46,7 @@ const Home = () =>
         <ul>
           <li><NavLink to="/content/introduction">Introduction</NavLink></li>
           <li><NavLink to="/content/data-visualization">Data Visualization</NavLink></li>
-          <li><NavLink to="/content/d3">D3 (Data visualization on the web)</NavLink></li>
+          <li><NavLink to="/content/d3-data-visualization-web">D3 (Data visualization on the web)</NavLink></li>
           <li><NavLink to="/content/using-d3-in-react-apps">Using D3 in React applications</NavLink>
             <ol>
               <li><NavLink to="/content/d3-owns-dom-draws-charts">D3 owns DOM and draws charts</NavLink></li>
@@ -56,9 +56,10 @@ const Home = () =>
           </li>
           <li><NavLink to="/content/react-based-charting-libraries">React-based charting libraries</NavLink>
             <ul>
-              <li><NavLink to="/content/recharts">Recharts</NavLink></li>
-              <li><NavLink to="/content/victory">Victory</NavLink></li>
-              <li><NavLink to="/content/vx">VX (Visualization Components)</NavLink></li>
+              <li><NavLink to="/content/react-recharts">Recharts</NavLink></li>
+              <li><NavLink to="/content/react-victory">Victory</NavLink></li>
+              <li><NavLink to="/content/react-vx">VX (Visualization Components)</NavLink></li>
+              <li><NavLink to="/content/react-chartjs">ChartJS</NavLink></li>
             </ul>
           </li>
           <li><NavLink to="/content/recommendations">Recommendations</NavLink></li>

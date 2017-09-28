@@ -3,7 +3,7 @@ import React from 'react'
 export default (props) =>
   <article>
     <header>
-      <h3>Introduction</h3>
+      <h3>Using D3 in React Apps</h3>
     </header>
 
     <section>
