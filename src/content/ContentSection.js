@@ -7,6 +7,7 @@ import UsingD3ReactApps from './UsingD3ReactApps'
 import ReactRecharts from './ReactRecharts'
 import ReactVictory from './ReactVictory'
 import ReactVX from './ReactVX'
+import ReactSemiotic from './ReactSemiotic'
 import ReactChartJS from './ReactChartJS'
 import Recommendations from './Recommendations'
 import References from './References'
@@ -46,6 +47,10 @@ export default ({
 
     case 'react-vx':
       output = <ReactVX />
+      break
+
+    case 'react-semiotic':
+      output = <ReactSemiotic />
       break
 
     case 'react-chartJS':

@@ -47,7 +47,8 @@ export default (props) =>
           </p>
           <p className="attribution">
             <img src="/static/experts/tamara-munzner.jpg" height="30" eidth="40" />
-            <a href="http://www.cs.ubc.ca/~tmm/">Tamara Munzner</a>, Visualization Analysis and Design
+            <a href="https://www.safaribooksonline.com/library/view/visualization-analysis-and/9781466508910/K14708_C000.xhtml">Tamara Munzner</a>,
+            Visualization Analysis and Design
           </p>
         </div>
       </blockquote>

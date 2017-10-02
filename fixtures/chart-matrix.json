@@ -177,10 +177,6 @@
     "title": "Network Diagram",
     "focus": false
   },
-  "nightingale-rose": {
-    "title": "Nightingale Rose Chart",
-    "focus": true
-  },
   "nested-bubble": {
     "title": "Nested Bubble",
     "focus": false
@@ -199,6 +195,10 @@
   },
   "radar": {
     "title": "Radar Chart",
+    "focus": true
+  },
+  "rose": {
+    "title": "Rose Chart",
     "focus": true
   },
   "sankey": {

@@ -24,7 +24,7 @@ import LineChartsDemo from './LineChartsDemo'
 import MarimekkoChartsDemo from './MarimekkoChartsDemo'
 import NestedBubbleChartsDemo from './NestedBubbleChartsDemo'
 import NetworkDiagramsCharts from './NetworkDiagramsDemo'
-import NightingaleRoseChartsDemo from './NightingaleRoseChartsDemo'
+import RoseChartsDemo from './RoseChartsDemo'
 import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
 import PieChartsDemo from './PieChartsDemo'
@@ -65,7 +65,7 @@ const VictoryDemo = ({
     { 'marimekko' === type && <MarimekkoChartsDemo /> }
     { 'nested-bubble' === type && <NestedBubbleChartsDemo /> }
     { 'network' === type && <NetworkDiagramsDemo /> }
-    { 'nightingale-rose' === type && <NightingaleRoseChartsDemo /> }
+    { 'rose' === type && <RoseChartsDemo /> }
     { 'parallel-coordinates' === type && <ParallelCoordinatesPlotsDemo /> }
     { 'parallel-set' === type && <parallelSetsChartsDemo /> }
     { 'pie' === type && <PieChartsDemo /> }

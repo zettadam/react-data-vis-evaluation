@@ -5,6 +5,7 @@ import ReactDomD3Demo from './react-dom-d3/demo'
 import RechartsDemo from './react-recharts/demo'
 import VictoryDemo from './react-victory/demo'
 import VxDemo from './react-vx/demo'
+import SemioticDemo from './react-semiotic/demo'
 import ChartJSDemo from './react-chartJS/demo'
 
 const ChartDemoSwitch = ({
@@ -24,6 +25,8 @@ const ChartDemoSwitch = ({
       return <VictoryDemo type={ type } />
     case 'react-vx':
       return <VxDemo type={ type } />
+    case 'react-semiotic':
+      return <SemioticDemo type={ type } />
     case 'react-chartJS':
       return <ChartJSDemo type={ type } />
     default:

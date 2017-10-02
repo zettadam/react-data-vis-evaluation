@@ -23,7 +23,7 @@ import KagiChartsDemo from './KagiChartsDemo'
 import LineChartsDemo from './LineChartsDemo'
 import MarimekkoChartsDemo from './MarimekkoChartsDemo'
 import NestedBubbleChartsDemo from './NestedBubbleChartsDemo'
-import NetworkDiagramsDemo from './NetworkDiagramsDemo'
+import NetworkDiagramsCharts from './NetworkDiagramsDemo'
 import RoseChartsDemo from './RoseChartsDemo'
 import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
@@ -37,7 +37,7 @@ import SunburstChartsDemo from './SunburstChartsDemo'
 import TreemapsChartsDemo from './TreemapsChartsDemo'
 import VoronoiChartsDemo from './VoronoiChartsDemo'
 
-const ChartJSDemo = ({
+const SemioticDemo = ({
   type
 }) =>
   <div className={ `demo-${type}` }>
@@ -64,9 +64,9 @@ const ChartJSDemo = ({
     { 'line' === type && <LineChartsDemo /> }
     { 'marimekko' === type && <MarimekkoChartsDemo /> }
     { 'nested-bubble' === type && <NestedBubbleChartsDemo /> }
-    { 'network-diagram' === type && <NetworkDiagramsDemo /> }
+    { 'network' === type && <NetworkDiagramsDemo /> }
     { 'rose' === type && <RoseChartsDemo /> }
-    { 'parallel-coordinates-plot' === type && <ParallelCoordinatesPlotsDemo /> }
+    { 'parallel-coordinates' === type && <ParallelCoordinatesPlotsDemo /> }
     { 'parallel-set' === type && <parallelSetsChartsDemo /> }
     { 'pie' === type && <PieChartsDemo /> }
     { 'radar' === type && <RadarChartsDemo /> }
@@ -79,4 +79,4 @@ const ChartJSDemo = ({
     { 'voronoi' === type && <VoronoiChartsDemo /> }
   </div>
 
-export default ChartJSDemo
+export default SemioticDemo

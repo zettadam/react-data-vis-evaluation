@@ -34,7 +34,7 @@ const Home = () =>
     </main>
 
     <aside className="grid sidebar">
-      <h3>Chart t<span>yp</span>es</h3>
+      <h3>Charts & Plots</h3>
       <nav className="chart-type__list">
       { sortedChartTypes &&
         <ul>{ sortedChartTypes.map((t, i) =>
@@ -59,6 +59,7 @@ const Home = () =>
               <li><NavLink to="/content/react-recharts">Recharts</NavLink></li>
               <li><NavLink to="/content/react-victory">Victory</NavLink></li>
               <li><NavLink to="/content/react-vx">VX (Visualization Components)</NavLink></li>
+              <li><NavLink to="/content/react-semiotic">Semiotic</NavLink></li>
               <li><NavLink to="/content/react-chartjs">ChartJS</NavLink></li>
             </ul>
           </li>
