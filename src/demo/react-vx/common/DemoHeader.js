@@ -7,7 +7,7 @@ export default ({
   <header>
     <h3>Using React and <a href="https://vx-demo.now.sh/">VX</a> library</h3>
     <div className="demo--toolbar">
-      <span className={ `tb--charts ${ 'charts' === visibleSection ? 'disabled' : '' }` }
+      <span className={ `tb--charts ${ 'charts' === visibleSection ? 'active' : '' }` }
         onClick={ 'charts' !== visibleSection ? handlers.onToolbarChartsClick : null }
         title="View chart examples">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 125" enableBackground="new 0 0 100 100">
@@ -15,14 +15,14 @@ export default ({
       </svg>
 
       </span>
-      <span className={ `tb--bookmarks ${ 'bookmarks' === visibleSection ? 'disabled' : ''}` }
+      <span className={ `tb--bookmarks ${ 'bookmarks' === visibleSection ? 'active' : ''}` }
         onClick={ 'bookmarks' !== visibleSection ? handlers.onToolbarBookmarkClick : null }
         title="View related bookmarks">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 32 40" enableBackground="new 0 0 32 32">
           <path fillRule="evenodd" clipRule="evenodd" d="M25.714,28.967l-0.71,0.725c-0.393,0.4-1.027,0.4-1.421,0l-7.582-7.78l-7.584,7.78  c-0.391,0.4-1.028,0.4-1.419,0l-0.71-0.725c-0.393-0.4-0.393-1.051,0-1.451l8.287-8.501c0.002-0.002,0.004-0.006,0.006-0.01  l0.71-0.725c0.393-0.4,1.028-0.4,1.42,0l0.708,0.725c0.004,0.004,0.004,0.008,0.008,0.01l8.287,8.501  C26.104,27.916,26.104,28.566,25.714,28.967L25.714,28.967z M23.266,21c-0.206,0-0.395-0.084-0.529-0.22  c-0.006-0.005,0,0.021-0.002,0.022l-5.157-5.29c-0.069-0.071-0.126-0.132-0.158-0.164l-0.708-0.725c-0.393-0.4-1.027-0.4-1.42,0  l-0.71,0.725c-0.006,0.006-0.017,0.021-0.024,0.028l-5.279,5.417C9.142,20.92,8.965,21,8.766,21c-0.413,0-0.75-0.336-0.75-0.749V3  c0-0.553,0.447-1,1-1h14c0.553,0,1,0.447,1,1v17.251C24.016,20.664,23.68,21,23.266,21L23.266,21z"/>
       </svg>
       </span>
-      <span className={ `tb--notes ${ 'notes' === visibleSection ? 'disabled' : '' }` }
+      <span className={ `tb--notes ${ 'notes' === visibleSection ? 'active' : '' }` }
         onClick={ 'notes' !== visibleSection ? handlers.onToolbarNotesClick : null }
         title="View related notes">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">

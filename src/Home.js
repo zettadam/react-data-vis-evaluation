@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Route, Switch } from 'react-router-dom'
 
 import CHART_TYPE_MATRIX from 'chart-matrix.json'
-import ChartDemo from './ChartDemo'
+import ChartDemo from './demo/ChartDemo'
 import ContentSection from './content/ContentSection'
 
 
@@ -18,7 +18,7 @@ const sortedChartTypes = Object.keys(CHART_TYPE_MATRIX)
   })
 
 const Home = () =>
-  <div className="home">
+  <div className="app">
 
     <main className="grid content">
       <header className="content__header">

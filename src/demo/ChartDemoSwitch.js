@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ReactD3DomDemo from './react-D3-dom/demo'
+import ReactD3DomDemo from './react-d3-dom/demo'
 import ReactDomD3Demo from './react-dom-d3/demo'
 import RechartsDemo from './react-recharts/demo'
 import VictoryDemo from './react-victory/demo'

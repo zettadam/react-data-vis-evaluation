@@ -5,10 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 //import App from './App'
 import Home from './Home'
 
-import './index.css'
-import './home.css'
-import './app.css'
-
+import './styles.css'
 
 const rootEl = document.getElementById('root')
 
