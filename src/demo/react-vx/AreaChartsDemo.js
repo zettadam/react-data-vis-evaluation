@@ -11,7 +11,7 @@ export default class AreaChartsDemo extends Component {
     super(props)
 
     this.state = {
-      visibleSection: 'charts'
+      sSection: 'charts'
     }
 
     this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
@@ -20,19 +20,19 @@ export default class AreaChartsDemo extends Component {
   }
 
   onToolbarBookmarkClick (event) {
-    this.setState({ visibleSection: 'bookmarks' })
+    this.setState({ section: 'bookmarks' })
   }
 
   onToolbarNotesClick (event) {
-    this.setState({ visibleSection: 'notes' })
+    this.setState({ section: 'notes' })
   }
 
   onToolbarChartsClick (event) {
-    this.setState({ visibleSection: 'charts' })
+    this.setState({ section: 'charts' })
   }
 
   render () {
-    const { visibleSection } = this.state
+    const { section } = this.state
 
     return (
       <section className="demo">
@@ -42,9 +42,9 @@ export default class AreaChartsDemo extends Component {
             onToolbarNotesClick: this.onToolbarNotesClick,
             onToolbarChartsClick: this.onToolbarChartsClick
           }}
-          visibleSection={ visibleSection } />
+          section={ section } />
 
-        { 'charts' === visibleSection &&
+        { 'charts' === section &&
         <section className="charts charts--vx">
 
           <ChartPanel title="Single Area">
@@ -67,7 +67,7 @@ export default class AreaChartsDemo extends Component {
 
         </section> }
 
-        { 'bookmarks' === visibleSection &&
+        { 'bookmarks' === section &&
         <section className="bookmarks">
           <h3>Reference</h3>
           <h4>React / VX</h4>
@@ -80,7 +80,7 @@ export default class AreaChartsDemo extends Component {
           </ul>
         </section> }
 
-        { 'notes' === visibleSection &&
+        { 'notes' === section &&
         <section className="notes">
           <p>Notes will be shown here</p>
         </section> }

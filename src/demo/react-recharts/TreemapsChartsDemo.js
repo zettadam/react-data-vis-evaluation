@@ -1,26 +1,60 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { Treemap, ResponsiveContainer } from 'recharts'
 
 import data from 'world_population.json'
 import { ChartPanel, DemoHeader } from './common'
 
-const TreemapsChartsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class TreemapsChartsDemo extends Component {
 
-    <div className="charts charts--recharts">
-      <ChartPanel title="Simple Treemap">
-        <Treemap
-          width={ 960 }
-          height={ 600 }
-          data={ data }
-          dataKey="size"
-          isUpdateAnimationActive={ false } />
-      </ChartPanel>
-      <ChartPanel />
-    </div>
+  constructor (props) {
+    super(props)
 
-  </section>
+    this.state = {
+      section: 'charts'
+    }
 
-export default TreemapsChartsDemo
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
+
+  onToolbarBookmarkClick (event) {
+    this.setState({ section: 'bookmarks' })
+  }
+
+  onToolbarNotesClick (event) {
+    this.setState({ section: 'notes' })
+  }
+
+  onToolbarChartsClick (event) {
+    this.setState({ section: 'charts' })
+  }
+
+  render () {
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }}
+        section={ section } />
+
+        <div className="charts charts--recharts">
+          <ChartPanel title="Simple Treemap">
+            <Treemap
+              width={ 960 }
+              height={ 600 }
+              data={ data }
+              dataKey="size"
+              isUpdateAnimationActive={ false } />
+          </ChartPanel>
+          <ChartPanel />
+        </div>
+
+      </section>
+    )
+  }
+}

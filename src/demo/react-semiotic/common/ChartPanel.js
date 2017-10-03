@@ -31,7 +31,6 @@ export default class ChartPanel extends Component {
   handleInterpolationChange (event) {
     const { target: { value } } = event
     this.setState({ interpolation: value })
-    console.log( 'Set interpolation', value)
   }
 
   render () {

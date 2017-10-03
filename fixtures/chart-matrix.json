@@ -93,7 +93,7 @@
       "Nodes are arranged around a circle, with the relationships between points connected to each other either through the use of arcs or Bézier curves. Values are assigned to each connection, which is represented proportionally by the size of each arc. Colour can be used to group the data into different categories, which aids in making comparisons and distinguishing groups.",
       "Over-cluttering becomes an issue with Chord Diagrams, which happens when there are too many connections displayed."
     ],
-    "focus": false
+    "focus": true
   },
   "choropleth-map": {
     "title": "Choropleth Map",
