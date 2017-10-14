@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { ChartPanel, DemoHeader } from './common'
 
-export default class ChoropletheMapsDemo extends Component {
+export default class SankeyChartsDemo extends Component {
 
   constructor (props) {
     super(props)
@@ -41,7 +41,7 @@ export default class ChoropletheMapsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--victory">
+        <section className="charts charts--recharts">
           <ChartPanel />
           <ChartPanel />
         </section> }

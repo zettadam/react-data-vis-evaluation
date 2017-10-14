@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { DemoHeader, ChartPanel } from './common'
 import { AreaChart } from './charts'
@@ -6,32 +6,79 @@ import { AreaChart } from './charts'
 import { ORDINAL_DATA } from 'fakeData'
 import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
 
-const AreaChartsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class AreaChartsDemo extends Component {
 
-    <div className="charts charts--victory a4_3">
+  constructor (props) {
+    super(props)
 
-      <ChartPanel title="Single Area" theme="divergent">
-        <AreaChart
-          data={ ORDINAL_DATA[0] }
-          xField="x"
-          yFields={ ['y1'] } />
-      </ChartPanel>
+    this.state = {
+      section: 'charts'
+    }
 
-      <ChartPanel />
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
 
-      <ChartPanel title="Multiple Areas (Stacked)" theme="qualitativeB">
-        <AreaChart
-          data={ ORDINAL_DATA[2] }
-          xField="x"
-          yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-          stacked />
-      </ChartPanel>
+  onToolbarBookmarkClick (event) {
+    this.setState({ section: 'bookmarks' })
+  }
 
-      <ChartPanel title="Multiple Areas (Grouped)" />
+  onToolbarNotesClick (event) {
+    this.setState({ section: 'notes' })
+  }
 
-    </div>
-  </section>
+  onToolbarChartsClick (event) {
+    this.setState({ section: 'charts' })
+  }
 
-export default AreaChartsDemo
+  render () {
+    const { section } = this.state
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }}
+        section={ section } />
+
+        { 'charts' === section &&
+        <div className="charts charts--victory a4_3">
+
+          <ChartPanel title="Single Area" theme="divergent">
+            <AreaChart
+              data={ ORDINAL_DATA[0] }
+              xField="x"
+              yFields={ ['y1'] } />
+          </ChartPanel>
+
+          <ChartPanel />
+
+          <ChartPanel title="Multiple Areas (Stacked)" theme="qualitativeB">
+            <AreaChart
+              data={ ORDINAL_DATA[2] }
+              xField="x"
+              yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+              stacked />
+          </ChartPanel>
+
+          <ChartPanel title="Multiple Areas (Grouped)" />
+
+        </div> }
+
+        { 'bookmarks' === section &&
+        <section className="bookmarks">
+
+        </section> }
+
+        { 'notes' === section &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
+      </section>
+    )
+  }
+}

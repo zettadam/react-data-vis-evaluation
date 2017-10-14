@@ -42,7 +42,8 @@ export default class SankeyChartsDemo extends Component {
         }}
         section={ section } />
 
-        <div className="charts">
+        { 'charts' === section &&
+        <div className="charts charts--recharts">
 
           <ChartPanel title="Sankey Chart"
             aspectRatioClass="a4_3">
@@ -63,7 +64,18 @@ export default class SankeyChartsDemo extends Component {
             </ResponsiveContainer>
           </ChartPanel>
 
-        </div>
+        </div> }
+
+        { 'bookmarks' === section &&
+        <section className="bookmarks">
+
+        </section> }
+
+        { 'notes' === section &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
       </section>
     )
   }

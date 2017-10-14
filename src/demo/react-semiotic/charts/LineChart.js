@@ -45,19 +45,22 @@ export default class AreaChart extends Component {
     } = this.props
 
     const settings = {
-      areas: data,
-      areaStyle: { fill: 'purple' },
       axes: [
         { orient: 'left', tickFormat: yTickFormat },
-        { orient: 'bottom' }
+        { orient: 'bottom', tickFormat: d => d.getMonth() + "/" + d.getDate() }
       ],
       download,
       hoverAnnotation,
-      lineType: { type: 'line', y1: 0, interpolator: CURVE_MAP[interpolation] },
+      lines: data,
+      lineStyle: { stroke: '#00a2ce' },
+      lineType: { type: 'line', interpolator: CURVE_MAP[interpolation] },
       margin,
+      pointStyle: { fill: "#00a2ce" },
       responsiveHeight,
       responsiveWidth,
+      showLinePoints: true,
       size: [ width, height ],
+      xScaleType: scaleTime(),
       xAccessor: xAccessor,
       yAccessor: yAccessor
     }

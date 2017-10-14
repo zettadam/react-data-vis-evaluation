@@ -1,16 +1,62 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-import { DemoHeader, ChartPanel } from './common'
+import { ChartPanel, DemoHeader } from './common'
 
-const DotMapsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class DotMapsDemo extends Component {
 
-    <div className="charts charts--victory">
-      <ChartPanel />
-      <ChartPanel />
-    </div>
+  constructor (props) {
+    super(props)
 
-  </section>
+    this.state = {
+      section: 'charts'
+    }
 
-export default DotMapsDemo
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
+
+  onToolbarBookmarkClick (event) {
+    this.setState({ section: 'bookmarks' })
+  }
+
+  onToolbarNotesClick (event) {
+    this.setState({ section: 'notes' })
+  }
+
+  onToolbarChartsClick (event) {
+    this.setState({ section: 'charts' })
+  }
+
+  render () {
+    const { section } = this.state
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }}
+        section={ section } />
+
+        { 'charts' === section &&
+        <section className="charts charts--victory">
+          <ChartPanel />
+          <ChartPanel />
+        </section> }
+
+        { 'bookmarks' === section &&
+        <section className="bookmarks">
+
+        </section> }
+
+        { 'notes' === section &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
+      </section>
+    )
+  }
+}

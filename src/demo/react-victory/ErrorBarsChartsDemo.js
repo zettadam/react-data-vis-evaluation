@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { DemoHeader, ChartPanel } from './common'
 import { ErrorBarChart } from './charts'
@@ -11,20 +11,66 @@ const DATA = [
   { x: 35, y: 22000, error: 0.15 }
 ]
 
-const ErrorBarsChartsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class ErrorBarsChartsDemo extends Component {
 
-    <div className="charts charts--victory">
-      <ChartPanel title="Simple Error Bars" theme="divergent">
-        <ErrorBarChart
-          borderWidth={ 5 }
-          data={ DATA } />
-      </ChartPanel>
+  constructor (props) {
+    super(props)
 
-      <ChartPanel />
-    </div>
+    this.state = {
+      section: 'charts'
+    }
 
-  </section>
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
 
-export default ErrorBarsChartsDemo
+  onToolbarBookmarkClick (event) {
+    this.setState({ section: 'bookmarks' })
+  }
+
+  onToolbarNotesClick (event) {
+    this.setState({ section: 'notes' })
+  }
+
+  onToolbarChartsClick (event) {
+    this.setState({ section: 'charts' })
+  }
+
+  render () {
+    const { section } = this.state
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }}
+        section={ section } />
+
+        { 'charts' === section &&
+        <div className="charts charts--victory">
+          <ChartPanel title="Simple Error Bars" theme="divergent">
+            <ErrorBarChart
+              borderWidth={ 5 }
+              data={ DATA } />
+          </ChartPanel>
+
+          <ChartPanel />
+        </div> }
+
+        { 'bookmarks' === section &&
+        <section className="bookmarks">
+
+        </section> }
+
+        { 'notes' === section &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
+      </section>
+    )
+  }
+}

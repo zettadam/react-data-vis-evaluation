@@ -1,28 +1,74 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { DemoHeader, ChartPanel } from './common'
 import { ScatterChart } from './charts'
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 
-const ScatterPlotsDemo = props =>
-  <section className="demo">
-    <DemoHeader />
+export default class ScatterPlotsDemo extends Component {
 
-    <section className="charts charts--victory">
+  constructor (props) {
+    super(props)
 
-      <ChartPanel title="Scatter Plot" theme="qualitativeA">
-        <ScatterChart
-          data={ ORDINAL_DATA[2] }
-          domainPadding={{ x: 10, y: 10 }}
-          xField="x"
-          yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] }
-          withCursorContainer />
-      </ChartPanel>
+    this.state = {
+      section: 'charts'
+    }
 
-      <ChartPanel />
+    this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
+    this.onToolbarNotesClick = this.onToolbarNotesClick.bind(this)
+    this.onToolbarChartsClick = this.onToolbarChartsClick.bind(this)
+  }
 
-    </section>
+  onToolbarBookmarkClick (event) {
+    this.setState({ section: 'bookmarks' })
+  }
 
-  </section>
+  onToolbarNotesClick (event) {
+    this.setState({ section: 'notes' })
+  }
 
-export default ScatterPlotsDemo
+  onToolbarChartsClick (event) {
+    this.setState({ section: 'charts' })
+  }
+
+  render () {
+    const { section } = this.state
+
+    return (
+      <section className="demo">
+        <DemoHeader handlers={{
+          onToolbarBookmarkClick: this.onToolbarBookmarkClick,
+          onToolbarNotesClick: this.onToolbarNotesClick,
+          onToolbarChartsClick: this.onToolbarChartsClick
+        }}
+        section={ section } />
+
+        { 'charts' === section &&
+        <section className="charts charts--victory">
+
+          <ChartPanel title="Scatter Plot" theme="qualitativeA">
+            <ScatterChart
+              data={ ORDINAL_DATA[2] }
+              domainPadding={{ x: 10, y: 10 }}
+              xField="x"
+              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] }
+              withCursorContainer />
+          </ChartPanel>
+
+          <ChartPanel />
+
+        </section> }
+
+        { 'bookmarks' === section &&
+        <section className="bookmarks">
+
+        </section> }
+
+        { 'notes' === section &&
+        <section className="notes">
+          <p>Notes will be shown here</p>
+        </section> }
+
+      </section>
+    )
+  }
+}
