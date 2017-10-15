@@ -462,6 +462,7 @@ footer.footer {
 .charts--d3,
 .charts--chartjs,
 .charts--recharts,
+.charts--semiotic,
 .charts--victory,
 .charts--vx {
   display: grid;
@@ -490,6 +491,7 @@ footer.footer {
   .charts--d3,
   .charts--chartjs,
   .charts--recharts,
+  .charts--semiotic,
   .charts--victory,
   .charts--vx {
     grid-template-columns: repeat(2, 48.666%);
@@ -500,6 +502,7 @@ footer.footer {
   .charts--d3,
   .charts--chartjs,
   .charts--recharts,
+  .charts--semiotic,
   .charts--victory,
   .charts--vx {
     grid-template-columns: repeat(1, 100%);

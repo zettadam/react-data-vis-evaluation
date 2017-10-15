@@ -1,66 +1,70 @@
 import React, { Component } from 'react'
-import { scaleTime } from 'd3-scale'
+import { scaleLinear, scaleTime } from 'd3-scale'
 import { ResponsiveXYFrame } from 'semiotic'
 
-import { CURVE_MAP } from '../common'
-
-const yTickFormat = i => {
-  let o = i
-  if (i > 999 && i < 1000000) o = `${i/1000}K`
-  if (i > 999999) o = `${i/1000000}M`
-  return o
-}
+import { COLORS, CURVE_MAP } from '../common'
 
 export default class AreaChart extends Component {
 
   static defaultProps = {
-    colors: [],
     data: [],
-    download: false,
     height: 400,
     hoverAnnotation: true,
     interpolation: 'monotoneX',
-    responsiveHeight: true,
+    legend: false,
+    matte: false,
     responsiveWidth: true,
+    theme: 'schemeAccent',
     width: 700,
     xAccessor: 'x',
-    yAccessor: 'y'
+    xScaleType: scaleTime(),
+    xTickFormat: '0',
+    xTicks: 12,
+    yAccessor: 'y',
+    yScale: scaleLinear(),
+    yTickFormat: '0',
+    yTicks: 12
   }
 
   render () {
 
     const {
-      colors,
       data,
-      download,
       height,
       hoverAnnotation,
       interpolation,
+      legend,
       margin,
-      responsiveHeight,
+      matte,
       responsiveWidth,
+      theme,
+      tooltipContent,
       width,
-      xAccessor,
-      yAccessor
+      xAccessor, xScaleType, xTickFormat, xTicks,
+      yAccessor, yScaleType, yTickFormat, yTicks
     } = this.props
+
+    const colors = COLORS[theme] || []
 
     const settings = {
       areas: data,
-      areaStyle: { fill: 'purple' },
+      areaStyle: (d, i) => ({ fill: colors[i % colors.length] }),
       axes: [
-        { orient: 'left', tickFormat: yTickFormat },
-        { orient: 'bottom' }
+        { orient: 'left', format: yTickFormat, ticks: yTicks },
+        { orient: 'bottom', format: xTickFormat, ticks: xTicks }
       ],
-      download,
       hoverAnnotation,
-      lineType: { type: 'line', y1: 0, interpolator: CURVE_MAP[interpolation] },
-      margin,
-      responsiveHeight,
+      legend,
+      lineType: { type: 'line', interpolator: CURVE_MAP[interpolation] },
+      matte,
       responsiveWidth,
       size: [ width, height ],
-      xAccessor: xAccessor,
-      yAccessor: yAccessor
+      xAccessor, xScaleType,
+      yAccessor, yScaleType
     }
+
+    if (margin) settings.margin = margin
+    if (tooltipContent) settings.tooltipContent = tooltipContent
 
     return (
       <ResponsiveXYFrame { ...settings } />

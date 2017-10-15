@@ -37,6 +37,8 @@ import SunburstChartsDemo from './SunburstChartsDemo'
 import TreemapsChartsDemo from './TreemapsChartsDemo'
 import VoronoiChartsDemo from './VoronoiChartsDemo'
 
+import 'styles/charts--semiotic.css'
+
 const SemioticDemo = ({
   type
 }) =>

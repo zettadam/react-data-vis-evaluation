@@ -1,69 +1,83 @@
 import React, { Component } from 'react'
-import { scaleTime } from 'd3-scale'
-import { ResponsiveXYFrame } from 'semiotic'
+import { scaleLinear, scaleTime } from 'd3-scale'
+import { Legend, ResponsiveXYFrame } from 'semiotic'
 
-import { CURVE_MAP } from '../common'
-
-const yTickFormat = i => {
-  let o = i
-  if (i > 999 && i < 1000000) o = `${i/1000}K`
-  if (i > 999999) o = `${i/1000000}M`
-  return o
-}
+import { COLORS, CURVE_MAP } from '../common'
 
 export default class AreaChart extends Component {
 
   static defaultProps = {
-    colors: [],
     data: [],
     download: false,
     height: 400,
     hoverAnnotation: true,
     interpolation: 'monotoneX',
+    legend: false,
+    matte: false,
     responsiveHeight: true,
     responsiveWidth: true,
+    showLinePoints: false,
+    theme: 'schemeAccent',
     width: 700,
     xAccessor: 'x',
-    yAccessor: 'y'
+    xScaleType: scaleTime(),
+    xTickFormat: '0',
+    xTicks: 12,
+    yAccessor: 'y',
+    yScaleType: scaleLinear(),
+    yTickFormat: '0',
+    yTicks: 12
   }
 
   render () {
 
     const {
-      colors,
       data,
       download,
       height,
       hoverAnnotation,
       interpolation,
+      legend,
       margin,
-      responsiveHeight,
+      matte,
+      pointStyle,
       responsiveWidth,
+      showLinePoints,
       width,
-      xAccessor,
-      yAccessor
+      theme,
+      tooltipContent,
+      xAccessor, xScaleType, xTickFormat, xTicks,
+      yAccessor, yScaleType, yTickFormat, yTicks
     } = this.props
+
+    const colors = COLORS[theme] || []
 
     const settings = {
       axes: [
-        { orient: 'left', tickFormat: yTickFormat },
-        { orient: 'bottom', tickFormat: d => d.getMonth() + "/" + d.getDate() }
+        { orient: 'left', format: yTickFormat, ticks: yTicks },
+        { orient: 'bottom', format: xTickFormat, ticks: xTicks }
       ],
       download,
       hoverAnnotation,
+      legend,
       lines: data,
-      lineStyle: { stroke: '#00a2ce' },
+      lineStyle: (d, i) => ({ stroke: colors[i % colors.length], strokeWidth: 2 }),
       lineType: { type: 'line', interpolator: CURVE_MAP[interpolation] },
-      margin,
-      pointStyle: { fill: "#00a2ce" },
-      responsiveHeight,
+      pointStyle: (d, i) => ({
+        fill: 'rgba(255,255,255,0)',
+        stroke: 'rgba(0,0,0,0.25)',
+        strokeWidth: 2
+      }),
       responsiveWidth,
-      showLinePoints: true,
+      showLinePoints,
       size: [ width, height ],
-      xScaleType: scaleTime(),
-      xAccessor: xAccessor,
-      yAccessor: yAccessor
+      xAccessor, xScaleType,
+      yAccessor, yScaleType
     }
+
+    if (margin) settings.margin = margin
+    if (pointStyle) settings.pointStyle = pointStyle
+    if (tooltipContent) settings.tooltipContent = tooltipContent
 
     return (
       <ResponsiveXYFrame { ...settings } />

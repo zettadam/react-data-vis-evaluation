@@ -7,7 +7,7 @@ export default class ChartPanel extends Component {
     baseClassName: 'chart-panel',
     className: '',
     interpolation: 'natural',
-    theme: 'sequential',
+    theme: 'schemeAccent',
     title: 'Chart Title'
   }
 
@@ -52,27 +52,59 @@ export default class ChartPanel extends Component {
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
             <label>
+              <select title="Select theme" name="theme"
+                value={ theme }
+                onChange={ this.handleThemeChange }>
+                <option value="schemeAccent">Scheme Accent</option>
+                <option value="schemeBlues">Scheme Blues</option>
+                <option value="schemeBrBG">Scheme BrBG</option>
+                <option value="schemeBuGn">Scheme BuGn</option>
+                <option value="schemeBuPu">Scheme BuPu</option>
+                <option value="schemeDark2">Scheme Dark2</option>
+                <option value="schemeGnBu">Scheme GnBu</option>
+                <option value="schemeGreens">Scheme Greens</option>
+                <option value="schemeGreys">Scheme Greys</option>
+                <option value="schemeOranges">Scheme Oranges</option>
+                <option value="schemeOrRd">Scheme OrRd</option>
+                <option value="schemePaired">Scheme Paired</option>
+                <option value="schemePastel1">Scheme Pastel1</option>
+                <option value="schemePastel2">Scheme Pastel2</option>
+                <option value="schemePiYG">Scheme PiYG</option>
+                <option value="schemePRGn">Scheme PRGn</option>
+                <option value="schemePuBu">Scheme PuBu</option>
+                <option value="schemePuBuGn">Scheme PuBuGn</option>
+                <option value="schemePuOr">Scheme PuOr</option>
+                <option value="schemePuRd">Scheme PuRd</option>
+                <option value="schemePurples">Scheme Purples</option>
+                <option value="schemeRdBu">Scheme RdBu</option>
+                <option value="schemeRdGy">Scheme RdGy</option>
+                <option value="schemeRdPu">Scheme RdPu</option>
+                <option value="schemeRdYlBu">Scheme RdYlBn</option>
+                <option value="schemeRdYlGn">Scheme RdYlGn</option>
+                <option value="schemeReds">Scheme Reds</option>
+                <option value="schemeSet1">Scheme Set1</option>
+                <option value="schemeSet2">Scheme Set2</option>
+                <option value="schemeSet3">Scheme Set3</option>
+                <option value="schemeSpectral">Scheme Spectral</option>
+                <option value="schemeYlGn">Scheme YlGn</option>
+                <option value="schemeYlGnBu">Scheme YlGnBu</option>
+                <option value="schemeYlOrBr">Scheme YlOrBr</option>
+                <option value="schemeYlOrRd">Scheme YlOrRd</option>
+              </select>
+            </label>
+            <label>
               <select title="Select interpolation" name="interpolation"
                 value={ interpolation }
                 onChange={ this.handleInterpolationChange }>
                 <option value="basis">Basis</option>
-                <option value="basisClosed">Basis Closed</option>
-                <option value="basisOpen">Basis Open</option>
-                <option value="bundle">Bundle</option>
                 <option value="cardinal">Cardinal</option>
-                <option value="cardinalClosed">Cardinal Closed</option>
-                <option value="cardinalOpen">Cardinal Open</option>
                 <option value="catmullRom">CatmullRom</option>
-                <option value="catmullRomClosed">CatmullRom Closed</option>
-                <option value="catmullRomOpen">CatmullRom Open</option>
                 <option value="linear">Linear</option>
                 <option value="linearClosed">Linear Closed</option>
                 <option value="monotoneX">MonotoneX</option>
                 <option value="monotoneY">MonotoneY</option>
                 <option value="natural">Natural</option>
                 <option value="step">Step</option>
-                <option value="stepAfter">Step After</option>
-                <option value="stepBefore">StepBefore</option>
               </select>
             </label>
           </div>
