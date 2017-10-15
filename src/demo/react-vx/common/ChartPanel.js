@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import ColorSchemeSelector from 'common/ColorSchemeSelector'
+import InterpolationSelector from './InterpolationSelector'
+
 export default class ChartPanel extends Component {
 
   static defaultProps = {
@@ -52,30 +55,8 @@ export default class ChartPanel extends Component {
         <div className={ `${ baseClassName }__header` }>
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
-            <label>
-              <select title="Select interpolation" name="interpolation"
-                value={ interpolation }
-                onChange={ this.handleInterpolationChange }>
-                <option value="basis">Basis</option>
-                <option value="basisClosed">Basis Closed</option>
-                <option value="basisOpen">Basis Open</option>
-                <option value="bundle">Bundle</option>
-                <option value="cardinal">Cardinal</option>
-                <option value="cardinalClosed">Cardinal Closed</option>
-                <option value="cardinalOpen">Cardinal Open</option>
-                <option value="catmullRom">CatmullRom</option>
-                <option value="catmullRomClosed">CatmullRom Closed</option>
-                <option value="catmullRomOpen">CatmullRom Open</option>
-                <option value="linear">Linear</option>
-                <option value="linearClosed">Linear Closed</option>
-                <option value="monotoneX">MonotoneX</option>
-                <option value="monotoneY">MonotoneY</option>
-                <option value="natural">Natural</option>
-                <option value="step">Step</option>
-                <option value="stepAfter">Step After</option>
-                <option value="stepBefore">StepBefore</option>
-              </select>
-            </label>
+            <ColorSchemeSelector value={ theme } onChange={ this.handleThemeChange } />
+            <InterpolationSelector value={ interpolation } onChange={ this.handleInterpolationChange } />
           </div>
         </div>
         <div className={ `${baseClassName }__content ${ aspectRatioClass}` }>

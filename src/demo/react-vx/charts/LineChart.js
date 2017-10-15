@@ -15,6 +15,7 @@ import { ScaleSVG } from '@vx/responsive'
 import { extent, max } from 'd3-array'
 import { timeFormat, timeParse } from 'd3-time-format'
 
+import COLORS from 'common/colorSchemes'
 import { CURVE_MAP } from '../common'
 
 const makeTimeSeries = ({
@@ -50,26 +51,25 @@ const numXTicks = width => {
 export default class LineChart extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
     data: PropTypes.array,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     interpolation: PropTypes.string,
+    lineAttrs: PropTypes.object,
     margin: PropTypes.object,
+    theme: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     xField: PropTypes.string,
     yFields: PropTypes.array
   }
 
   static defaultProps = {
-    colors: [],
-    interpolation: 'natural',
-    lineAttrs: {
-      strokeWidth: 2,
-    },
-    width: 700,
     height: 350,
+    interpolation: 'natural',
+    lineAttrs: { strokeWidth: 2 },
     margin: { top: 20, right: 20, bottom: 50, left: 70 },
-    timeFormat: '%Y-%B-%d'
+    theme: 'schemeAccent',
+    timeFormat: '%Y-%B-%d',
+    width: 700
   }
 
   makeXScale (options) {
@@ -156,16 +156,17 @@ export default class LineChart extends Component {
 
   renderLines (options) {
     const {
-      colors,
       data,
       interpolation,
       lineAttrs,
+      theme,
       timeFormat,
       xField, xFormat, xScale,
       yFields, yScale
     } = options
 
     const curveFn = CURVE_MAP[interpolation]
+    const colors = COLORS[theme]
 
     let series
 
@@ -191,11 +192,11 @@ export default class LineChart extends Component {
 
   render () {
     const {
-      colors,
       data,
       interpolation,
       lineAttrs,
       height, margin, width,
+      theme,
       timeFormat,
       xField, xLabel,
       yFields, yLabel
@@ -221,10 +222,10 @@ export default class LineChart extends Component {
 
           <Group top={ margin.top } left={ margin.left }>
           { this.renderLines({
-              colors,
               data,
               interpolation,
               lineAttrs,
+              theme,
               timeFormat,
               xField, xScale,
               yFields, yScale

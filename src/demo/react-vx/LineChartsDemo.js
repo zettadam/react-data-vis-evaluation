@@ -42,36 +42,32 @@ export default class LineChartsDemo extends Component {
         { 'charts' === visibleSection &&
         <div className="charts charts--vx">
 
-          <ChartPanel title="Single Lines">
+          <ChartPanel theme="schemeAccent" title="Single Lines">
             <LineChart
-              colors={ COLORS['sequential'] }
               data={ TIME_SERIES['price'] }
               xField="month" xLabel="Months"
               timeFormat="%b %Y"
               yFields={ ['usd'] } yLabel="Price ($)" />
           </ChartPanel>
 
-          <ChartPanel title="Single Lines">
+          <ChartPanel theme="schemeAccent" title="Single Lines">
             <LineChart
-              colors={ COLORS['qualitative1'] }
               data={ TIME_SERIES['price'] }
               xField="month" xLabel="Months"
               timeFormat="%b %Y"
               yFields={ ['usd'] } yLabel="Price ($)" />
           </ChartPanel>
 
-          <ChartPanel title="Multiple Lines">
+          <ChartPanel theme="schemeAccent" title="Multiple Lines">
             <LineChart
-              colors={ COLORS['divergent'] }
               data={ TIME_SERIES['traffic'] }
               xField="date" xLabel="Dates"
               timeFormat="%Y-%M-%d"
               yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
           </ChartPanel>
 
-          <ChartPanel title="Multiple Lines">
+          <ChartPanel theme="schemeAccent" title="Multiple Lines">
             <LineChart
-              colors={ COLORS['qualitative2'] }
               data={ TIME_SERIES['traffic'] }
               xField="date" xLabel="Dates"
               timeFormat="%Y-%M-%d"

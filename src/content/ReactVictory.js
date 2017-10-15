@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 
 import { LineChart } from 'demo/react-victory/charts'
 
@@ -41,11 +42,15 @@ export default (props) =>
           Be prepared for breaking changes!</em>
       </p>
       <h3>Learn More about Victory</h3>
-      <h4>Videos</h4>
+      <h4>Articles</h4>
       <ul>
-        <li><a href="https://www.youtube.com/watch?time_continue=38&v=yuAdvxnK4IY">Victory&mdash;Lauren Eastridge</a></li>
-        <li><a href="https://www.youtube.com/watch?v=n8TwLWsR40Y">Victory.js&mdash;A powerful data visualization library for ReactJS&mdash;Colin Megill</a></li>
+
       </ul>
+      <h4>Videos</h4>
+      <div className="videos">
+        <ReactPlayer url="https://www.youtube.com/watch?v=yuAdvxnK4IY" />
+        <ReactPlayer url="https://www.youtube.com/watch?v=n8TwLWsR40Y" />
+      </div>
     </section>
 
   </article>

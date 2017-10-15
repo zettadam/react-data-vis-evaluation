@@ -11,7 +11,7 @@ export default class AreaChartsDemo extends Component {
     super(props)
 
     this.state = {
-      sSection: 'charts'
+      section: 'charts'
     }
 
     this.onToolbarBookmarkClick = this.onToolbarBookmarkClick.bind(this)
@@ -47,22 +47,33 @@ export default class AreaChartsDemo extends Component {
         { 'charts' === section &&
         <section className="charts charts--vx">
 
-          <ChartPanel title="Single Area">
+          <ChartPanel theme="schemeAccent" title="Single Area">
             <AreaChart
-              colors={ COLORS['sequential'] }
               data={ TIME_SERIES['price'] }
               xField="month" xLabel="Months"
               timeFormat="%b %Y"
               yFields={ ['usd'] } yLabel="Price ($)" />
           </ChartPanel>
-          <ChartPanel title="Stacked Areas">
+
+          <ChartPanel theme="schemeAccent" title="Multiple Areas">
             <AreaChart
-              colors={ COLORS['sequential'] }
               data={ TIME_SERIES['traffic'] }
+              reverse
               xField="date" xLabel="Days"
               timeFormat="%Y-%m-%d"
               yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
           </ChartPanel>
+
+          <ChartPanel theme="schemeAccent" title="Stacked Areas">
+            <AreaChart
+              data={ TIME_SERIES['traffic'] }
+              reverse
+              stacked
+              xField="date" xLabel="Days"
+              timeFormat="%Y-%m-%d"
+              yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
+          </ChartPanel>
+
           <ChartPanel title="Stacked Area" />
 
         </section> }

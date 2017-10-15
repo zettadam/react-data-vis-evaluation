@@ -12,10 +12,14 @@ import { scaleTime, scaleLinear } from '@vx/scale'
 import { ScaleSVG } from '@vx/responsive'
 
 // D3 module imports
-import { extent, max } from 'd3-array'
+import { extent, max, sum } from 'd3-array'
 import { timeFormat, timeParse } from 'd3-time-format'
 
+import COLORS from 'common/colorSchemes'
 import { CURVE_MAP } from '../common'
+
+const parseDate = timeParse("%Y %b %d")
+const x = d => new Date(d.date)
 
 const makeTimeSeries = ({
   data,
@@ -49,23 +53,27 @@ const numXTicks = width => {
 export default class Area extends Component {
 
   static propTypes = {
-    colors: PropTypes.array,
     data: PropTypes.array,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     interpolation: PropTypes.string,
     margin: PropTypes.object,
+    reverse: PropTypes.bool,
+    stacked: PropTypes.bool,
+    theme: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     xField: PropTypes.string,
     yFields: PropTypes.array
   }
 
   static defaultProps = {
-    colors: [],
     data: [],
     interpolation: 'natural',
+    reverse: false,
+    stacked: false,
     width: 700,
     height: 350,
     margin: { top: 20, right: 20, bottom: 50, left: 70 },
+    theme: 'schemeAccent',
     timeFormat: '%Y-%B-%d'
   }
 
@@ -75,23 +83,19 @@ export default class Area extends Component {
     const startDate = parseTime(data[0][xField])
     const endDate = parseTime(data[data.length - 1][xField])
 
-    const scale = scaleTime({
+    return scaleTime({
       range: [0, xMax],
       domain: [startDate, endDate],
     })
-
-    return scale
   }
 
   makeYScale (options) {
-    const { data, yFields, yMax } = options
+    const { data, stacked, yFields, yMax } = options
 
-    const scale = scaleLinear({
+    return scaleLinear({
       range: [yMax, 0],
-      domain: [0, max(data, d => max(yFields.map(k => d[k]))) ],
-      nice: true
+      domain: [0, max(data, d => stacked ? sum(yFields.map(k => d[k])) : max(yFields.map(k => d[k]))) ]
     })
-    return scale
   }
 
   renderGrid (options) {
@@ -153,15 +157,18 @@ export default class Area extends Component {
 
   renderAreas (options) {
     const {
-      colors,
       data,
       interpolation,
+      reverse,
+      stacked,
+      theme,
       timeFormat,
       xField, xFormat, xScale,
       yFields, yScale
     } = options
 
     const curveFn = CURVE_MAP[interpolation]
+    const colors = COLORS[theme]
 
     let series
 
@@ -171,39 +178,45 @@ export default class Area extends Component {
       series = makeSeries({ data, xField, yFields })
     }
 
-    if (series.length === 1) {
+    if (!stacked) {
+      series.map((s, i) => {
+        console.log( 'series', s)
+        return (
+          <AreaClosed
+            curve={ curveFn }
+            data={ s }
+            fill={ colors[i % colors.length] } fillOpacity="0.5"
+            stroke={ colors[i % colors.length] } strokeWidth={ 1 }
+            x={ d => d.x } xScale={ xScale }
+            y={ d => d.y } yScale={ yScale } />
+        )
+      })
+    } else {
       return (
-        <AreaClosed
-          data={ series[0] }
-          xScale={ xScale } yScale={ yScale }
-          x={ d => d.x } y={ d => d.y }
-          stroke={ colors[0] } strokeWidth={ 1 }
-          fill={ colors[0] }
-          curve={ curveFn } />
+        <AreaStack reverse={ reverse }
+          curve={ curveFn }
+          data={ data }
+          fill={ d => colors[d.index % colors.length] }
+          fillOpacity="0.5"
+          keys={ yFields }
+          stroke={ d => colors[d.index % colors.length] }
+          strokeWidth={ 1 }
+          x={ d => xScale(x(d.data)) }
+          y1={ d => yScale(d[1]) }
+          y0={ d => yScale(0) } />
       )
     }
-
-    return (
-      <AreaStack reverse
-        keys={ yFields }
-        data={ data }
-        x1={ d => xScale(d[1]) }
-        y0={ d => yScale(d[0] / 100) }
-        y1={ d => yScale(d[1] / 100) }
-        stroke={ (d,i) => colors[i % colors.length] }
-        strokeWidth={ 1 }
-        fill={ (d,i) => colors[i % colors.length] }
-        curve={ curveFn } />
-    )
   }
 
   render () {
 
     const {
-      colors,
       data,
       interpolation,
       height, margin, width,
+      reverse,
+      stacked,
+      theme,
       timeFormat,
       xField, xLabel,
       yFields, yLabel
@@ -215,7 +228,7 @@ export default class Area extends Component {
 
     // scales
     const xScale = this.makeXScale({ data, timeFormat, xField, xMax })
-    const yScale = this.makeYScale({ data, yFields, yMax })
+    const yScale = this.makeYScale({ data, stacked, yFields, yMax })
 
     return (
       <ScaleSVG width={ width } height={ height }>
@@ -229,9 +242,11 @@ export default class Area extends Component {
 
         <Group top={ margin.top } left={ margin.left }>
         { this.renderAreas({
-          colors,
           data,
           interpolation,
+          reverse,
+          stacked,
+          theme,
           timeFormat,
           xField, xScale,
           yFields, yScale

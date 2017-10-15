@@ -144,10 +144,8 @@ export default class LineChart extends Component {
     return (
       <VictoryChart { ...chartProps }>
         <VictoryLegend { ...legendProps } />
-        { xAxisProps &&
-        <VictoryAxis { ...xAxisProps } /> }
-        { yAxisProps &&
-        <VictoryAxis { ...yAxisProps } /> }
+        { xAxisProps && <VictoryAxis { ...xAxisProps } /> }
+        { yAxisProps && <VictoryAxis { ...yAxisProps } /> }
         <VictoryGroup { ...groupProps }>
           { this.renderLines() }
         </VictoryGroup>

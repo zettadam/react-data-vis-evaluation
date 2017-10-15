@@ -515,3 +515,10 @@ section.charts {
   margin: 2rem 0 4rem 0;
 }
 
+.videos {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(2, 48.666%);
+  width: 100%;
+}
+

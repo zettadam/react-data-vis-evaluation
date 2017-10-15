@@ -11,6 +11,7 @@ import {
 
 export ChartPanel from './ChartPanel'
 export DemoHeader from './DemoHeader'
+export InterpolationSelector from './InterpolationSelector'
 
 export const CURVE_MAP = {
   'basis': curveBasis,
