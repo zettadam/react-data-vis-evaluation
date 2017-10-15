@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  VictoryAxis,
   VictoryLine,
   VictoryChart,
   VictoryGroup,
@@ -26,6 +27,8 @@ export default class LineChart extends Component {
     domainPadding: PropTypes.object,
     height: PropTypes.number,
     interpolation: PropTypes.string,
+    legendOptions: PropTypes.object,
+    scale: PropTypes.object,
     selectionContainerProps: PropTypes.object,
     theme: PropTypes.string,
     width: PropTypes.number,
@@ -35,16 +38,19 @@ export default class LineChart extends Component {
   }
 
   static defaultProps = {
-    brushContainerProps: {},
     data: [],
     height: 300,
     interpolation: 'natural',
-    selectionContainerProps: {},
+    legendOptions: {
+      orientation: 'horizontal',
+      x: 0, y: 0
+    },
+    scale: { x: 'time', y: 'linear' },
+    showLinePoints: false,
     theme: 'sequential',
     width: 450,
     xField: '',
-    yFields: [],
-    zoomContainerProps: {}
+    yFields: []
   }
 
   constructor (props) {
@@ -60,10 +66,20 @@ export default class LineChart extends Component {
     return yFields.map((f, i) =>
       <VictoryLine key={ `line-${i}` }
         data={ data }
+        events={[{
+          target: 'data',
+          eventHandlers: {
+            onClick: () => ({
+              target: 'data',
+              mutation: props => ({
+                style: { ...props.style, strokeWidth: 3 }
+              })
+            })
+          }
+        }]}
         x={ xField }
         y={ f }
-        interpolation={ interpolation }
-        labelComponent={ <VictoryTooltip /> } />
+        interpolation={ interpolation } />
     )
   }
 
@@ -85,12 +101,18 @@ export default class LineChart extends Component {
     const {
       brushContainerProps,
       data,
+      domain,
       domainPadding,
       height,
+      legendOptions,
+      scale,
       selectionContainerProps,
+      showLinePoints,
       theme,
       width,
+      xAxisProps,
       xField,
+      yAxisProps,
       yFields,
       zoomContainerProps
     } = this.props
@@ -103,10 +125,12 @@ export default class LineChart extends Component {
       width
     }
 
+    if (domain) chartProps.domain = domain
     if (domainPadding) chartProps.domainPadding = domainPadding
-    // if (brushContainerProps !== {}) chartProps.containerComponent = <VictoryBrushContainer { ...brushContainerProps } />
-    // if (selectionContainerProps !== {}) chartProps.containerComponent = <VictorySelectionContainer { ...selectionContainerProps } />
-    // if (zoomContainerProps !== {}) chartProps.containerComponent = <VictoryZoomContainer { ...zoomContainerProps } />
+    // if (brushContainerProps) chartProps.containerComponent = <VictoryBrushContainer { ...brushContainerProps } />
+    // if (selectionContainerProps) chartProps.containerComponent = <VictorySelectionContainer { ...selectionContainerProps } />
+    if (scale && !xAxisProps && !yAxisProps) chartProps.scale = scale
+    if (zoomContainerProps) chartProps.containerComponent = <VictoryZoomContainer { ...zoomContainerProps } />
 
     const groupProps = {
       categories: { x: data.map(d => d[xField]) }
@@ -114,19 +138,23 @@ export default class LineChart extends Component {
 
     const legendProps = {
       data: getLegendData({ fields: yFields }),
-      orientation: 'horizontal',
-      width: 400
+      ...legendOptions
     }
 
     return (
       <VictoryChart { ...chartProps }>
+        <VictoryLegend { ...legendProps } />
+        { xAxisProps &&
+        <VictoryAxis { ...xAxisProps } /> }
+        { yAxisProps &&
+        <VictoryAxis { ...yAxisProps } /> }
         <VictoryGroup { ...groupProps }>
           { this.renderLines() }
         </VictoryGroup>
+        { showLinePoints &&
         <VictoryGroup { ...groupProps }>
           { this.renderPoints() }
-        </VictoryGroup>
-        <VictoryLegend { ...legendProps } />
+        </VictoryGroup> }
       </VictoryChart>
     )
   }

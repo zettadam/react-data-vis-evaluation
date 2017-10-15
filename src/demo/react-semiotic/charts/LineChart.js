@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { scaleLinear, scaleTime } from 'd3-scale'
 import { Legend, ResponsiveXYFrame } from 'semiotic'
 
-import { COLORS, CURVE_MAP } from '../common'
+import COLORS from 'common/colorSchemes'
+import { CURVE_MAP } from '../common'
 
 export default class AreaChart extends Component {
 
