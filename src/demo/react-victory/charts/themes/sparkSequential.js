@@ -13,7 +13,7 @@ const colors = [
   'rgb(10,28,38)'
 ]
 
-const charcoal = '#252525'
+const charcoal = '#36454f'
 const lightgray = 'rgb(241,241,241)'
 
 // *
@@ -27,9 +27,8 @@ const fontSize = 9
 // * Layout
 // *
 const baseProps = {
-  width: 450,
-  height: 300,
-  padding: { top: 20, right: 0, bottom: 45, left: 20 },
+  width: 533, height: 300, // 16:9 aspect ratio
+  padding: { top: 10, right: 20, bottom: 40, left: 50 },
   colorScale: colors
 }
 
@@ -77,7 +76,7 @@ export default {
       }),
       grid: {
         fill: 'transparent',
-        stroke: 'rgb(200,200,200)',
+        stroke: lightgray,
         strokeDasharray,
         strokeWidth: 0.5,
         pointerEvents: 'none'
@@ -172,7 +171,7 @@ export default {
       fill: '#f0f0f0',
       pointerEvents: 'none'
     },
-    cornerRadius: 5,
+    cornerRadius: 0,
     pointerLength: 10
   },
   voronoi: assign({
@@ -184,9 +183,10 @@ export default {
       },
       labels: assign({}, centeredLabelStyles, { padding: 5, pointerEvents: 'none' }),
       flyout: {
-        stroke: charcoal,
+        stroke: 'rgb(255,255,255)',
         strokeWidth: 1,
-        fill: '#f0f0f0',
+        fill: charcoal,
+        fillOpacity: 0.8,
         pointerEvents: 'none'
       }
     }
@@ -197,6 +197,11 @@ export default {
     orientation: 'vertical',
     titleOrientation: 'top',
     style: {
+      border: {
+        fill: 'rgb(255,255,255)',
+        stroke: charcoal,
+        strokeWidth: 1
+      },
       data: {
         type: 'circle'
       },

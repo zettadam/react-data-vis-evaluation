@@ -14,19 +14,20 @@ const colors = [
 ];
 
 const charcoal = "#252525";
+
 // *
 // * Typography
 // *
-const sansSerif = "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif";
-const letterSpacing = "normal";
-const fontSize = 14;
+const sansSerif = 'sans-serif'
+const letterSpacing = 'normal'
+const fontSize = 9
+
 // *
 // * Layout
 // *
 const baseProps = {
-  width: 450,
-  height: 300,
-  padding: 50,
+  width: 533, height: 300, // 16:9 aspect ratio
+  padding: { top: 10, right: 20, bottom: 40, left: 50 },
   colorScale: colors
 };
 // *
@@ -36,7 +37,7 @@ const baseLabelStyles = {
   fontFamily: sansSerif,
   fontSize,
   letterSpacing,
-  padding: 10,
+  padding: 5,
   fill: charcoal,
   stroke: "transparent"
 };
@@ -45,8 +46,9 @@ const centeredLabelStyles = assign({ textAnchor: "middle" }, baseLabelStyles);
 // *
 // * Strokes
 // *
-const strokeLinecap = "round";
-const strokeLinejoin = "round";
+const strokeDasharray = "10, 5"
+const strokeLinecap = "round"
+const strokeLinejoin = "round"
 
 export default {
   area: assign({
@@ -164,7 +166,7 @@ export default {
       fill: "#f0f0f0",
       pointerEvents: "none"
     },
-    cornerRadius: 5,
+    cornerRadius: 0,
     pointerLength: 10
   },
   voronoi: assign({

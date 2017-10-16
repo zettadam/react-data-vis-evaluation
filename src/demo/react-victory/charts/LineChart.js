@@ -7,11 +7,10 @@ import {
   VictoryChart,
   VictoryGroup,
   VictoryLegend,
+  VictoryPortal,
   VictoryTooltip,
-  VictoryBrushContainer,
   VictoryScatter,
-  VictorySelectionContainer,
-  VictoryZoomContainer
+  VictoryVoronoiContainer
 } from 'victory'
 
 import VictoryTheme from './themes'
@@ -21,70 +20,73 @@ import { adaptData, getLegendData } from './utils'
 
 export default class LineChart extends Component {
 
+  // Props --------------------------------------------------------------------
+
   static propTypes = {
-    brushContainerProps: PropTypes.object,
+    annotations: PropTypes.arrayOf(PropTypes.node),
+    chartOptions: PropTypes.object,
+    colorScale: PropTypes.array,
     data: PropTypes.array,
     domainPadding: PropTypes.object,
     height: PropTypes.number,
     interpolation: PropTypes.string,
     legendOptions: PropTypes.object,
     scale: PropTypes.object,
-    selectionContainerProps: PropTypes.object,
     theme: PropTypes.string,
     width: PropTypes.number,
+    withLegend: PropTypes.bool,
+    withLinePoints: PropTypes.bool,
+    withTooltips: PropTypes.bool,
+    xAxisOptions: PropTypes.object,
     xField: PropTypes.string,
-    yFields: PropTypes.array,
-    zoomContainerProps: PropTypes.object
+    yAxisOptions: PropTypes.object,
+    yFields: PropTypes.array
   }
 
   static defaultProps = {
+    annotations: [],
     data: [],
     height: 300,
     interpolation: 'natural',
-    legendOptions: {
-      orientation: 'horizontal',
-      x: 0, y: 0
-    },
     scale: { x: 'time', y: 'linear' },
-    showLinePoints: false,
     theme: 'sequential',
-    width: 450,
+    width: 533,
+    withLegend: false,
+    withLinePoints: false,
+    withTooltips: false,
     xField: '',
     yFields: []
   }
 
+
+  // Constructor --------------------------------------------------------------
+
   constructor (props) {
     super(props)
 
-    this.renderLines = this.renderLines.bind(this)
-    this.renderPoints = this.renderPoints.bind(this)
+    this._renderLines = this._renderLines.bind(this)
+    this._renderPoints = this._renderPoints.bind(this)
   }
 
-  renderLines () {
-    const { data, interpolation, xField, yFields } = this.props
+
+  // "Private" render methods -------------------------------------------------
+
+  _renderLines () {
+    const { data, interpolation, tooltipOptions, xField, yFields } = this.props
 
     return yFields.map((f, i) =>
       <VictoryLine key={ `line-${i}` }
         data={ data }
-        events={[{
-          target: 'data',
-          eventHandlers: {
-            onClick: () => ({
-              target: 'data',
-              mutation: props => ({
-                style: { ...props.style, strokeWidth: 3 }
-              })
-            })
-          }
-        }]}
+        labels={ d => `y: ${d[f]}` }
+        labelComponent={ <VictoryTooltip cornerRadius="0" { ...tooltipOptions } /> }
         x={ xField }
         y={ f }
         interpolation={ interpolation } />
     )
   }
 
-  renderPoints () {
-    const { data, xField, yFields } = this.props
+  _renderPoints () {
+    const { data, xField, yFields, tooltipOptions } = this.props
 
     return yFields.map((f, i) =>
       <VictoryScatter key={ `point-${i}` }
@@ -92,67 +94,92 @@ export default class LineChart extends Component {
         x={ xField }
         y={ f }
         labels={ d => `y: ${d[f]}` }
-        labelComponent={ <VictoryTooltip /> } />
+        labelComponent={ <VictoryTooltip cornerRadius="0" { ...tooltipOptions }/> } />
     )
   }
+
+
+  // Render method ------------------------------------------------------------
 
   render () {
 
     const {
-      brushContainerProps,
+      annotations,
+      chartOptions,
+      colorScale,
       data,
       domain,
       domainPadding,
       height,
       legendOptions,
       scale,
-      selectionContainerProps,
-      showLinePoints,
       theme,
       width,
-      xAxisProps,
+      withLegend,
+      withLinePoints,
+      withTooltips,
+      xAxisOptions,
       xField,
-      yAxisProps,
-      yFields,
-      zoomContainerProps
+      yAxisOptions,
+      yFields
     } = this.props
 
     const adaptedData = adaptData({ data, xField, yFields })
 
-    const chartProps = {
+    // main chart props
+    let chartProps = {
       height,
       theme: VictoryTheme.spark[theme],
       width
     }
-
     if (domain) chartProps.domain = domain
     if (domainPadding) chartProps.domainPadding = domainPadding
-    // if (brushContainerProps) chartProps.containerComponent = <VictoryBrushContainer { ...brushContainerProps } />
-    // if (selectionContainerProps) chartProps.containerComponent = <VictorySelectionContainer { ...selectionContainerProps } />
-    if (scale && !xAxisProps && !yAxisProps) chartProps.scale = scale
-    if (zoomContainerProps) chartProps.containerComponent = <VictoryZoomContainer { ...zoomContainerProps } />
+    if (scale && !xAxisOptions && !yAxisOptions) chartProps.scale = scale
+    if (withTooltips) chartProps.containerComponent = <VictoryVoronoiContainer />
+    if (chartOptions) chartProps = { ...chartProps, ...chartOptions }
 
+    // group props
     const groupProps = {
       categories: { x: data.map(d => d[xField]) }
     }
+    if (colorScale) groupProps.colorScale = colorScale
 
-    const legendProps = {
-      data: getLegendData({ fields: yFields }),
-      ...legendOptions
+    // legend props
+    let legendProps = {}
+    if (withLegend) {
+      legendProps = {
+        data: getLegendData({ fields: yFields }),
+        ...legendOptions
+      }
+      if (colorScale) legendProps.colorScale = colorScale
     }
 
     return (
-      <VictoryChart { ...chartProps }>
-        <VictoryLegend { ...legendProps } />
-        { xAxisProps && <VictoryAxis { ...xAxisProps } /> }
-        { yAxisProps && <VictoryAxis { ...yAxisProps } /> }
+      <VictoryChart key="chart" { ...chartProps }>
+
+        <VictoryAxis
+          fixLabelOverlap
+          { ...xAxisOptions } />
+
+        <VictoryAxis
+          dependentAxis
+          fixLabelOverlap
+          { ...yAxisOptions } />
+
         <VictoryGroup { ...groupProps }>
-          { this.renderLines() }
+          { this._renderLines() }
         </VictoryGroup>
-        { showLinePoints &&
+
+        { withLinePoints &&
         <VictoryGroup { ...groupProps }>
-          { this.renderPoints() }
+          { this._renderPoints() }
         </VictoryGroup> }
+
+        { annotations }
+
+        { withLegend &&
+          <VictoryLegend { ...legendProps } /> }
+
       </VictoryChart>
     )
   }
