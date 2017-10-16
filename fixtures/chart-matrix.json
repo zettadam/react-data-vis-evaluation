@@ -145,7 +145,11 @@
   },
   "histogram": {
     "title": "Histogram",
-    "focus": false
+    "description": [
+      "A Histogram visualises the distribution of data over a continuous interval or certain time period. Each bar in a histogram represents the tabulated frequency at each interval/bin. The total area of the Histogram is equal to the number of data.",
+      "Histograms help give an estimate as to where values are concentrated, what the extremes are and whether there are any gaps or unusual values. They are also useful for giving a rough view of the probability distribution."
+    ],
+    "focus": true
   },
   "kagi": {
     "title": "Kagi Chart",
@@ -195,6 +199,15 @@
   },
   "radar": {
     "title": "Radar Chart",
+    "description": [
+      "Also known as: Spider Chart, Web Chart, Polar Chart, Star Plots.",
+      "Radar Charts are a way of comparing multiple quantitative variables. This makes them useful for seeing which variables have similar values or if there are any outliers amongst each variable. Radar Charts are also useful for seeing which variables are scoring high or low within a dataset, making them ideal for displaying performance.",
+      "Each variable is provided with an axis that starts from the centre. All axes are arranged radially, with equal distances between each other, while maintaining the same scale between all axes. Grid lines that connect from axis-to-axis are often used as a guide. Each variable value is plotted along its individual axis and all the variables in a dataset and connected together to form a polygon.",
+      "However, there are some major flaws with Radar Charts:",
+      "Having multiple polygons in one Radar Chart makes it hard to read, confusing and too cluttered. Especially if the polygons are filled in, as the top polygon covers all the other polygons underneath it.",
+      "Having too many variables creates too many axes and can also make the chart hard to read and complicated. So it's good practice to keep Radar Charts simple and limit the number of variables used.",
+      "Another flaw with Radar Charts is that they’re not so good for comparing values across each variable. Even with the aid of the spiderweb-like grid guide. Comparing values all on a single straight axis is much easier."
+    ],
     "focus": true
   },
   "rose": {

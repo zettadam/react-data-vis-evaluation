@@ -32,6 +32,7 @@ export default class SankeyChartsDemo extends Component {
   }
 
   render () {
+    const { section } = this.state
 
     return (
       <section className="demo">

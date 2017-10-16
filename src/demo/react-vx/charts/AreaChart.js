@@ -19,7 +19,7 @@ import COLORS from 'common/colorSchemes'
 import { CURVE_MAP } from '../common'
 
 const parseDate = timeParse("%Y %b %d")
-const x = d => new Date(d.date)
+const xStock = d => new Date(d.date)
 
 const makeTimeSeries = ({
   data,
@@ -54,6 +54,7 @@ export default class Area extends Component {
 
   static propTypes = {
     data: PropTypes.array,
+    fillOpacity: PropTypes.string,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     interpolation: PropTypes.string,
     margin: PropTypes.object,
@@ -67,6 +68,7 @@ export default class Area extends Component {
 
   static defaultProps = {
     data: [],
+    fillOpacity: '0.25',
     interpolation: 'natural',
     reverse: false,
     stacked: false,
@@ -158,6 +160,7 @@ export default class Area extends Component {
   renderAreas (options) {
     const {
       data,
+      fillOpacity,
       interpolation,
       reverse,
       stacked,
@@ -179,29 +182,27 @@ export default class Area extends Component {
     }
 
     if (!stacked) {
-      series.map((s, i) => {
-        console.log( 'series', s)
-        return (
-          <AreaClosed
-            curve={ curveFn }
-            data={ s }
-            fill={ colors[i % colors.length] } fillOpacity="0.5"
-            stroke={ colors[i % colors.length] } strokeWidth={ 1 }
-            x={ d => d.x } xScale={ xScale }
-            y={ d => d.y } yScale={ yScale } />
-        )
-      })
+      return series.map((s, i) =>
+        <AreaClosed key={ `area-${i}` }
+          id={ `area-${i}` }
+          curve={ curveFn }
+          data={ s }
+          fill={ colors[i % colors.length] } fillOpacity={ fillOpacity }
+          stroke={ colors[i % colors.length] } strokeWidth={ 1 }
+          x={ d => d.x } xScale={ xScale }
+          y={ d => d.y } yScale={ yScale } />
+      )
     } else {
       return (
         <AreaStack reverse={ reverse }
           curve={ curveFn }
           data={ data }
           fill={ d => colors[d.index % colors.length] }
-          fillOpacity="0.5"
+          fillOpacity={ fillOpacity }
           keys={ yFields }
           stroke={ d => colors[d.index % colors.length] }
           strokeWidth={ 1 }
-          x={ d => xScale(x(d.data)) }
+          x={ d => xScale(xStock(d.data)) }
           y1={ d => yScale(d[1]) }
           y0={ d => yScale(0) } />
       )
@@ -212,6 +213,7 @@ export default class Area extends Component {
 
     const {
       data,
+      fillOpacity,
       interpolation,
       height, margin, width,
       reverse,
@@ -243,6 +245,7 @@ export default class Area extends Component {
         <Group top={ margin.top } left={ margin.left }>
         { this.renderAreas({
           data,
+          fillOpacity,
           interpolation,
           reverse,
           stacked,

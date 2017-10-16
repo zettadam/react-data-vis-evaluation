@@ -29,6 +29,7 @@ import ParallelCoordinatesPlotsDemo from './ParallelCoordinatesPlotsDemo'
 import ParallelSetsChartsDemo from './ParallelSetsChartsDemo'
 import PieChartsDemo from './PieChartsDemo'
 import RadarChartsDemo from './RadarChartsDemo'
+import SankeyChartsDemo from './SankeyChartsDemo'
 import ScatterPlotsDemo from './ScatterPlotsDemo'
 import SegmentedChartsDemo from './SegmentedChartsDemo'
 import SpanChartsDemo from './SpanChartsDemo'
@@ -72,6 +73,7 @@ const SemioticDemo = ({
     { 'parallel-set' === type && <parallelSetsChartsDemo /> }
     { 'pie' === type && <PieChartsDemo /> }
     { 'radar' === type && <RadarChartsDemo /> }
+    { 'sankey' === type && <SankeyPlotsDemo /> }
     { 'scatter' === type && <ScatterPlotsDemo /> }
     { 'segmented' === type && <SegmentedChartsDemo /> }
     { 'span' === type && <SpanChartsDemo /> }

@@ -55,9 +55,10 @@ export default class AreaChartsDemo extends Component {
               yFields={ ['usd'] } yLabel="Price ($)" />
           </ChartPanel>
 
-          <ChartPanel theme="schemeAccent" title="Multiple Areas">
+          <ChartPanel interpolation="step" theme="schemeSet1" title="Multiple Areas">
             <AreaChart
               data={ TIME_SERIES['traffic'] }
+              fillOpacity="0.25"
               reverse
               xField="date" xLabel="Days"
               timeFormat="%Y-%m-%d"
@@ -74,7 +75,7 @@ export default class AreaChartsDemo extends Component {
               yFields={ ['AA', 'BB', 'CC', 'DD'] } yLabel="Traffic" />
           </ChartPanel>
 
-          <ChartPanel title="Stacked Area" />
+          <ChartPanel theme="schemeSpectral" title="Area (& Tooltip)" />
 
         </section> }
 

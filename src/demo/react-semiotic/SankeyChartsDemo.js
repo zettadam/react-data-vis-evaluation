@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { ChartPanel, DemoHeader } from './common'
 
-export default class FlowMapsDemo extends Component {
+export default class SankeyChartsDemo extends Component {
 
   constructor (props) {
     super(props)

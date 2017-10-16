@@ -41,7 +41,7 @@ export default class SunburstChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--vx">
+        <section className="charts charts--semiotic">
           <ChartPanel />
           <ChartPanel />
         </section> }

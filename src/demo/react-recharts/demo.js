@@ -60,7 +60,7 @@ const RechartsDemo = ({
     { 'error-bar' === type && <ErrorBarsChartsDemo /> }
     { 'flow-map' === type && <FlowMapsDemo /> }
     { 'heatmap' === type && <HeatmapsChartsDemo /> }
-    { 'histogram' === type && <HistorgramsChartsDemo /> }
+    { 'histogram' === type && <HistogramsChartsDemo /> }
     { 'kagi' === type && <KagiChartsDemo /> }
     { 'line' === type && <LineChartsDemo /> }
     { 'marimekko' === type && <MarimekkoChartsDemo /> }
