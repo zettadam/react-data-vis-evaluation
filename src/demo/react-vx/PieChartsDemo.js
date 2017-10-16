@@ -34,7 +34,7 @@ export default class PieChartsDemo extends Component {
         }} />
 
         { 'charts' === visibleSection &&
-        <section className="charts charts--vx">
+        <section className="charts grid-2">
           <ChartPanel />
           <ChartPanel />
         </section> }

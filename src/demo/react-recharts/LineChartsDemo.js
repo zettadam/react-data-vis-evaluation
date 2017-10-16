@@ -43,7 +43,7 @@ export default class LineChartsDemo extends Component {
         }}
         section={ section } />
 
-        <div className="charts charts--recharts">
+        <div className="charts grid-2">
 
           <ChartPanel title="Single Lines">
             <LineChart

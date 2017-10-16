@@ -10,7 +10,7 @@ const LineChartsDemo = props =>
   <section className="demo">
     <DemoHeader />
 
-    <section className="charts charts--chartjs">
+    <section className="charts grid-2">
 
       <ChartPanel title="Single Line">
         <LineChart

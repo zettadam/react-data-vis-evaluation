@@ -43,7 +43,7 @@ export default class ScatterPlotsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--victory">
+        <section className="charts grid-2">
 
           <ChartPanel title="Scatter Plot" theme="qualitativeA">
             <ScatterChart

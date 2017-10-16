@@ -412,12 +412,15 @@ footer.footer {
 
 .chart-panel__header {
   display: flex;
+  height: 3rem;
   justify-content: space-between;
+
   .chart-panel__title {
     flex: 1;
     margin: 0;
     padding: 1rem;
   }
+
   .chart-panel__toolbar {
     display: flex;
     justify-content: flex-end;
@@ -435,6 +438,7 @@ footer.footer {
 }
 
 .charts {
+
   /* These styles maintain aspect ratio */
   .chart-panel__content {
     position: relative;
@@ -445,6 +449,16 @@ footer.footer {
       content: '';
       width: 100%;
       padding-top: 56.25%;
+    }
+
+    .chart-panel__content.a16_9 {
+      &:before { padding-top: 56.25%; }
+    }
+    .chart-panel__content.a4_3 {
+      &:before { padding-top: 75%; }
+    }
+    .chart-panel__content.a21_9 {
+      &:before { padding-top: 42.85%; }
     }
 
     .chart {
@@ -459,53 +473,20 @@ footer.footer {
   }
 }
 
-.charts--d3,
-.charts--chartjs,
-.charts--recharts,
-.charts--semiotic,
-.charts--victory,
-.charts--vx {
+.grid-2 {
   display: grid;
   grid-gap: 2rem;
+}
 
-  .chart-panel {
-    margin: 0;
+@media only screen and (max-width : 1441px) {
+  .grid-2 {
+    grid-template-columns: repeat(1, 100%);
   }
-
-  .chart-panel__header {
-    height: 3rem;
-  }
-}
-
-.chart-panel__content.a16_9 {
-  &:before { padding-top: 56.25%; }
-}
-.chart-panel__content.a4_3 {
-  &:before { padding-top: 75%; }
-}
-.chart-panel__content.a21_9 {
-  &:before { padding-top: 42.85%; }
 }
 
 @media only screen and (min-width : 1441px) {
-  .charts--d3,
-  .charts--chartjs,
-  .charts--recharts,
-  .charts--semiotic,
-  .charts--victory,
-  .charts--vx {
+  .grid-2 {
     grid-template-columns: repeat(2, 48.666%);
-  }
-}
-
-@media only screen  and (max-width : 1441px) {
-  .charts--d3,
-  .charts--chartjs,
-  .charts--recharts,
-  .charts--semiotic,
-  .charts--victory,
-  .charts--vx {
-    grid-template-columns: repeat(1, 100%);
   }
 }
 

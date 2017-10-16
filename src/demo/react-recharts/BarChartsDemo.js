@@ -44,7 +44,7 @@ export default class BarChartsDemo extends Component {
           }}
           section={ section } />
 
-        <div className="charts charts--recharts">
+        <div className="charts grid-2">
 
           <ChartPanel title="Single Bars">
             <BarChart

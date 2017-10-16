@@ -45,7 +45,7 @@ export default class BarChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--vx">
+        <section className="charts grid-2">
 
           <ChartPanel title="Single Bars">
             <BarChart

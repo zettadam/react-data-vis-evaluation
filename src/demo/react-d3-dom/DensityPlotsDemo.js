@@ -6,7 +6,7 @@ const DensityPlotsDemo = props =>
   <section className="demo">
     <DemoHeader />
 
-    <div className="charts charts--d3">
+    <div className="charts grid-2">
       <ChartPanel />
       <ChartPanel />
       <ChartPanel />

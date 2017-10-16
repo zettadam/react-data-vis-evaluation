@@ -42,7 +42,7 @@ export default class TreemapsChartsDemo extends Component {
         }}
         section={ section } />
 
-        <div className="charts charts--recharts">
+        <div className="charts grid-2">
           <ChartPanel title="Simple Treemap">
             <Treemap
               width={ 960 }

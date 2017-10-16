@@ -40,7 +40,7 @@ export default class LineChartsDemo extends Component {
         }} />
 
         { 'charts' === visibleSection &&
-        <div className="charts charts--vx">
+        <div className="charts grid-2">
 
           <ChartPanel theme="schemeAccent" title="Single Lines">
             <LineChart

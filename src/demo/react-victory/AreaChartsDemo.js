@@ -45,7 +45,7 @@ export default class AreaChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <div className="charts charts--victory a4_3">
+        <div className="charts grid-2 a4_3">
 
           <ChartPanel title="Single Area" theme="divergent">
             <AreaChart

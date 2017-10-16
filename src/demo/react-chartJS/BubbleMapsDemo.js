@@ -7,7 +7,7 @@ const BubbleMapsDemo = props =>
   <section className="demo">
     <DemoHeader />
 
-    <div className="charts charts--chartjs">
+    <div className="charts grid-2">
       <ChartPanel />
       <ChartPanel />
     </div>

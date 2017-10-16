@@ -48,7 +48,7 @@ export default class RadarChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--victory">
+        <section className="charts grid-2">
 
           <ChartPanel theme="sequential" title="Simple Radar">
             <RadarChart data={ DATA } />

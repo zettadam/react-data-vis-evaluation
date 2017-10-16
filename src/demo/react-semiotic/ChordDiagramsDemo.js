@@ -69,7 +69,7 @@ export default class ChordDiagramsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--semiotic">
+        <section className="charts grid-2">
           <ChartPanel>
             <ChordDiagram data={ DATA } colors={ COLORS } />
           </ChartPanel>

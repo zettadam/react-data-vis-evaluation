@@ -19,7 +19,7 @@ const CartesianChartsDemo = props =>
     </header>
     <p>Here are some Cartesian charts created using <b><a href="http://www.chartjs.org/">chartjs</a></b> library and <b><a href="http://jerairrest.github.io/react-chartjs-2/">react-chartjs-2</a></b> wrapper.</p>
 
-    <section className="charts charts--chartjs">
+    <section className="charts grid-2">
       <div className="chart-panel">
         <div className="chart-panel__header">
           <h4>Single Area</h4>

@@ -41,7 +41,7 @@ export default class ChoropletheMapsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--recharts">
+        <section className="charts grid-2">
           <ChartPanel />
           <ChartPanel />
         </section> }

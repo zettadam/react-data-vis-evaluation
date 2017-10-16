@@ -41,7 +41,7 @@ export default class HeatmapsChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--semiotic">
+        <section className="charts grid-2">
           <ChartPanel />
           <ChartPanel />
         </section> }

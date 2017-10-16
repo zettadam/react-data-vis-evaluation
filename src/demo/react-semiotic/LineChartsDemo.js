@@ -45,7 +45,7 @@ export default class LineChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--semiotic">
+        <section className="charts grid-2">
 
           <ChartPanel interpolation="monotoneX" theme="schemeAccent" title="Simple Line Chart">
             <LineChart

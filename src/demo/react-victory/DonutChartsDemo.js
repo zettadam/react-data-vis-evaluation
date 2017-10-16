@@ -41,7 +41,7 @@ export default class DonutChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--victory">
+        <section className="charts grid-2">
           <ChartPanel />
           <ChartPanel />
         </section> }

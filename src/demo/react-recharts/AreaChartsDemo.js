@@ -44,7 +44,7 @@ export default class AreaChartsDemo extends Component {
         }}
         section={ section } />
 
-        <section className="charts charts--recharts">
+        <section className="charts grid-2">
 
           <ChartPanel title="Single Area">
             <AreaChart

@@ -44,7 +44,7 @@ export default class SankeyChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <div className="charts charts--recharts">
+        <div className="charts grid-2">
 
           <ChartPanel title="Sankey Chart"
             aspectRatioClass="a4_3">

@@ -45,7 +45,7 @@ export default class AreaChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--semiotic">
+        <section className="charts grid-2">
           <ChartPanel theme="schemeAccent" title="Simple Area Chart">
             <AreaChart
               data={ DATA }

@@ -46,7 +46,7 @@ export default class LineChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <div className="charts charts--victory">
+        <div className="charts grid-2">
 
           <ChartPanel title="Single Line" theme="sequential">
             <LineChart

@@ -41,7 +41,7 @@ export default class DensityPlotsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts charts--vx">
+        <section className="charts grid-2">
           <ChartPanel />
           <ChartPanel />
         </section> }
