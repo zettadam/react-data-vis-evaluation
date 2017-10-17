@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class ChartPanel extends Component {
 
   static defaultProps = {
-    aspectRatioClass: 'a16_9',
+    aspectRatio: 'default',
     baseClassName: 'chart-panel',
     className: '',
     interpolation: 'natural',
@@ -35,7 +35,7 @@ export default class ChartPanel extends Component {
 
   render () {
     const {
-      aspectRatioClass,
+      aspectRatio,
       baseClassName,
       children,
       className,
@@ -71,7 +71,7 @@ export default class ChartPanel extends Component {
             </label>
           </div>
         </div>
-        <div className={ `${baseClassName }__content ${ aspectRatioClass}` }>
+        <div className={ `${baseClassName }__content ${baseClassName }__content-${ aspectRatio}` }>
           <div className="chart">
             { children && React.cloneElement(children, { interpolation, theme } )}
           </div>

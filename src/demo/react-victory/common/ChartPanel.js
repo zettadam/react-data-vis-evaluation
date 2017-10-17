@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 
+import {
+  INTERPOLATION_OPTIONS,
+  THEME_OPTIONS,
+  Selector
+} from 'demo/react-victory/common'
+
 export default class ChartPanel extends Component {
 
   static defaultProps = {
-    aspectRatioClass: 'a16_9',
+    aspectRatio: 'default',
     baseClassName: 'chart-panel',
     className: '',
     interpolation: 'natural',
@@ -35,7 +41,7 @@ export default class ChartPanel extends Component {
 
   render () {
     const {
-      aspectRatioClass,
+      aspectRatio,
       baseClassName,
       children,
       className,
@@ -51,37 +57,17 @@ export default class ChartPanel extends Component {
         <div className={ `${ baseClassName }__header` }>
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
-            <label>
-              <select title="Select theme" name="theme"
-                value={ theme }
-                onChange={ this.handleThemeChange }>
-                <option value="sequential">Sequential</option>
-                <option value="divergent">Divergent</option>
-                <option value="qualitativeA">Qualitative A</option>
-                <option value="qualitativeB">Qualitative B</option>
-                <option value="grayscale">Grayscale</option>
-              </select>
-            </label>
-            <label>
-              <select title="Select interpolation" name="interpolation"
-                value={ interpolation }
-                onChange={ this.handleInterpolationChange }>
-                <option value="basis">Basis</option>
-                <option value="bundle">Bundle</option>
-                <option value="cardinal">Cardinal</option>
-                <option value="catmullRom">CatmullRom</option>
-                <option value="linear">Linear</option>
-                <option value="monotoneX">MonotoneX</option>
-                <option value="monotoneY">MonotoneY</option>
-                <option value="natural">Natural</option>
-                <option value="step">Step</option>
-                <option value="stepAfter">Step After</option>
-                <option value="stepBefore">Step Before</option>
-              </select>
-            </label>
+            <Selector title="Select a theme"
+              value={ theme }
+              onChange={ this.handleThemeChange }
+              options={ THEME_OPTIONS } />
+            <Selector title="Select an interpolation"
+              value={ interpolation }
+              onChange={ this.handleInterpolationChange }
+              options={ INTERPOLATION_OPTIONS } />
           </div>
         </div>
-        <div className={ `${baseClassName }__content ${ aspectRatioClass}` }>
+        <div className={ `${baseClassName }__content ${baseClassName}__content-${ aspectRatio}` }>
           <div className="chart">
             { children && React.cloneElement(children, { interpolation, theme } )}
           </div>

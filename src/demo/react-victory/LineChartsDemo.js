@@ -7,7 +7,12 @@ import {
 import moment from 'moment'
 
 import { DemoHeader, ChartPanel } from './common'
-import { LineChart } from './charts'
+import {
+  LineChart,
+  Flyout1,
+  CircleFlyout1,
+  CircleFlyout2
+} from './charts'
 
 import { ORDINAL_DATA, TIME_SERIES } from 'fakeData'
 import DATA from 'house-price-index-usa.json'
@@ -55,9 +60,10 @@ export default class LineChartsDemo extends Component {
           <div className="grid-2">
 
             <ChartPanel title="Single Line" theme="qualitativeB" interpolation="monotoneX">
-              <LineChart
+              <LineChart chartContainers={ ['voronoi' ]}
                 data={ ORDINAL_DATA[0] }
                 domainPadding={{ x: 0, y: 20 }}
+                flyout={ <Flyout1 /> }
                 legendOptions={{
                   borderPadding: 5,
                   style: {
@@ -66,7 +72,6 @@ export default class LineChartsDemo extends Component {
                   x: 472, y: 10
                 }}
                 withLegend
-                withTooltips
                 xField="x"
                 yFields={ ['y1'] } />
             </ChartPanel>
@@ -75,6 +80,7 @@ export default class LineChartsDemo extends Component {
               <LineChart
                 data={ ORDINAL_DATA[2] }
                 domainPadding={{ x: 0, y: 20 }}
+                flyout={ <CircleFlyout2 /> }
                 legendOptions={{
                   borderPadding: { top: 5, right: 10, bottom: 5, left: 10 },
                   style: {
@@ -85,16 +91,17 @@ export default class LineChartsDemo extends Component {
                 }}
                 withLegend
                 withLinePoints
-                withTooltips
                 xField="x"
-                yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] } />
+                yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }/>
             </ChartPanel>
           </div>
 
           <div className="grid-wide">
-            <ChartPanel title="US House Price Index 1987-2015 (custom styles)" theme="qualitativeB" interpolation="natural">
+            <ChartPanel title="US House Price Index 1987-2015 (custom styles & zoom)" theme="qualitativeB" interpolation="natural">
+
               <LineChart
-                colorScale={[ '#ccc', '#bbb', '#aaa', '#999', '#888', '#777', '#666', '#555', '#444', '#333']}
+                chartContainers={ ['zoom']}
+                colorScale={[ '#999', '#777', '#555', '#333']}
                 data={ DATA }
                 domainPadding={{ x: 0, y: 5 }}
                 legendOptions={{
@@ -138,6 +145,7 @@ export default class LineChartsDemo extends Component {
                     }
                   }
                 }} />
+
             </ChartPanel>
 
             <ChartPanel title="US House Price Index 1987-2015" theme="qualitativeB" interpolation="natural">
@@ -180,9 +188,9 @@ export default class LineChartsDemo extends Component {
 
           </div>
 
-          <div className="grid-wide">
+          <div className="grid-wide--horizontal">
 
-            <ChartPanel interpolation="monotoneX" theme="sequential" title="Single Line (with annotations)">
+            <ChartPanel aspectRatio="width" interpolation="monotoneX" theme="sequential" title="Single Line (with annotations)">
               <LineChart
                 data={ DATA }
                 domainPadding={{ x: 0, y: 20 }}
@@ -209,19 +217,19 @@ export default class LineChartsDemo extends Component {
                 }}
                 annotations={
                   [
-                    <VictoryLine
+                    <VictoryLine key="line1"
                       y={ () => 100 }
                       labels={ ['', 'Label 1'] }
                       style={{
                         data: { stroke: 'rgb(255,0,0)', strokeWidth: 2 },
                         labels: { fill: 'rgb(255,0,0)', fontSize: 8, textAnchor: 'start', padding: 1 }
                       }} />,
-                    <VictoryLine
+                    <VictoryLine key="line2"
                       x={ () => 150 }
                       labels={ ['Label 2'] }
                       style={{
                         labels: { angle: -90, fill: 'rgb(37,127,0)', fontSize: 8, textAnchor: 'start' },
-                        data: { stroke: 'rgb(37,127,0)', strokeWidth: 0.5 }
+                        data: { stroke: 'rgb(37,127,0)', strokeWidth: 0.5, strokeDasharray: '10,5' }
                       }} />
                   ]
                 }/>

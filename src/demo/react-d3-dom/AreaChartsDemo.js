@@ -16,7 +16,7 @@ const AreaChartsDemo = props =>
     <div className="charts">
 
       <ChartPanel title="Single Area"
-        aspectRatioClass="a21_9">
+        aspectRatio="21x9">
         <SingleArea
           data={ TIME_SERIES['traffic'] }
           xField="date"
@@ -26,7 +26,7 @@ const AreaChartsDemo = props =>
       </ChartPanel>
 
       <ChartPanel title="Single Area (Brush & Zoom)"
-        aspectRatioClass="a21_9">
+        aspectRatio="21x9">
         <SingleAreaBrushZoom
           data={ TIME_SERIES['price'] }
           dateFormat="%b %Y"

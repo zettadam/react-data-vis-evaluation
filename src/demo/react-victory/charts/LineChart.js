@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  createContainer,
   VictoryAxis,
   VictoryLine,
   VictoryChart,
@@ -9,8 +10,7 @@ import {
   VictoryLegend,
   VictoryPortal,
   VictoryTooltip,
-  VictoryScatter,
-  VictoryVoronoiContainer
+  VictoryScatter
 } from 'victory'
 
 import VictoryTheme from './themes'
@@ -25,9 +25,12 @@ export default class LineChart extends Component {
   static propTypes = {
     annotations: PropTypes.arrayOf(PropTypes.node),
     chartOptions: PropTypes.object,
+    chartContainers: PropTypes.array,
+    chartContainerProps: PropTypes.object,
     colorScale: PropTypes.array,
     data: PropTypes.array,
     domainPadding: PropTypes.object,
+    flyout: PropTypes.node,
     height: PropTypes.number,
     interpolation: PropTypes.string,
     legendOptions: PropTypes.object,
@@ -45,11 +48,22 @@ export default class LineChart extends Component {
 
   static defaultProps = {
     annotations: [],
+    chartContainerProps: {},
     data: [],
     height: 300,
     interpolation: 'natural',
     scale: { x: 'time', y: 'linear' },
     theme: 'sequential',
+    tooltipOptions: {
+      cornerRadius: 0,
+      flyoutStyle: {
+        fill: '#36454f',
+        fillOpacity: 0.85,
+        stroke: '#36454f'
+      },
+      pointerLength: 10,
+      renderInPortal: true
+    },
     width: 533,
     withLegend: false,
     withLinePoints: false,
@@ -64,6 +78,13 @@ export default class LineChart extends Component {
   constructor (props) {
     super(props)
 
+    const cts = props.chartContainers
+
+    if (Array.isArray(cts)) {
+      if (cts.length === 1) this.chartContainer = createContainer(cts[0])
+      if (cts.length >= 2) this.chartContainer = createContainer(cts[0], cts[1])
+    }
+
     this._renderLines = this._renderLines.bind(this)
     this._renderPoints = this._renderPoints.bind(this)
   }
@@ -72,29 +93,57 @@ export default class LineChart extends Component {
   // "Private" render methods -------------------------------------------------
 
   _renderLines () {
-    const { data, interpolation, tooltipOptions, xField, yFields } = this.props
+    const {
+      chartContainers,
+      data,
+      flyout,
+      interpolation,
+      tooltipOptions,
+      withLinePoints,
+      xField,
+      yFields
+    } = this.props
 
-    return yFields.map((f, i) =>
-      <VictoryLine key={ `line-${i}` }
-        data={ data }
-        labels={ d => `y: ${d[f]}` }
-        labelComponent={ <VictoryTooltip cornerRadius="0" { ...tooltipOptions } /> }
-        x={ xField }
-        y={ f }
-        interpolation={ interpolation } />
-    )
+    const withTooltips = !withLinePoints && chartContainers && chartContainers.includes('voronoi')
+
+    const lineProps = {
+      data,
+      interpolation,
+      x: xField,
+    }
+    if (withTooltips) {
+      if (flyout) tooltipOptions.flyoutComponent = flyout
+      lineProps.labelComponent = <VictoryTooltip { ...tooltipOptions } />
+    }
+
+
+    return yFields.map((f, i) => {
+      const fieldProps = {
+        key: `line-${f}`,
+        y: f
+      }
+      if (withTooltips) fieldProps.labels = d => d[f]
+
+      return (
+        <VictoryLine { ...lineProps } { ...fieldProps } />
+      )
+    })
   }
 
   _renderPoints () {
-    const { data, xField, yFields, tooltipOptions } = this.props
+    const { data, flyout, xField, yFields, tooltipOptions } = this.props
+
+    if (flyout) tooltipOptions.flyoutComponent = flyout
 
     return yFields.map((f, i) =>
       <VictoryScatter key={ `point-${i}` }
         data={ data }
         x={ xField }
         y={ f }
-        labels={ d => `y: ${d[f]}` }
-        labelComponent={ <VictoryTooltip cornerRadius="0" { ...tooltipOptions }/> } />
+        labels={ d => d[f] }
+        labelComponent={
+          <VictoryTooltip { ...tooltipOptions }/>
+        } />
     )
   }
 
@@ -105,6 +154,8 @@ export default class LineChart extends Component {
 
     const {
       annotations,
+      chartContainers,
+      chartContainerProps,
       chartOptions,
       colorScale,
       data,
@@ -132,10 +183,11 @@ export default class LineChart extends Component {
       theme: VictoryTheme.spark[theme],
       width
     }
+
+    if (this.chartContainer) chartProps.containerComponent = <this.chartContainer { ...chartContainerProps } />
     if (domain) chartProps.domain = domain
     if (domainPadding) chartProps.domainPadding = domainPadding
     if (scale && !xAxisOptions && !yAxisOptions) chartProps.scale = scale
-    if (withTooltips) chartProps.containerComponent = <VictoryVoronoiContainer />
     if (chartOptions) chartProps = { ...chartProps, ...chartOptions }
 
     // group props

@@ -8,3 +8,7 @@ export RadarChart from './RadarChart'
 export RoseChart from './RoseChart'
 export ScatterChart from './ScatterChart'
 export VoronoiChart from './VoronoiChart'
+
+export Flyout1 from './tooltips/Flyout1'
+export CircleFlyout1 from './tooltips/CircleFlyout1'
+export CircleFlyout2 from './tooltips/CircleFlyout2'

@@ -442,23 +442,6 @@ footer.footer {
     position: relative;
     padding: 0;
 
-    &:before {
-      display: block;
-      content: '';
-      width: 100%;
-      padding-top: 56.25%;
-    }
-
-    .chart-panel__content.a16_9 {
-      &:before { padding-top: 56.25%; }
-    }
-    .chart-panel__content.a4_3 {
-      &:before { padding-top: 75%; }
-    }
-    .chart-panel__content.a21_9 {
-      &:before { padding-top: 42.85%; }
-    }
-
     .chart {
       position: absolute;
       top: 0;
@@ -468,7 +451,32 @@ footer.footer {
       margin: 0;
       padding: 0;
     }
+
+    &::before {
+      display: block;
+      content: '';
+      width: 100%;
+    }
   }
+
+  .chart-panel__content-width {
+    .chart {
+      position: relative;
+    }
+  }
+  .chart-panel__content-default {
+    &::before { padding-top: 56.25%; }
+  }
+  .chart-panel__content-16x9 {
+    &::before { padding-top: 56.25%; }
+  }
+  .chart-panel__content-4x3 {
+    &::before { padding-top: 75%; }
+  }
+  .chart-panel__content-21x9 {
+    &::before { padding-top: 42.85%; }
+  }
+
 }
 
 .grid-2 {
