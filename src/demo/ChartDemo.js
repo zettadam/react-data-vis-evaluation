@@ -32,6 +32,7 @@ const ChartDemo = ({
             <li><NavLink to={ `/chart-types/${ type }/react-victory` }>React / Victory</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-vx` }>React / VX</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-semiotic` }>React / Semiotic</NavLink></li>
+            <li><NavLink to={ `/chart-types/${ type }/react-vis` }>React / React-Vis</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-d3-dom` }>React / D3 (owns DOM)</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-dom-d3` }>React (owns DOM) / D3</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-chartJS` }>React / ChartJS</NavLink></li>

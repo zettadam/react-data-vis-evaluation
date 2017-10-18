@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   INTERPOLATION_OPTIONS,
   THEME_OPTIONS
-} from 'demo/react-victory/common'
+} from 'demo/react-vis/common'
 
 import Selector from 'common/Selector'
 
@@ -14,7 +14,7 @@ export default class ChartPanel extends Component {
     baseClassName: 'chart-panel',
     className: '',
     interpolation: 'natural',
-    theme: 'sequential',
+    theme: 'schemeAccent',
     title: 'Chart Title'
   }
 
@@ -58,17 +58,17 @@ export default class ChartPanel extends Component {
         <div className={ `${ baseClassName }__header` }>
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
-            <Selector title="Select a theme"
+            <Selector
               value={ theme }
               onChange={ this.handleThemeChange }
               options={ THEME_OPTIONS } />
-            <Selector title="Select an interpolation"
+            <Selector
               value={ interpolation }
               onChange={ this.handleInterpolationChange }
               options={ INTERPOLATION_OPTIONS } />
           </div>
         </div>
-        <div className={ `${baseClassName }__content ${baseClassName}__content-${ aspectRatio}` }>
+        <div className={ `${baseClassName }__content ${baseClassName }__content-${ aspectRatio}` }>
           <div className="chart">
             { children && React.cloneElement(children, { interpolation, theme } )}
           </div>
