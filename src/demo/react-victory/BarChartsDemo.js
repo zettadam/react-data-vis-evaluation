@@ -4,7 +4,14 @@ import { DemoHeader, ChartPanel } from './common'
 import { BarChart } from './charts'
 
 import { ORDINAL_DATA } from 'fakeData'
+import ANALYSIS1_JFK_ORD from 'analysis1-jfk-ord.json'
 import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
+
+const yTickFormat = t => {
+  if (t > 999999) return `${Math.ceil(t/1000000)}M`
+  if (t > 999) return `${Math.ceil(t/1000)}K`
+  return t
+}
 
 export default class BarChartsDemo extends Component {
 
@@ -45,45 +52,68 @@ export default class BarChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <div className="charts grid-2">
+        <section className="charts">
 
-          <ChartPanel title="Simple Bars" theme="qualitativeA">
-            <BarChart
-              data={ ORDINAL_DATA[0] }
-              domainPadding={{ x: 20, y: 0 }}
-              xField="x"
-              yFields={ ['y1'] } />
-          </ChartPanel>
+          <div className="grid-2">
 
-          <ChartPanel title="Stacked Bars" theme="qualitativeB">
-            <BarChart
-              data={ ORDINAL_DATA[2] }
-              domainPadding={{ x: 10, y: 0 }}
-              stacked
-              xField="x"
-              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
-          </ChartPanel>
+            <ChartPanel title="Simple Bars" theme="qualitativeA">
+              <BarChart
+                data={ ORDINAL_DATA[0] }
+                domainPadding={{ x: 20, y: 0 }}
+                xField="x"
+                yFields={ ['y1'] } />
+            </ChartPanel>
 
-          <ChartPanel title="Multiset Bars" theme="sequential">
-            <BarChart
-              data={ ORDINAL_DATA[2] }
-              domainPadding={{ x: 12, y: 0 }}
-              grouped
-              xField="x"
-              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
-          </ChartPanel>
+            <ChartPanel title="Stacked Bars" theme="qualitativeB">
+              <BarChart
+                data={ ORDINAL_DATA[2] }
+                domainPadding={{ x: 10, y: 30 }}
+                legendProps={{
+                  gutter: 5,
+                  orientation: 'horizontal',
+                  borderPadding: { top: 0, right: 5, bottom: 0, left: 5 },
+                  x: 360
+                }}
+                stacked
+                withTooltips
+                xField="x"
+                yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+            </ChartPanel>
 
-          <ChartPanel title="Multiset Bars (Horizontal)" theme="divergent">
-            <BarChart
-              data={ ORDINAL_DATA[2] }
-              domainPadding={{ x: 0, y: 12 }}
-              grouped
-              horizontal
-              xField="x"
-              yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
-          </ChartPanel>
+          </div>
 
-        </div> }
+          <div className="grid-wide">
+
+            <ChartPanel title="Multiset Bars" theme="qualitativeA">
+              <BarChart
+                data={ ORDINAL_DATA[2] }
+                domainPadding={{ x: 15, y: 0 }}
+                grouped
+                withTooltips
+                xField="x"
+                yFields={ [ 'y1', 'y2', 'y3', 'y4', 'y5' ] } />
+            </ChartPanel>
+
+            <ChartPanel title="Multiset Bars (Horizontal)" theme="qualitativeB"
+              withMin withMax>
+              <BarChart
+                data={ ANALYSIS1_JFK_ORD.filter(d => d.totalDemand > 100000) }
+                domainPadding={{ x: 0, y: 10 }}
+                grouped
+                legendProps={{
+                  x: 355, y: 10
+                }}
+                withTooltips
+                yAxis={{
+                  tickFormat: yTickFormat
+                }}
+                xField="airlineCode"
+                yFields={ [ 'totalDemand', 'totalTraffic' ] } />
+            </ChartPanel>
+
+          </div>
+
+        </section> }
 
         { 'bookmarks' === section &&
         <section className="bookmarks">

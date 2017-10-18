@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
+import {
+  VictoryLabel,
+  VictoryLine,
+  VictoryScatter
+} from 'victory'
 
 import { DemoHeader, ChartPanel } from './common'
-import { AreaChart } from './charts'
+import {
+  AreaChart,
+  Flyout1,
+  CircleFlyout1,
+  CircleFlyout2
+} from './charts'
 
 import { ORDINAL_DATA } from 'fakeData'
 import { MONOCHROMATIC_COLORS, COLORS } from 'themes/colors'
@@ -45,28 +55,52 @@ export default class AreaChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <div className="charts grid-2 a4_3">
+        <section className="charts">
 
-          <ChartPanel title="Single Area" theme="divergent">
-            <AreaChart
-              data={ ORDINAL_DATA[0] }
-              xField="x"
-              yFields={ ['y1'] } />
-          </ChartPanel>
+          <div className="grid-2 a4_3">
 
-          <ChartPanel />
+            <ChartPanel title="Single Area" theme="divergent">
+              <AreaChart
+                data={ ORDINAL_DATA[0] }
+                domainPadding={{ x: 0, y: 20 }}
+                xField="x"
+                yFields={ ['y1'] } />
+            </ChartPanel>
 
-          <ChartPanel title="Multiple Areas (Stacked)" theme="qualitativeB">
-            <AreaChart
-              data={ ORDINAL_DATA[2] }
-              xField="x"
-              yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
-              stacked />
-          </ChartPanel>
+            <ChartPanel />
 
-          <ChartPanel title="Multiple Areas (Grouped)" />
+          </div>
 
-        </div> }
+          <div className="grid-wide">
+
+            <ChartPanel title="Multiple Areas (Stacked)" theme="qualitativeB">
+              <AreaChart
+                data={ ORDINAL_DATA[2] }
+                domainPadding={{ x: 0, y: 20 }}
+                xField="x"
+                yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+                stacked />
+            </ChartPanel>
+
+            <ChartPanel title="Multiple Areas (grouped)" theme="qualitativeA">
+              <AreaChart
+                chartContainers={ ['voronoi'] }
+                data={ ORDINAL_DATA[2] }
+                domainPadding={{ x: 0, y: 20 }}
+                legendProps={{
+                  borderPadding: { top: 0, left: 5, bottom: 0, right: 5 },
+                  orientation: 'horizontal',
+                  x: 360, y: 10
+                }}
+                scale={{ x: 'linear', y: 'linear' }}
+                xField="x"
+                yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }
+                />
+            </ChartPanel>
+
+          </div>
+
+        </section> }
 
         { 'bookmarks' === section &&
         <section className="bookmarks">

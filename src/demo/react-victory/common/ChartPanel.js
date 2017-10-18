@@ -15,7 +15,9 @@ export default class ChartPanel extends Component {
     className: '',
     interpolation: 'natural',
     theme: 'sequential',
-    title: 'Chart Title'
+    title: 'Chart Title',
+    withMin: false,
+    withMax: false
   }
 
   constructor (props) {
@@ -23,7 +25,9 @@ export default class ChartPanel extends Component {
 
     this.state = {
       theme: props.theme,
-      interpolation: props.interpolation
+      interpolation: props.interpolation,
+      yMax: 0,
+      yMin: 0
     }
 
     this.handleThemeChange = this.handleThemeChange.bind(this)

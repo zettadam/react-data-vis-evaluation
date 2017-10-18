@@ -3,7 +3,6 @@ export DemoHeader from './DemoHeader'
 
 export const INTERPOLATION_OPTIONS = [
   'basis',
-  'bundle',
   'cardinal',
   'catmullRom',
   'linear',

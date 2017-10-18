@@ -64,14 +64,13 @@ export default class LineChartsDemo extends Component {
                 data={ ORDINAL_DATA[0] }
                 domainPadding={{ x: 0, y: 20 }}
                 flyout={ <Flyout1 /> }
-                legendOptions={{
+                legendProps={{
                   borderPadding: 5,
                   style: {
                     border: { fill: 'rgb(255,255,255)', stroke: '#36454f' }
                   },
                   x: 472, y: 10
                 }}
-                withLegend
                 xField="x"
                 yFields={ ['y1'] } />
             </ChartPanel>
@@ -81,7 +80,7 @@ export default class LineChartsDemo extends Component {
                 data={ ORDINAL_DATA[2] }
                 domainPadding={{ x: 0, y: 20 }}
                 flyout={ <CircleFlyout2 /> }
-                legendOptions={{
+                legendProps={{
                   borderPadding: { top: 5, right: 10, bottom: 5, left: 10 },
                   style: {
                     border: { fill: 'rgb(255,255,255)', fillOpacity: '1' }
@@ -89,7 +88,6 @@ export default class LineChartsDemo extends Component {
                   orientation: 'horizontal',
                   x: 345, y: 10
                 }}
-                withLegend
                 withLinePoints
                 xField="x"
                 yFields={ ['y1', 'y2', 'y3', 'y4', 'y5'] }/>
@@ -104,7 +102,7 @@ export default class LineChartsDemo extends Component {
                 colorScale={[ '#999', '#777', '#555', '#333']}
                 data={ DATA }
                 domainPadding={{ x: 0, y: 5 }}
-                legendOptions={{
+                legendProps={{
                   gutter: 0,
                   style: {
                     border: { fill: 'white', stroke: '#36454f', strokeWidth: 1 },
@@ -112,10 +110,9 @@ export default class LineChartsDemo extends Component {
                   },
                   x: 60, y: 10
                 }}
-                withLegend
                 xField="Date"
                 yFields={ ['Boston', 'Miami', 'National'] }
-                xAxisOptions={{
+                xAxis={{
                   fixLabelOverlap: true,
                   scale: 'time',
                   label: 'Time',
@@ -126,7 +123,7 @@ export default class LineChartsDemo extends Component {
                   },
                   tickFormat: t => moment(t).format('MMM YYYY')
                 }}
-                yAxisOptions={{
+                yAxis={{
                   dependentAxis: true,
                   label: 'Price Index',
                   scale: 'linear',
@@ -152,7 +149,7 @@ export default class LineChartsDemo extends Component {
               <LineChart
                 data={ DATA }
                 domainPadding={{ x: 0, y: 20 }}
-                legendOptions={{
+                legendProps={{
                   orientation: 'horizontal',
                   centerTitle: true,
                   gutter: 5,
@@ -162,10 +159,9 @@ export default class LineChartsDemo extends Component {
                   },
                   x: 60, y: 8
                 }}
-                withLegend
                 xField="Date"
                 yFields={ ['Boston', 'Miami', 'National'] }
-                xAxisOptions={{
+                xAxis={{
                   fixLabelOverlap: true,
                   label: 'Months',
                   scale: 'time',
@@ -175,7 +171,7 @@ export default class LineChartsDemo extends Component {
                   },
                   tickFormat: t => t.includes('01-01') ? moment(t).format('YYYY') : moment(t).format('MMM')
                 }}
-                yAxisOptions={{
+                yAxis={{
                   dependentAxis: true,
                   label: 'Price Index',
                   scale: 'linear',
@@ -196,7 +192,7 @@ export default class LineChartsDemo extends Component {
                 domainPadding={{ x: 0, y: 20 }}
                 xField="Date"
                 yFields={ ['National'] }
-                xAxisOptions={{
+                xAxis={{
                   scale: 'time',
                   label: 'Months',
                   style: {
@@ -206,7 +202,7 @@ export default class LineChartsDemo extends Component {
                   tickFormat: t => t.includes('01-01') ? moment(t).format('YYYY') : moment(t).format('MMM'),
                   tickValues: [ '1987-01-01', '1992-01-01', '1997-01-01', '2002-01-01', '2007-01-01', '2012-01-01', '2015-01-01']
                 }}
-                yAxisOptions={{
+                yAxis={{
                   dependentAxis: true,
                   label: 'Price Index',
                   scale: 'linear',

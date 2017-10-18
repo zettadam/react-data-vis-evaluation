@@ -57,7 +57,8 @@ export default {
   area: assign({
     style: {
       data: {
-        fill: charcoal
+        fill: charcoal,
+        fillOpacity: 0.75
       },
       labels: centeredLabelStyles
     }

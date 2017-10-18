@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  VictoryAxis,
   VictoryBar,
   VictoryChart,
   VictoryGroup,
@@ -12,8 +13,10 @@ import {
 
 import VictoryTheme from './themes'
 
-import { adaptData, getLegendData } from './utils'
+import { getLegendData } from './utils'
 
+
+const numberFormat = new Intl.NumberFormat(navigator.language)
 
 export default class BarChart extends Component {
 
@@ -21,18 +24,42 @@ export default class BarChart extends Component {
     data: PropTypes.array,
     grouped: PropTypes.bool,
     horizontal: PropTypes.bool,
+    legendProps: PropTypes.object,
     stacked: PropTypes.bool,
     theme: PropTypes.string,
+    xAxis: PropTypes.object,
     xField: PropTypes.string,
+    yAxis: PropTypes.object,
     yFields: PropTypes.array
   }
 
   static defaultProps = {
     data: [],
+    defaultLegendProps: {
+      gutter: 0,
+      orientation: 'horizontal',
+      style: {
+        border: { fill: 'white', stroke: '#36454f', strokeWidth: 1 },
+        borderPadding: 0
+      },
+      x: 355, y: 10
+    },
     grouped: false,
     horizontal: false,
+    scale: { x: 'linear', y: 'linear' },
     stacked: false,
     theme: 'qualitativeA',
+    tooltipProps: {
+      cornerRadius: 0,
+      flyoutStyle: {
+        fill: '#36454f',
+        fillOpacity: 0.85,
+        stroke: '#36454f'
+      },
+      pointerLength: 10,
+      renderInPortal: true
+    },
+    withTooltips: false,
     xField: '',
     yFields: []
   }
@@ -43,12 +70,41 @@ export default class BarChart extends Component {
     this.renderBars = this.renderBars.bind(this)
   }
 
-  renderBars (data) {
-    const { yFields } = this.props
+  renderBars () {
+    const {
+      alignment,
+      data,
+      flyout,
+      tooltipProps,
+      withTooltips,
+      xField,
+      yFields
+    } = this.props
 
-    return yFields.map((f, i) =>
-      <VictoryBar key={ `bar${i}` } data={ data[i] }
-        labelComponent={ <VictoryTooltip /> } /> )
+    const props = {
+      data,
+      style: {
+        data: { strokeWidth: 0 },
+        labels: { fill: 'white', fontSize: 11 }
+      },
+      x: xField
+    }
+    if (alignment) props.alignment = alignment
+
+    return yFields.map((y, i) => {
+      const barProps = {
+        ...props,
+        key: `bar-${i}-${y}`,
+        y
+      }
+      if (withTooltips) {
+        if (flyout) tooltipProps.flyoutComponent = flyout
+        barProps.labelComponent = <VictoryTooltip { ...tooltipProps } />
+        barProps.labels = d => `${d[xField]}, ${y}: ${numberFormat.format(Math.round(d[y]))}`
+      }
+
+      return <VictoryBar { ...barProps} />
+    })
   }
 
   render () {
@@ -57,43 +113,58 @@ export default class BarChart extends Component {
       domainPadding,
       horizontal,
       grouped,
+      legendProps,
+      offset,
+      scale,
       stacked,
       theme,
+      xAxis,
       xField,
-      yFields
+      yAxis,
+      yFields,
+      yMax,
+      yMin
     } = this.props
 
-    const adaptedData = adaptData({ data, xField, yFields })
-
     const chartProps = {
+      scale,
       theme: VictoryTheme.spark[theme]
     }
 
     if (domainPadding) chartProps.domainPadding = domainPadding
 
-    const props = {
+    const groupProps = {
       categories: { x: data.map(d => d[xField]) },
       horizontal,
-      offset: yFields.length - 1
-    }
-
-    const legendProps = {
-      data: getLegendData({ fields: yFields }),
-      orientation: 'horizontal',
-      width: 400
+      offset: horizontal ? 3 : yFields.length
     }
 
     return (
       <VictoryChart { ...chartProps }>
-        <VictoryLegend { ...legendProps } />
+
+        <VictoryAxis
+          fixLabelOverlap
+          { ...xAxis } />
+
+        <VictoryAxis
+          dependentAxis
+          { ...yAxis } />
+
         { !stacked &&
-        <VictoryGroup { ...props }>
-          { this.renderBars(adaptedData) }
+        <VictoryGroup { ...groupProps }>
+          { this.renderBars() }
         </VictoryGroup> }
+
         { stacked && !grouped &&
-        <VictoryStack { ...props }>
-          { this.renderBars(adaptedData) }
+        <VictoryStack { ...groupProps }>
+          { this.renderBars() }
         </VictoryStack> }
+
+        { legendProps &&
+        <VictoryLegend
+          { ...this.props.defaultLegendProps }
+          { ...legendProps }
+          data={ getLegendData({ fields: yFields }) } /> }
       </VictoryChart>
     )
   }

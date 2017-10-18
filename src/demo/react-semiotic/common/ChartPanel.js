@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 
-import ColorSchemeSelector from 'common/ColorSchemeSelector'
-import InterpolationSelector from './InterpolationSelector'
+import Selector from 'common/Selector'
+
+import {
+  INTERPOLATION_OPTIONS,
+  THEME_OPTIONS
+} from 'demo/react-semiotic/common'
 
 export default class ChartPanel extends Component {
 
@@ -9,8 +13,6 @@ export default class ChartPanel extends Component {
     aspectRatio: 'default',
     baseClassName: 'chart-panel',
     className: '',
-    interpolation: 'natural',
-    theme: 'schemeAccent',
     title: 'Chart Title'
   }
 
@@ -54,8 +56,16 @@ export default class ChartPanel extends Component {
         <div className={ `${ baseClassName }__header` }>
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
-            <ColorSchemeSelector value={ theme } onChange={ this.handleThemeChange } />
-            <InterpolationSelector value={ interpolation } onChange={ this.handleInterpolationChange } />
+            { theme &&
+            <Selector title="Select a color scheme"
+              value={ theme }
+              onChange={ this.handleThemeChange }
+              options={ THEME_OPTIONS } /> }
+            { interpolation &&
+            <Selector title="Select an interpolation"
+              value={ interpolation }
+              onChange={ this.handleInterpolationChange }
+              options={ INTERPOLATION_OPTIONS } /> }
           </div>
         </div>
         <div className={ `${baseClassName }__content ${baseClassName }__content-${ aspectRatio}` }>

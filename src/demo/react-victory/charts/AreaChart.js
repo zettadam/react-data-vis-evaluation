@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  createContainer,
   VictoryArea,
+  VictoryAxis,
   VictoryChart,
   VictoryCursorContainer,
   VictoryGroup,
@@ -19,21 +21,40 @@ import { adaptData, getLegendData } from './utils'
 export default class AreaChart extends Component {
 
   static propTypes = {
-    canZoom: PropTypes.bool,
+    annotations: PropTypes.arrayOf(PropTypes.node),
+    chartContainers: PropTypes.array,
+    chartContainerProps: PropTypes.object,
     data: PropTypes.array,
     interpolation: PropTypes.string,
+    legendProps: PropTypes.object,
+    scale: PropTypes.object,
     stacked: PropTypes.bool,
     theme: PropTypes.string,
+    xAxis: PropTypes.object,
     xField: PropTypes.string,
+    yAxis: PropTypes.object,
     yFields: PropTypes.array
   }
 
   static defaultProps = {
-    canZoom: false,
+    annotations: [],
+    chartContainerProps: {},
     data: [],
     interpolation: 'monotoneX',
+    scale: { x: 'time', y: 'linear' },
     stacked: false,
     theme: 'divergent',
+    tooltipOptions: {
+      cornerRadius: 0,
+      flyoutStyle: {
+        fill: '#36454f',
+        fillOpacity: 0.85,
+        stroke: '#36454f'
+      },
+      pointerLength: 10,
+      renderInPortal: true
+    },
+    withLinePoints: false,
     xField: '',
     yFields: []
   }
@@ -41,60 +62,111 @@ export default class AreaChart extends Component {
   constructor (props) {
     super(props)
 
+    const cts = props.chartContainers
+
+    if (Array.isArray(cts)) {
+      if (cts.length === 1) this.chartContainer = createContainer(cts[0])
+      if (cts.length >= 2) this.chartContainer = createContainer(cts[0], cts[1])
+    }
+
     this.renderAreas = this.renderAreas.bind(this)
   }
 
-  renderAreas (data) {
-    const { interpolation, yFields } = this.props
+  renderAreas () {
+    const {
+      chartContainers,
+      data,
+      flyout,
+      interpolation,
+      tooltipOptions,
+      withLinePoints,
+      xField,
+      yFields
+    } = this.props
 
-    return yFields.map((f, i) =>
-      <VictoryArea key={ `area${i}` } data={ data[i] } interpolation={ interpolation }
-        labelComponent={ <VictoryTooltip /> } />
-    )
+    const withTooltips = !withLinePoints && chartContainers && chartContainers.includes('voronoi')
+
+    const areaProps = {
+      data,
+      interpolation,
+      x: xField,
+    }
+    if (withTooltips) {
+      if (flyout) tooltipOptions.flyoutComponent = flyout
+      areaProps.labelComponent = <VictoryTooltip { ...tooltipOptions } />
+    }
+
+    return yFields.map((y, i) => {
+      const fieldProps = {
+        key: `area-${y}`,
+        y
+      }
+      if (withTooltips) fieldProps.labels = d => d[y]
+
+      return <VictoryArea { ...areaProps } { ...fieldProps } />
+    })
   }
 
   render () {
     const {
-      canZoom,
+      annotations,
+      chartContainers,
+      chartOptions,
       data,
+      domain,
       domainPadding,
+      legendProps,
+      scale,
       stacked,
       theme,
+      xAxis,
       xField,
-      yFields,
-      withCursorContainer
+      yAxis,
+      yFields
     } = this.props
-
-    const adaptedData = adaptData({ data, xField, yFields })
 
     const chartProps = {
       theme: VictoryTheme.spark[theme]
     }
 
+    if (domain) chartProps.domain = domain
     if (domainPadding) chartProps.domainPadding = domainPadding
-    if (canZoom) chartProps.containerComponent = <VictoryZoomContainer />
+    if (scale && !xAxis && !yAxis) chartProps.scale = scale
+    if (chartOptions) chartProps = { ...chartProps, ...chartOptions }
 
     const props = {
       categories: { x: data.map(d => d[xField]) }
     }
 
-    const legendProps = {
-      data: getLegendData({ fields: yFields }),
-      orientation: 'horizontal',
-      width: 400
-    }
-
     return (
       <VictoryChart { ...chartProps }>
-        <VictoryLegend { ...legendProps } />
+
+        <VictoryAxis
+          fixLabelOverlap
+          { ...xAxis } />
+
+        <VictoryAxis
+          dependentAxis
+          fixLabelOverlap
+          { ...yAxis } />
+
         { !stacked &&
         <VictoryGroup { ...props }>
-          { this.renderAreas(adaptedData) }
+          { this.renderAreas() }
         </VictoryGroup> }
+
         { stacked &&
         <VictoryStack { ...props }>
-          { this.renderAreas(adaptedData) }
+          { this.renderAreas() }
         </VictoryStack> }
+
+        { annotations }
+
+        { legendProps &&
+        <VictoryLegend
+          { ...legendProps }
+          data={ getLegendData({ fields: yFields }) } /> }
+
       </VictoryChart>
     )
   }
