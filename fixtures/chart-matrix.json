@@ -173,10 +173,6 @@
     ],
     "focus": false
   },
-  "multi-set-bar": {
-    "title": "Multi-set Bar Chart",
-    "focus": false
-  },
   "network": {
     "title": "Network Diagram",
     "focus": false

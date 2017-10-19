@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 
-export default class CircleFlyout1 extends Component {
+export default class Flyout1 extends Component {
 
   static propTypes = {
     orientation: PropTypes.string,
@@ -25,6 +25,6 @@ export default class CircleFlyout1 extends Component {
         <rect x={ x - 36 - 3 } y={ newY - 6 } height="26" width="76" stroke="orange" fill="orange" fillOpacity="0.5"/>
         <rect x={ x - 36 } y={ newY - 3 } height="20" width="82" stroke="tomato" fill="tomato" fillOpacity="0.75" />
       </g>
-    );
+    )
   }
 }

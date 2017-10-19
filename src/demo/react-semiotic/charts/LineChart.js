@@ -1,42 +1,37 @@
 import React, { Component } from 'react'
-import { scaleLinear, scaleOrdinal, scaleTime } from 'd3-scale'
+import { scaleLinear, scaleLog, scaleOrdinal, scaleTime } from 'd3-scale'
 import { timeFormat, timeParse } from 'd3-time-format'
-
-import { Legend, ResponsiveXYFrame } from 'semiotic'
+import { ResponsiveXYFrame } from 'semiotic'
 
 import COLORS from 'common/colorSchemes'
 import { CURVE_MAP } from '../common'
 
 const SCALE_MAP = {
   linear: scaleLinear,
+  log: scaleLog,
   ordinal: scaleOrdinal,
   time: scaleTime
 }
 
-const createLines = ({
+const prepareData = ({
   data,
   timeFormat,
   xAccessor, xField, xScaleType,
   yAccessor, yFields, yScaleType
 }) => {
   const parseTime = timeParse(timeFormat)
-  const lines = yFields.map(y => ({
+  return yFields.map(y => ({
     coordinates: data.map(d => ({
       [xAccessor]: xScaleType === 'time' ? parseTime(d[xField]) : d[xField],
       [yAccessor]: d[y]
     }))
   }))
-
-  console.log( 'lines', lines)
-
-  return lines
 }
 
 export default class LineChart extends Component {
 
   static defaultProps = {
     data: [],
-    download: false,
     height: 400,
     hoverAnnotation: true,
     interpolation: 'monotoneX',
@@ -84,7 +79,7 @@ export default class LineChart extends Component {
 
     const colors = COLORS[theme] || []
 
-    const lines = createLines({
+    const lines = prepareData({
       data,
       timeFormat,
       xAccessor,
@@ -100,7 +95,6 @@ export default class LineChart extends Component {
         { className: yAxisClassName, orient: 'left', tickFormat: yTickFormat, ticks: yTicks },
         { className: xAxisClassName, orient: 'bottom', tickFormat: xTickFormat, ticks: xTicks }
       ],
-      download,
       hoverAnnotation,
       legend,
       lines,

@@ -73,7 +73,7 @@ const SemioticDemo = ({
     { 'parallel-set' === type && <parallelSetsChartsDemo /> }
     { 'pie' === type && <PieChartsDemo /> }
     { 'radar' === type && <RadarChartsDemo /> }
-    { 'sankey' === type && <SankeyPlotsDemo /> }
+    { 'sankey' === type && <SankeyChartsDemo /> }
     { 'scatter' === type && <ScatterPlotsDemo /> }
     { 'segmented' === type && <SegmentedChartsDemo /> }
     { 'span' === type && <SpanChartsDemo /> }

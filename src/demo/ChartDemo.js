@@ -28,8 +28,8 @@ const ChartDemo = ({
         <h4>Using</h4>
         <nav className="approaches">
           <ul>
-            <li><NavLink to={ `/chart-types/${ type }/react-recharts` }>React / Recharts</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-victory` }>React / Victory</NavLink></li>
+            <li><NavLink to={ `/chart-types/${ type }/react-recharts` }>React / Recharts</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-vx` }>React / VX</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-semiotic` }>React / Semiotic</NavLink></li>
             <li><NavLink to={ `/chart-types/${ type }/react-vis` }>React / React-Vis</NavLink></li>

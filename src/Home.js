@@ -8,7 +8,6 @@ import ContentSection from './content/ContentSection'
 
 const sortedChartTypes = Object.keys(CHART_TYPE_MATRIX)
   .map(k => ({ type: k, ...CHART_TYPE_MATRIX[k]}))
-  .filter(c => c.focus)
   .sort((a, b) => {
     const titleA = a.type.toLowerCase()
     const titleB = b.type.toLowerCase()
@@ -38,7 +37,10 @@ const Home = () =>
       <nav className="chart-type__list">
       { sortedChartTypes &&
         <ul>{ sortedChartTypes.map((t, i) =>
-          <li key={ `chart-type__${ t.type }` }><NavLink to={ `/chart-types/${ t.type }` }>{ t.title }</NavLink></li> )}
+          <li key={ `chart-type__${ t.type }` }>{ t.focus ?
+            <NavLink to={ `/chart-types/${ t.type }` }>{ t.title }</NavLink> :
+            <i>{ t.title }</i> }
+          </li> )}
         </ul> }
       </nav>
 

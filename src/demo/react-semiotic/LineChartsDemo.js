@@ -47,7 +47,9 @@ export default class LineChartsDemo extends Component {
         section={ section } />
 
         { 'charts' === section &&
-        <section className="charts grid-2">
+        <section className="charts">
+
+          <div className="grid-wide">
 
           <ChartPanel interpolation="monotoneX" theme="schemeAccent" title="Simple Line Chart">
 
@@ -85,6 +87,9 @@ export default class LineChartsDemo extends Component {
               yTicks={ 6 } />
 
           </ChartPanel>
+
+          </div>
+
         </section> }
 
         { 'bookmarks' === section &&

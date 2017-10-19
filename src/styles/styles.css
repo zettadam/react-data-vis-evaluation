@@ -286,20 +286,22 @@ aside.sidebar {
       padding: 1rem 0 2rem 0;
       li { display: inline-block; width: 100%; }
     }
-    a {
+    a, i {
       display: block;
       line-height: 1.2;
       margin: 0;
       padding: .35rem 1rem .35rem 2rem;
       text-decoration: none;
-
-      &:link { color: rgb(209,219,189); }
-      &:visited { color: rgb(209,219,189); }
-      &:active,
-      &.active,
-      &:hover { background: rgb(62,96,111); color: rgb(252,255,245); }
-      &.active { font-weight: 600; }
     }
+
+    i { color: rgb(62,96,111); font-style: normal; }
+
+    a:link { color: rgb(209,219,189); }
+    a:visited { color: rgb(209,219,189); }
+    a:active,
+    a.active,
+    a:hover { background: rgb(62,96,111); color: rgb(252,255,245); }
+    a.active { font-weight: 600; }
   }
 
   .main_nav {

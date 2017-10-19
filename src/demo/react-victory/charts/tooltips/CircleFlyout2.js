@@ -20,6 +20,6 @@ export default class CircleFlyout2 extends Component {
         <circle cx={ x } cy={ newY } r="25" stroke="orange" fill="orange" fillOpacity="0.5" />
         <circle cx={ x } cy={ newY } r="30" stroke="gold" fill="gold" fillOpacity="0.25" />
       </g>
-    );
+    )
   }
 }
