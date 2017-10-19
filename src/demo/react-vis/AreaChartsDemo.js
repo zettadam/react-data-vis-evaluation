@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 
 import { ChartPanel, DemoHeader } from './common'
 import { AreaChart } from './charts'
@@ -52,22 +53,31 @@ export default class AreaChartsDemo extends Component {
 
             <ChartPanel theme="schemeAccent" title="Simple Area Chart">
               <AreaChart
-                data={ DATA.slice(230,250) }
+                data={ DATA }
+                xAxis={{
+                  tickFormat: t => moment(t).format('YYYY'),
+                  tickTotal: 6
+                }}
                 xField="Date"
                 xPadding={ 20 }
-                xTickFormat="MMM YYYY"
-                xType="time"
+                yAxis={{
+                  tickTotal: 6
+                }}
                 yFields={ ['National'] } />
             </ChartPanel>
 
-            <ChartPanel interpolation="linear" theme="schemeAccent" title="Simple Area Chart">
+            <ChartPanel interpolation="linear" theme="schemePaired" title="Simple Area Chart">
               <AreaChart
-                data={ DATA.slice(200,220) }
-                withLinePoints
+                data={ DATA }
+                xAxis={{
+                  tickFormat: t => moment(t).format('YYYY'),
+                  tickTotal: 6
+                }}
                 xField="Date"
                 xPadding={ 20 }
-                xTickFormat="MMM YYYY"
-                xType="time"
+                yAxis={{
+                  tickTotal: 6
+                }}
                 yFields={ ['Boston', 'Chicago', 'Dallas', 'Detroit', 'Miami', 'Portland', 'Washington', 'National'] } />
             </ChartPanel>
 
@@ -75,20 +85,36 @@ export default class AreaChartsDemo extends Component {
 
           <div className="grid-wide">
 
-            <ChartPanel interpolation="monotoneX" theme="schemeAccent" title="Simple Area Chart">
+            <ChartPanel title="US House Price Index, 1987-2015"
+              interpolation="monotoneX"
+              theme="schemePaired">
               <AreaChart
                 data={ DATA }
+                xAxis={{
+                  tickFormat: t => moment(t).format('MMM YYYY'),
+                  tickTotal: 12
+                }}
                 xField="Date"
-                xType="time"
+                yAxis={{
+                  tickTotal: 6
+                }}
                 yFields={ ['Boston', 'Miami', 'Dallas', 'National'] } />
             </ChartPanel>
 
-            <ChartPanel interpolation="linear" theme="schemeAccent" title="Stacked Area Chart">
+            <ChartPanel title="US House Price Index, 1987-2015"
+              interpolation="linear"
+              theme="schemePaired" >
               <AreaChart
                 data={ DATA }
                 stackBy="y"
+                xAxis={{
+                  tickFormat: t => moment(t).format('MMM YYYY'),
+                  tickTotal: 12
+                }}
                 xField="Date"
-                xType="time"
+                yAxis={{
+                  tickTotal: 6
+                }}
                 yFields={ ['Boston', 'Miami', 'Dallas', 'National'] } />
             </ChartPanel>
 

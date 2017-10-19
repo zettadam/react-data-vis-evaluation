@@ -76,7 +76,7 @@ export default class AreaChart extends Component {
 
     const colors = COLORS[theme] || []
 
-    const areas = prepareData({
+    const lines = prepareData({
       data,
       scale,
       timeFormat,
@@ -87,14 +87,12 @@ export default class AreaChart extends Component {
     const isResponsive = responsiveHeight || responsiveWidth
 
     const frameProps = {
-      areas,
-      areaStyle: (d, i) => ({ fill: colors[i % colors.length], fillOpacity: 0.75 }),
+      lines,
+      lineStyle: (d, i) => ({ fill: colors[i % colors.length], fillOpacity: 0.75 }),
       axes,
       hoverAnnotation,
       legend,
-      lineType: { type: 'line' },
-      dataType: { type: 'area' },
-      areaType: { type: 'alpha' },
+      lineType: { type: 'stackedarea', interpolator: CURVE_MAP[interpolation] },
       matte,
       showLinePoints,
       size: [height, width],

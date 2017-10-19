@@ -51,7 +51,7 @@ export default class LineChartsDemo extends Component {
 
             <ChartPanel interpolation="monotoneX" theme="schemeAccent" title="Simple Line Chart">
               <LineChart
-                data={ DATA.slice(230,250) }
+                data={ DATA }
                 xField="Date"
                 xPadding={ 20 }
                 xTickFormat="MMM YYYY"
@@ -61,7 +61,7 @@ export default class LineChartsDemo extends Component {
 
             <ChartPanel interpolation="linear" theme="schemeAccent" title="Simple Line Chart">
               <LineChart
-                data={ DATA.slice(200,220) }
+                data={ DATA }
                 withLinePoints
                 xField="Date"
                 xPadding={ 20 }

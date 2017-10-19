@@ -67,12 +67,6 @@ export default class AreaChartsDemo extends Component {
                 yFields={ ['y1'] } />
             </ChartPanel>
 
-            <ChartPanel />
-
-          </div>
-
-          <div className="grid-wide">
-
             <ChartPanel title="Multiple Areas (Stacked)" theme="qualitativeB">
               <AreaChart
                 data={ ORDINAL_DATA[2] }
@@ -82,7 +76,11 @@ export default class AreaChartsDemo extends Component {
                 stacked />
             </ChartPanel>
 
-            <ChartPanel title="Multiple Areas (grouped)" theme="qualitativeA">
+          </div>
+
+          <div className="grid-wide">
+
+            <ChartPanel title="Multiple Areas (Grouped)" theme="qualitativeA">
               <AreaChart
                 chartContainers={ ['voronoi'] }
                 data={ ORDINAL_DATA[2] }

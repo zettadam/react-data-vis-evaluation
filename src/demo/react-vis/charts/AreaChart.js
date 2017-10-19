@@ -16,7 +16,6 @@ import moment from 'moment'
 
 import COLORS from 'common/colorSchemes'
 import { CURVE_MAP } from '../common'
-
 import { styles } from './styles'
 
 export default class AreaChart extends Component {
@@ -29,13 +28,12 @@ export default class AreaChart extends Component {
     margin: { top: 20, right: 20, bottom: 40, left: 60 },
     markSize: 3,
     opacity: 0.5,
+    scale: { x: 'time', y: 'linear' },
     theme: 'schemeAccent',
     timeFormat: '%Y-%m-%d',
     width: 533,
     xField: 'x',
-    xType: 'linear',
-    yFields: ['y'],
-    yTime: 'linear'
+    yFields: ['y']
   }
 
   constructor (props) {
@@ -49,17 +47,6 @@ export default class AreaChart extends Component {
     }
 
     this._renderSeries = this._renderSeries.bind(this)
-    this._formatTick = this._formatTick.bind(this)
-  }
-
-  _formatTick (t, i) {
-    const { xTickFormat, xType } = this.props
-
-    if ('time' === xType) {
-      return moment(t).format(xTickFormat || 'MM-DD-YYYY')
-    }
-
-    return t
   }
 
   _renderSeries () {
@@ -68,6 +55,7 @@ export default class AreaChart extends Component {
       interpolation,
       markSize,
       opacity,
+      scale,
       theme,
       timeFormat,
       xField,
@@ -83,7 +71,7 @@ export default class AreaChart extends Component {
     return yFields.map((y, i) => {
 
       const lineData = data.map(d => ({
-        x: xType === 'time' ? parseTime(d[xField]) : d[xField],
+        x: scale.x === 'time' ? parseTime(d[xField]) : d[xField],
         y: d[y]
       }))
 
@@ -113,12 +101,10 @@ export default class AreaChart extends Component {
       margin,
       stackBy,
       width,
+      xAxis,
       xField,
-      xTickTotal,
-      xType,
-      yFields,
-      yTickTotal,
-      yType
+      yAxis,
+      yFields
     } = this.props
 
     // Plot props
@@ -143,18 +129,13 @@ export default class AreaChart extends Component {
 
     const xAxisProps = {
       ...axisProps,
-      tickFormat: this._formatTick,
-      title: "Label X",
-      xType
+      ...xAxis
     }
-    if (xTickTotal) xAxisProps.tickTotal = xTickTotal
 
     const yAxisProps = {
       ...axisProps,
-      title: "Label Y",
-      yType
+      ...yAxis
     }
-    if (yTickTotal) yAxisProps.tickTotal = yTickTotal
 
     return (
       <Plot { ...plotProps }>

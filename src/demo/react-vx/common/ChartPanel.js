@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 
-import ColorSchemeSelector from 'common/ColorSchemeSelector'
-import InterpolationSelector from './InterpolationSelector'
+import Selector from 'common/Selector'
+import {
+  INTERPOLATION_OPTIONS,
+  THEME_OPTIONS
+} from 'demo/react-vx/common'
 
 export default class ChartPanel extends Component {
 
@@ -43,6 +46,7 @@ export default class ChartPanel extends Component {
       baseClassName,
       children,
       className,
+      noInterpolation,
       title
     } = this.props
     const {
@@ -55,8 +59,16 @@ export default class ChartPanel extends Component {
         <div className={ `${ baseClassName }__header` }>
           <h4 className={ `${ baseClassName }__title` }>{ title }</h4>
           <div className={ `${ baseClassName }__toolbar` }>
-            <ColorSchemeSelector value={ theme } onChange={ this.handleThemeChange } />
-            <InterpolationSelector value={ interpolation } onChange={ this.handleInterpolationChange } />
+            <Selector title="Select a color scheme"
+              value={ theme }
+              onChange={ this.handleThemeChange }
+              options={ THEME_OPTIONS } />
+
+            { !noInterpolation &&
+            <Selector title="Select an interpolation"
+              value={ interpolation }
+              onChange={ this.handleInterpolationChange }
+              options={ INTERPOLATION_OPTIONS } /> }
           </div>
         </div>
         <div className={ `${baseClassName }__content ${baseClassName }__content-${ aspectRatio}` }>

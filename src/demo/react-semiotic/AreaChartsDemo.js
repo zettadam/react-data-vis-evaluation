@@ -51,7 +51,10 @@ export default class AreaChartsDemo extends Component {
 
           <div className="grid-wide">
 
-            <ChartPanel title="Simple Area Chart" theme="schemeAccent" interpolation="linear">
+            <ChartPanel title="US House Price Index, 1987-2015"
+            interpolation="natural"
+              theme="schemeAccent">
+
               <AreaChart
                 axes={[
                   { orient: 'left', format: '0', ticks: 6 },
@@ -63,9 +66,13 @@ export default class AreaChartsDemo extends Component {
                 xField="Date"
                 yAccessor="y"
                 yFields={[ 'Boston', 'Miami', 'Portland', 'Washington', 'National' ]} />
+
             </ChartPanel>
 
-            <ChartPanel title="Simple Area Chart" theme="schemeAccent" interpolation="linear">
+            <ChartPanel title="Simple Area Chart"
+              interpolation="natural"
+              theme="schemeAccent" >
+
               <AreaChart
                 axes={[
                   { orient: 'left', format: '0', ticks: 6 },
@@ -78,6 +85,7 @@ export default class AreaChartsDemo extends Component {
                 xField="month"
                 yAccessor="y"
                 yFields={[ 'usd' ]} />
+
             </ChartPanel>
 
           </div>

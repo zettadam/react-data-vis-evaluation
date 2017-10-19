@@ -19,7 +19,7 @@ const ChartDemo = ({
             component={ ChartDemoSwitch } />
           <Route path="/chart-types/:type"
             render={ props =>
-              <Redirect to={ `/chart-types/${props.match.params.type}/react-recharts` } />
+              <Redirect to={ `/chart-types/${props.match.params.type}/react-victory` } />
             } />
         </Switch>
       </article>
