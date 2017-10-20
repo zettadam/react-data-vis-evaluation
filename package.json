@@ -69,6 +69,6 @@
     "react-vis": "^1.7.9",
     "recharts": "^1.0.0-alpha.6",
     "semiotic": "^1.1.7",
-    "victory": "^0.23.1"
+    "victory": "^0.24.0"
   }
 }

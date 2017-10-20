@@ -9,6 +9,7 @@ import moment from 'moment'
 import { DemoHeader, ChartPanel } from './common'
 import {
   LineChart,
+  MinimapLineChart,
   Flyout1,
   CircleFlyout1,
   CircleFlyout2
@@ -146,7 +147,7 @@ export default class LineChartsDemo extends Component {
             </ChartPanel>
 
             <ChartPanel title="US House Price Index 1987-2015" theme="qualitativeB" interpolation="natural">
-              <LineChart
+              <MinimapLineChart
                 data={ DATA }
                 domainPadding={{ x: 0, y: 20 }}
                 legendProps={{
