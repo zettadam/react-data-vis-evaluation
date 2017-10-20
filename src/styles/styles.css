@@ -439,50 +439,6 @@ footer.footer {
   }
 }
 
-.charts {
-
-  /* These styles maintain aspect ratio */
-  .chart-panel__content {
-    position: relative;
-    padding: 0;
-
-    .chart {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: 0;
-      padding: 0;
-    }
-
-    &::before {
-      display: block;
-      content: '';
-      width: 100%;
-    }
-  }
-
-  .chart-panel__content-width {
-    .chart {
-      position: relative;
-    }
-  }
-  .chart-panel__content-default {
-    &::before { padding-top: 56.25%; }
-  }
-  .chart-panel__content-16x9 {
-    &::before { padding-top: 56.25%; }
-  }
-  .chart-panel__content-4x3 {
-    &::before { padding-top: 75%; }
-  }
-  .chart-panel__content-21x9 {
-    &::before { padding-top: 42.85%; }
-  }
-
-}
-
 .grid-2 {
   display: grid;
   grid-gap: 2rem;

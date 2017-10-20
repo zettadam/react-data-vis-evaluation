@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import { MinimapXYFrame } from 'semiotic'
 
 import { ChartPanel, DemoHeader } from './common'
-import { LineChart } from './charts'
+import { LineChart, MinimapLineChart } from './charts'
 
-import DATA from 'price-changes-consumer-goods-services-usa.json'
-import { TIME_SERIES, ORDINAL_DATA } from 'fakeData'
+import US_HOUSE_PRICE_INDEX_DATA from 'house-price-index-usa.json'
 
 
 export default class LineChartsDemo extends Component {
@@ -51,40 +51,42 @@ export default class LineChartsDemo extends Component {
 
           <div className="grid-wide">
 
-          <ChartPanel interpolation="monotoneX" theme="schemeAccent" title="Simple Line Chart">
+          <ChartPanel title="US House Price Index, 1987-2015"
+            interpolation="monotoneX"
+            theme="schemePaired">
 
-            <LineChart
-              data={ TIME_SERIES['traffic'] }
+            <MinimapLineChart
+              axes={[
+                { orient: 'left', format: '0' },
+                { orient: 'bottom', tickFormat: t => moment(t).format('MMM YYYY'), ticks: 6 }
+              ]}
+              data={ US_HOUSE_PRICE_INDEX_DATA }
               margin={{ top: 20, right: 20, bottom: 55, left: 55 }}
               matte
-              xField="date"
-              xTickFormat={ t => moment(t).format('YYYY-MM-DD') }
-              xTicks={ 6 }
-              yFields={ [ 'AA', 'BB', 'CC', 'DD' ]}
-              yTickFormat={ t => t }
-              yTicks={ 6 } />
+              xField="Date"
+              yFields={ [ 'Boston', 'Miami', 'Portland', 'Washington', 'National' ]} />
 
           </ChartPanel>
 
-          <ChartPanel interpolation="linear" theme="schemeAccent" title="Simple Line Chart">
+          <ChartPanel title="US House Price Index, 1987-2015"
+            interpolation="linear"
+            theme="schemeBlues">
 
             <LineChart
-              data={ TIME_SERIES['price'] }
+              axes={[
+                { orient: 'left', format: '0' },
+                { orient: 'bottom', tickFormat: t => moment(t).format('MMM YYYY'), ticks: 6 }
+              ]}
+              data={ US_HOUSE_PRICE_INDEX_DATA }
               margin={{ top: 20, right: 20, bottom: 55, left: 55 }}
-              showLinePoints
-              timeFormat="%b %Y"
               tooltipContent={ d => (
                 <div className="tooltip-content">
                   Month: <b>{ moment(d.x).format('MMM YYYY') }</b><br/>
                   Change: <b>${ d.y }</b>
                 </div>
               )}
-              xField="month"
-              xTickFormat={ t => moment(t).format('MMM YYYY') }
-              xTicks={ 6 }
-              yFields={ ["usd"] }
-              yTickFormat={ t => t }
-              yTicks={ 6 } />
+              xField="Date"
+              yFields={ [ 'Boston', 'Miami', 'Portland', 'Washington', 'National' ]} />
 
           </ChartPanel>
 

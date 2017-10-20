@@ -38,7 +38,7 @@ export default class AreaChartsDemo extends Component {
     const { section } = this.state
 
     return (
-      <section className="demo">
+      <section className="demo demo--semiotic">
         <DemoHeader handlers={{
           onToolbarBookmarkClick: this.onToolbarBookmarkClick,
           onToolbarNotesClick: this.onToolbarNotesClick,

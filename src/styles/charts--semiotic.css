@@ -1,37 +1,39 @@
 .demo--semiotic {
-  .grid-2 {
-    .tooltip-content {
-      background: rgba(0,0,0,0.80);
-      border-radius: .25rem;
-      color: rgb(255,255,255);
-      font-size: 13px;
-      line-height: 1.4;
-      margin-left: -50%;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      width: auto;
+  .tooltip-content {
+    background: rgba(0,0,0,0.80);
+    border-radius: .25rem;
+    color: rgb(255,255,255);
+    font-size: 13px;
+    line-height: 1.4;
+    margin-left: -50%;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: auto;
 
-      &:after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 0;
-        margin-left: -8px;
-        margin-top: -1rem;
-        width: 0; height: 0;
-        border-top: 8px solid rgba(0,0,0,0.80);
-        border-right: 8px solid transparent;
-        border-left: 8px solid transparent;
-      }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-left: -8px;
+      margin-top: -1rem;
+      width: 0; height: 0;
+      border-top: 8px solid rgba(0,0,0,0.80);
+      border-right: 8px solid transparent;
+      border-left: 8px solid transparent;
     }
   }
 
-  g.axis-tick-lines {
-    border-left: 1px solid rgb(186,186,186);
-    border-bottom: 1px solid rgb(186,186,186)!important;
+  .axis-labels text { fill: lightgray; }
+
+  .tick path {
+    stroke: lightgray;
   }
 
-  g.x-axis text,
-  g.y-axis text { fill: rgb(186,186,186); }
+  .brush .handle {
+    fill: lightskyblue;
+    stroke: darkslategray;
+    stroke-width: 1;
+  }
 }
