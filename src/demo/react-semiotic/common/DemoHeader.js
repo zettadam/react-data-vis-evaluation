@@ -7,6 +7,6 @@ export default ({
   section
 }) =>
   <header>
-    <h3>Using React and <a href="https://https://emeeks.github.io/semiotic/">Semiotic</a> library</h3>
+    <h3>Using React and <a href="https://emeeks.github.io/semiotic/">Semiotic</a> library</h3>
     <DemoToolbar handlers={ handlers } section={ section } />
   </header>
